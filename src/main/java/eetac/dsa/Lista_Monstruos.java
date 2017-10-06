@@ -57,4 +57,9 @@ public class Lista_Monstruos {
         }
         return null;
     }
+
+    public int getTamaño()
+    {
+        return monstruos.size();
+    }
 }
