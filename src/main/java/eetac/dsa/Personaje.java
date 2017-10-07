@@ -12,14 +12,14 @@ public abstract class Personaje
     private Inventario inventario;
     private boolean genero;
 
-    public Personaje(String nombre, String escenario, int x, int y, Lista_Monstruos lista_montruos, Inventario inventario, boolean genero)
+    public Personaje(String nombre, String escenario, int x, int y, boolean genero)
     {
         this.nombre = nombre;
         this.escenario = escenario;
         this.x = x;
         this.y = y;
-        this.lista_montruos = lista_montruos;
-        this.inventario = inventario;
+        this.lista_montruos = new Lista_Monstruos();
+        this.inventario = new Inventario();
         this.genero = genero;
     }
 }

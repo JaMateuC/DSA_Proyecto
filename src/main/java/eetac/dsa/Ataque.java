@@ -1,10 +1,20 @@
 package eetac.dsa;
 
-/**
- * La clase Ataque permite instanciar un ataque a un monstruo
- */
-public class Ataque
-{
-    private String nombre;
-    private int multiplicador;
+public class Ataque {
+    String nombre;
+    float multiplicador;
+
+    public Ataque(String nombre, float multiplicador) {
+        this.nombre = nombre;
+        this.multiplicador = multiplicador;
+    }
+
+    public String getNombre() {
+
+        return nombre;
+    }
+
+    public float getMultiplicador() {
+        return multiplicador;
+    }
 }

@@ -16,7 +16,7 @@ public abstract class Celda
      */
     float probMonstruo;
 
-    Boolean anadable;
+    Boolean andable;
 
     /**
      * si existe un personaje encima esta propiedad es diferente de null.
@@ -24,11 +24,47 @@ public abstract class Celda
      */
     Personaje personajeEncima;
 
+    public Celda(String tipo, float probObjeto, float probMonstruo, Boolean andable) {
+        this.tipo = tipo;
+        this.probObjeto = probObjeto;
+        this.probMonstruo = probMonstruo;
+        this.andable = andable;
+    }
+
     /**
      * funcion miscelanea que se ejecuta cuando un usuario esta encima
      * @return devuelve si la funcion se ha podido ejecutar
      */
     public abstract Boolean accionEncima();
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setAndable(Boolean andable) {
+        this.andable = andable;
+    }
+
+    public void setPersonajeEncima(Personaje personajeEncima) {
+        this.personajeEncima = personajeEncima;
+    }
+
+    public Personaje getPersonajeEncima() {
+
+        return personajeEncima;
+    }
+
+    public float getProbObjeto() {
+        return probObjeto;
+    }
+
+    public float getProbMonstruo() {
+        return probMonstruo;
+    }
+
+    public Boolean getAndable() {
+        return andable;
+    }
 
     /**
      * funcion miscelanea que se activa por un personaje delante de la celda actual
