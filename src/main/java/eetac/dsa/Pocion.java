@@ -1,5 +1,5 @@
 package eetac.dsa;
 
-public class Pocion
+public class Pocion extends Objeto
 {
 }

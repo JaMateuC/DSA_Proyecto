@@ -1,4 +1,8 @@
 package eetac.dsa;
 
-public class Inventario {
+/**
+ * La clase Inventario contiene todos los objetos del jugador
+ */
+public class Inventario
+{
 }

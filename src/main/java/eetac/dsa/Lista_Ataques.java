@@ -1,4 +1,9 @@
 package eetac.dsa;
 
-public class Lista_Ataques {
+/**
+ * La clase Lista_Ataques contiene los movimientos que puede hacer un monstruo
+ */
+public class Lista_Ataques
+{
+
 }

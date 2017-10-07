@@ -1,4 +1,7 @@
 package eetac.dsa;
 
-public class Objeto {
+public abstract class Objeto
+{
+    private String nombre;
+    private String descripcion;
 }

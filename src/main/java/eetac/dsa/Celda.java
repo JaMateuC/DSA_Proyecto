@@ -54,7 +54,7 @@ public abstract class Celda
         {
             obtenerObjeto();
         }
-        if(numeroPersonaje<probMonstruo)
+        if(numeroPersonaje < probMonstruo)
         {
             comenzarCombate();
         }
