@@ -9,13 +9,15 @@ import java.util.Vector;
 public class Lista_Monstruos {
     Vector<Monstruo> monstruos;
 
+    int maxMonstruos = 6;
+
     public Lista_Monstruos() {
         monstruos = new Vector<Monstruo>();
     }
 
     public boolean añadirMonstruo(Monstruo monstruo)
     {
-        if(monstruos.size()<6)
+        if(monstruos.size()<maxMonstruos)
         {
             monstruos.add(monstruo);
             return true;
@@ -25,15 +27,15 @@ public class Lista_Monstruos {
 
     /**
      * quita un monstruo a partir del indice
-     * @param i indice del monstruo, comienza por 1
+     * @param i
      *
      * @return devuelve si la operacion se ha podido completar
      */
     public boolean quitarMonstruoPorPosicion(int i)
     {
-        if(monstruos.size()<i)
+        if(monstruos.size()>i)
         {
-            monstruos.remove(i-1);
+            monstruos.remove(i);
             return true;
         }
         return false;
@@ -46,14 +48,14 @@ public class Lista_Monstruos {
 
     /**
      * obtiene un monstruo segun su posicion en el inventario
-     * @param i posicion del monstruo en el inventario, comienza en 1
+     * @param i posicion del monstruo en el inventario
      * @return
      */
     public Monstruo obtenerMonstruo(int i)
     {
         if(monstruos.size()<i)
         {
-            return monstruos.get(i-1);
+            return monstruos.get(i);
         }
         return null;
     }

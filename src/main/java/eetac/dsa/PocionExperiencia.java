@@ -1,8 +1,8 @@
 package eetac.dsa;
 
 public class PocionExperiencia extends Objeto{
-    public PocionExperiencia(int experienciaExtra) {
-        super("Pocion de Experiencia", "añade experiencia a un monstruo dado");
+    public PocionExperiencia(String nombre,int experienciaExtra) {
+        super(nombre, "añade experiencia a un monstruo dado","Pocion de Experiencia");
         this.experienciaExtra = experienciaExtra;
     }
 

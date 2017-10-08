@@ -75,14 +75,14 @@ public class TestMonstruo {
     public void testObjetos()
     {
         monstruoTest.setVidaActual(10);
-        monstruoTest.usarObjeto(new Pocion(20));
+        monstruoTest.usarObjeto(new Pocion("Pocion pequeña",20));
         assertEquals(30,monstruoTest.getVidaActual());
 
         monstruoTest.setVidaActual(10);
-        monstruoTest.usarObjeto(new Pocion(50));
+        monstruoTest.usarObjeto(new Pocion("Pocion Normal",50));
         assertEquals(40,monstruoTest.getVidaActual());
 
-        monstruoTest.usarObjeto(new PocionExperiencia(70));
+        monstruoTest.usarObjeto(new PocionExperiencia("Pocion de Experiencia Normal",70));
         assertEquals(3,monstruoTest.getNivel());
         assertEquals(10,monstruoTest.getExperiencia());
 

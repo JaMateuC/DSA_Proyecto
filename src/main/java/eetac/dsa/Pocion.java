@@ -5,8 +5,8 @@ public class Pocion extends Objeto
 
     int vida;
 
-    public Pocion(int vida) {
-        super("pocion", "perimite recuperar "+vida+" puntos de salud de un monstruo");
+    public Pocion(String nombre,int vida) {
+        super(nombre, "perimite recuperar "+vida+" puntos de salud de un monstruo","pocion");
         this.vida = vida;
     }
 
