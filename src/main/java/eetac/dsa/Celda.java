@@ -6,23 +6,10 @@ package eetac.dsa;
 public abstract class Celda
 {
     String tipo;
-    /**
-     * probabilidad con la que aparece un objeto en esta celda
-     */
-    float probObjeto;
-
-    /**
-     * probabilidad con la que aparece un monstruo
-     */
-    float probMonstruo;
-
+    float probObjeto; //probabilidad con la que aparece un objeto en esta celda
+    float probMonstruo; //probabilidad con la que aparece un monstruo
     Boolean andable;
-
-    /**
-     * si existe un personaje encima esta propiedad es diferente de null.
-     * solo un personaje por celda.
-     */
-    Personaje personajeEncima;
+    Personaje personajeEncima; //si existe un personaje encima esta propiedad es diferente de null. Solo un personaje por celda.
 
     public Celda(String tipo, float probObjeto, float probMonstruo, Boolean andable) {
         this.tipo = tipo;
@@ -31,11 +18,6 @@ public abstract class Celda
         this.andable = andable;
     }
 
-    /**
-     * funcion miscelanea que se ejecuta cuando un usuario esta encima
-     * @return devuelve si la funcion se ha podido ejecutar
-     */
-    public abstract Boolean accionEncima();
 
     public String getTipo() {
         return tipo;
@@ -50,7 +32,6 @@ public abstract class Celda
     }
 
     public Personaje getPersonajeEncima() {
-
         return personajeEncima;
     }
 
@@ -67,12 +48,17 @@ public abstract class Celda
     }
 
     /**
+     * funcion miscelanea que se ejecuta cuando un usuario esta encima
+     * @return devuelve si la funcion se ha podido ejecutar
+     */
+    public abstract Boolean accionEncima();
+
+    /**
      * funcion miscelanea que se activa por un personaje delante de la celda actual
      * @param activador personaje que activa la accion
      * @return devuelve si la funcion se ha podido ejecutar
      */
     public abstract Boolean accionActivar(Personaje activador);
-
 
     /**
      * funcion que se usa para poner un personaje en esta posicion, y calcul si aparece un monstruo o un objeto

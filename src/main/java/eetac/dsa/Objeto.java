@@ -6,6 +6,12 @@ public abstract class Objeto
     private String tipo;
     private String descripcion;
 
+    public Objeto(String nombre, String descripcion, String tipo) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.tipo = tipo;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -16,13 +22,6 @@ public abstract class Objeto
 
     public String getDescripcion() {
         return descripcion;
-    }
-
-    public Objeto(String nombre, String descripcion, String tipo) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.tipo = tipo;
-
     }
 
     public abstract void funcion(Personaje personaje);

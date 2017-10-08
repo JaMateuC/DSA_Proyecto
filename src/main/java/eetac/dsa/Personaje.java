@@ -12,6 +12,17 @@ public abstract class Personaje
     private Point posicion;
     private Lista_Monstruos lista_montruos;
     private Inventario inventario;
+    private boolean genero;
+
+    public Personaje(String nombre, String escenario, int x, int y, boolean genero)
+    {
+        this.nombre = nombre;
+        this.escenario = escenario;
+        posicion = new Point(x,y);
+        this.lista_montruos = new Lista_Monstruos();
+        this.inventario = new Inventario();
+        this.genero = genero;
+    }
 
     public String getNombre() {
         return nombre;
@@ -27,7 +38,6 @@ public abstract class Personaje
 
     public String getEscenario() {
         return escenario;
-
     }
 
     public Point getPosicion() {
@@ -46,17 +56,6 @@ public abstract class Personaje
         return genero;
     }
 
-    private boolean genero;
-
-    public Personaje(String nombre, String escenario, int x, int y, boolean genero)
-    {
-        this.nombre = nombre;
-        this.escenario = escenario;
-        posicion = new Point(x,y);
-        this.lista_montruos = new Lista_Monstruos();
-        this.inventario = new Inventario();
-        this.genero = genero;
-    }
 
     public boolean mover(Celda celda,int x,int y)
     {

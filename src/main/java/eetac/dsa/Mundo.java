@@ -21,5 +21,9 @@ public class Mundo {
         return mapa[x][y];
     }
 
-
+    /*public String cambiarEscenario(Celda celda) {
+        if(celda.getTipo() == "Cambio de escenario"){
+            return siguienteEscenario;
+        }
+    }*/
 }

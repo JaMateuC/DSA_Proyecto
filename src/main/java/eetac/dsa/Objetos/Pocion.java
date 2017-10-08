@@ -1,4 +1,8 @@
-package eetac.dsa;
+package eetac.dsa.Objetos;
+
+import eetac.dsa.Monstruo;
+import eetac.dsa.Objeto;
+import eetac.dsa.Personaje;
 
 public class Pocion extends Objeto
 {

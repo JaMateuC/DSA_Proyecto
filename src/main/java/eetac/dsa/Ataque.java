@@ -14,6 +14,10 @@ public class Ataque {
         return nombre;
     }
 
+    public float getMultiplicador() {
+        return multiplicador;
+    }
+
     /**
      * funcion prevista para possibles efectos especiales de un ataque a un enemigo
      * @param enemigo enemigo el cual sera afectado por el extra
@@ -32,7 +36,4 @@ public class Ataque {
 
     }
 
-    public float getMultiplicador() {
-        return multiplicador;
-    }
 }
