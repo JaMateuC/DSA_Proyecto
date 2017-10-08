@@ -21,7 +21,7 @@ public class Lista_Ataques {
     }
 
     /**
-     * devuelve el ataque en la posicion i, si no existe devuelve null;
+     * devuelve el ataqueBase en la posicion i, si no existe devuelve null;
      * @param i
      * @return
      */
