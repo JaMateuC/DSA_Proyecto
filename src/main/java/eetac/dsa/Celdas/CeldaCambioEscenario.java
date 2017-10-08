@@ -5,17 +5,23 @@ import eetac.dsa.Personaje;
 
 public class CeldaCambioEscenario extends Celda {
 
-    public CeldaCambioEscenario(String tipo, float probObjeto, float probMonstruo, Boolean andable) {
+    String escenario;
+    int x;
+    int y;
+
+    public CeldaCambioEscenario(String escenario,int x,int y) {
         super("Cambio de escenario", 0, 0, true);
     }
 
     @Override
     public Boolean accionEncima() {
+        this.getPersonajeEncima().setEscenario(escenario);
+        this.getPersonajeEncima().setPosicion(x,y);
         return true;
     }
 
     @Override
     public Boolean accionActivar(Personaje activador) {
-        return null;
+        return false;
     }
 }
