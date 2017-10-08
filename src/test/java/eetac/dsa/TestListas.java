@@ -3,6 +3,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Vector;
+
 public class TestListas {
     @Test
     public void testLista_Monstruos()
@@ -26,4 +28,28 @@ public class TestListas {
         assertEquals(list.obtenerMonstruo(2).getNivel(),5);
     }
 
+    @Test
+    public void testInventario()
+    {
+        Inventario inventario = new Inventario();
+        inventario.añadirObeto(new Pocion("pocion normal",20));
+        inventario.añadirObeto(new Pocion("pocion grande",50));
+        inventario.añadirObeto(new PocionExperiencia("pocion de experiencia pequeña",10));
+        inventario.añadirObeto(new PocionExperiencia("pocion de experiencia normal",30));
+        inventario.añadirObeto(new Pocion("pocion super",50));
+        inventario.añadirObeto(new PocionExperiencia("pocion de experiencia gigante",900));
+        assertEquals(6,inventario.obtenerTamaño());
+
+        Vector<Objeto> pociones = inventario.buscarObjetosPorTipo("Pocion");
+        assertEquals(3,pociones.size());
+
+        Objeto obj =inventario.obtenerObjetoPorNombre("pocion normal");
+        assertEquals(5,inventario.obtenerTamaño());
+        assertEquals("pocion normal",obj.getNombre());
+
+        obj =inventario.buscarObjetoPorNombre("pocion grande");
+        assertEquals(5,inventario.obtenerTamaño());
+        assertEquals("pocion grande",obj.getNombre());
+        assertEquals(null,inventario.buscarObjeto(6));
+    }
 }

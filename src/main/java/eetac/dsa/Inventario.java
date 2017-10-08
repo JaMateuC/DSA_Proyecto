@@ -56,12 +56,17 @@ public class Inventario {
 
     public Vector<Objeto> buscarObjetosPorTipo(String tipo) {
         Vector<Objeto>tmp = new Vector<Objeto>();
-        for (Objeto obj:tmp) {
+        for (Objeto obj:objetos) {
             if(obj.getTipo()==tipo)
             {
                 tmp.add(obj);
             }
         }
         return tmp;
+    }
+
+    public int obtenerTamaño()
+    {
+        return objetos.size();
     }
 }
