@@ -74,11 +74,11 @@ public abstract class Celda
         this.personajeEncima = personaje;
         if(numeroObjeto<probObjeto)
         {
-            obtenerObjeto();
+            obtenerObjeto(personaje);
         }
         if(numeroPersonaje < probMonstruo)
         {
-            comenzarCombate();
+            comenzarCombate(personaje);
         }
 
         accionEncima();
@@ -86,18 +86,20 @@ public abstract class Celda
         return true;
     }
 
+    //TODO(falta hacer que las celdas tenga informacion de en que rango de niveles estan)
     /**
      * obten un objeto aleatorio el personaje en la casilla
      */
-    void obtenerObjeto()
+    void obtenerObjeto(Personaje personaje)
     {
-
+        personaje.getInventario().añadirObeto(CreadorAleatori.crearObjeto(0));
     }
 
+    //TODO(falta crear la classe combate i implementarla)
     /**
      * comienza un combate con un monstruo aleatorio el personaje de la casilla
      */
-    void comenzarCombate()
+    void comenzarCombate(Personaje personaje)
     {
 
     }

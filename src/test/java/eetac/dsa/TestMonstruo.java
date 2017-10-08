@@ -1,6 +1,9 @@
 package eetac.dsa;
 
 import static org.junit.Assert.assertEquals;
+
+import eetac.dsa.Objetos.Pocion;
+import eetac.dsa.Objetos.PocionExperiencia;
 import org.junit.Before;
 import org.junit.Test;
 

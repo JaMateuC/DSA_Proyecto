@@ -1,5 +1,6 @@
 package eetac.dsa;
 
+import eetac.dsa.Objetos.Pocion;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -30,3 +31,4 @@ public class TestPersonaje {
         assertEquals(0,user.getInventario().obtenerTamaño());
     }
 }
+
