@@ -48,6 +48,11 @@ public class Inventario {
         }
         return null;
     }
+
+    public boolean quitarObjeto(Objeto o)
+    {
+        return objetos.remove(o);
+    }
     
     public void añadirObeto(Objeto objeto)
     {
