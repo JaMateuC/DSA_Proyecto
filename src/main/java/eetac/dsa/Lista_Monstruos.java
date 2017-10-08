@@ -53,7 +53,7 @@ public class Lista_Monstruos {
      */
     public Monstruo obtenerMonstruo(int i)
     {
-        if(monstruos.size()<i)
+        if(monstruos.size()>i)
         {
             return monstruos.get(i);
         }
