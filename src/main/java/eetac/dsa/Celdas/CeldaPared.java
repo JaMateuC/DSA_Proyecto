@@ -10,12 +10,12 @@ public class CeldaPared extends Celda {
     }
 
     @Override
-    public Boolean accionEncima() {
-        return null;
+    public boolean accionEncima() {
+        return false;
     }
 
     @Override
-    public Boolean accionActivar(Personaje activador) {
-        return null;
+    public boolean accionActivar(Personaje activador) {
+        return false;
     }
 }

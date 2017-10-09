@@ -43,7 +43,7 @@ public abstract class Celda
         return probMonstruo;
     }
 
-    public Boolean getAndable() {
+    public boolean getAndable() {
         return andable;
     }
 
@@ -51,21 +51,21 @@ public abstract class Celda
      * funcion miscelanea que se ejecuta cuando un usuario esta encima
      * @return devuelve si la funcion se ha podido ejecutar
      */
-    public abstract Boolean accionEncima();
+    public abstract boolean accionEncima();
 
     /**
      * funcion miscelanea que se activa por un personaje delante de la celda actual
      * @param activador personaje que activa la accion
      * @return devuelve si la funcion se ha podido ejecutar
      */
-    public abstract Boolean accionActivar(Personaje activador);
+    public abstract boolean accionActivar(Personaje activador);
 
     /**
      * funcion que se usa para poner un personaje en esta posicion, y calcul si aparece un monstruo o un objeto
      * @param personaje personaje que se mueve
      * @return devuelve true si la casilla esta vacia y se puede acceder, en caso contrario devuelve false
      */
-    public Boolean accion(Personaje personaje)
+    public boolean accion(Personaje personaje)
     {
         if(this.personajeEncima!= null)
             return false;

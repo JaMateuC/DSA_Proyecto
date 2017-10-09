@@ -14,14 +14,14 @@ public class CeldaCambioEscenario extends Celda {
     }
 
     @Override
-    public Boolean accionEncima() {
+    public boolean accionEncima() {
         this.getPersonajeEncima().setEscenario(escenario);
         this.getPersonajeEncima().setPosicion(x,y);
         return true;
     }
 
     @Override
-    public Boolean accionActivar(Personaje activador) {
+    public boolean accionActivar(Personaje activador) {
         return false;
     }
 }
