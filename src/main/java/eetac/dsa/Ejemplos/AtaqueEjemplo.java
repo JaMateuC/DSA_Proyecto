@@ -1,9 +1,13 @@
-package eetac.dsa;
+package eetac.dsa.Ejemplos;
+
+import eetac.dsa.Ataque;
+import eetac.dsa.Monstruo;
 
 /**
  * ataque de ejemplo, sacrifica la mitad de tu vida actual para dañar la mitad de la vida actual del enemigo
  */
-public class AtaqueEjemplo extends Ataque {
+public class AtaqueEjemplo extends Ataque
+{
     public AtaqueEjemplo() {
         super("sacrificio", 0.f);
     }
@@ -11,11 +15,11 @@ public class AtaqueEjemplo extends Ataque {
     @Override
     public void extraEnemigo(Monstruo enemigo)
     {
-        enemigo.vidaActual/=2;
+        enemigo.setVidaActual(enemigo.getVidaActual()/2);
     }
 
     public void extraAtacante(Monstruo atacante)
     {
-        atacante.vidaActual/=2;
+        atacante.setVidaActual(atacante.getVidaActual()/2);
     }
 }

@@ -1,12 +1,13 @@
 package eetac.dsa;
 
-import eetac.dsa.Objetos.PiedraTeleport;
+import eetac.dsa.Ejemplos.MonstruoEjemplo;
 import eetac.dsa.Objetos.Pocion;
 import eetac.dsa.Objetos.PocionExperiencia;
 
 import java.util.Vector;
 //TODO(a medida que creemos objetos y monstruos hay que añadirlos en el creadorAleatorio)
-public class CreadorAleatori {
+public class CreadorAleatori
+{
     static Objeto crearObjeto(int rango)
     {
         Vector<Objeto> listaObjetosAparecibles = new Vector<Objeto>();

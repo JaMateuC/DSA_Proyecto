@@ -6,22 +6,24 @@ package eetac.dsa;
  * los valores usados seran del estilo ataqueBase*nivel.
  * para obtener los valores usados en comabte usar los metodos getVidaEfectva, getAtaqueEfectivo etz.
  */
-public abstract class Monstruo {
-    int nivel;
-    int experiencia;
+public abstract class Monstruo
+{
+    private int nivel;
+    private int experiencia;
 
     //parametros base a nivel 1
-    int vidaBase;
-    int ataqueBase;
-    int defensaBase;
-    int experienciaBase;
+    private int vidaBase;
+    private int ataqueBase;
+    private int defensaBase;
+    private int experienciaBase;
 
-    int vidaActual;
-    Lista_Ataques lista_ataques;
+    private int vidaActual;
+    private Lista_Ataques lista_ataques;
 
-    String tipo;
+    private String tipo;
 
-    public Monstruo(int vidaBase, int ataqueBase, int defensaBase, String tipo,int experienciaBase,int nivel) {
+    public Monstruo(int vidaBase, int ataqueBase, int defensaBase, String tipo,int experienciaBase,int nivel)
+    {
         this.vidaBase = vidaBase;
         this.ataqueBase = ataqueBase;
         this.defensaBase = defensaBase;
@@ -32,10 +34,12 @@ public abstract class Monstruo {
         this.vidaActual = vidaBase*nivel;
     }
 
-
-
     public int getNivel() {
         return nivel;
+    }
+
+    public void setExperiencia(int experiencia) {
+        this.experiencia = experiencia;
     }
 
     public int getExperiencia() {
@@ -52,6 +56,10 @@ public abstract class Monstruo {
 
     public int getDefensaBase() {
         return defensaBase;
+    }
+
+    public Lista_Ataques getLista_ataques() {
+        return lista_ataques;
     }
 
     /**
@@ -155,7 +163,7 @@ public abstract class Monstruo {
         }
     }
 
-    public boolean atacar(Monstruo enemigo,int indiceAtaque)
+    public boolean atacar(Monstruo enemigo, int indiceAtaque)
     {
         if(lista_ataques.getNumeroAtaques()+1<indiceAtaque)
         {

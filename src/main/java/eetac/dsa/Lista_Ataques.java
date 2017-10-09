@@ -2,7 +2,8 @@ package eetac.dsa;
 
 import java.util.Vector;
 
-public class Lista_Ataques {
+public class Lista_Ataques
+{
     Vector<Ataque> lista_ataques;
     int maxAtaques = 4;
 
