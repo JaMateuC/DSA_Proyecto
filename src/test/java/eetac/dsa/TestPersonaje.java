@@ -1,5 +1,6 @@
 package eetac.dsa;
 
+import eetac.dsa.Ejemplos.MonstruoEjemplo;
 import eetac.dsa.Objetos.Pocion;
 import org.junit.Before;
 import org.junit.Test;
