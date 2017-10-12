@@ -1,61 +1,71 @@
 package eetac.dsa.Combate;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import javax.vecmath.Vector2f;
 import java.awt.geom.Point2D;
 import java.util.Vector;
 
-public class MonstruoFisico {
+public class ObjetoFisico {
     Point2D.Float posicion;
-    Point2D.Float velocidad;
-    Point2D.Float aceleracion;
-    Point2D.Float aceleracionFuerzas;
-    Point2D.Float aceleracionImpulsos;
+    Vector2f velocidad;
+    Vector2f aceleracion;
+    Vector2f aceleracionFuerzas;
+    Vector2f aceleracionImpulsos;
     float massa;
 
     float tiempoAcumulado;
 
+    private static final Logger logger = LogManager.getLogger(ObjetoFisico.class.getName());
+
     //tiempo desde el ultimo actualizarPosicion
     float timeDUPA;
 
-    float tics;
 
     Vector<Fuerza> fuerzas;
     Vector<Impulso> impulsos;
+
+    Geometria geometria;
 
     /**
      * representa los atributos fisicos de un monstruo
      * @param x posicion inicial en el eje x
      * @param y posicion inicial en el eje y
      * @param massa massa del monstruo
-     * @param tics veces que se calculan las fuerzas cada segundo
+     * @param geometria especifica la geometria del objecte
      */
-    public MonstruoFisico(float x,float y, float massa,int tics) {
+    public ObjetoFisico(float x, float y, float massa, Geometria geometria) {
         this.posicion = new Point2D.Float(x,y);
         this.massa = massa;
-        velocidad = new Point2D.Float(0,0);
-        aceleracion = new Point2D.Float(0,0);
-        aceleracionFuerzas = new Point2D.Float(0,0);
-        aceleracionImpulsos = new Point2D.Float(0,0);
+        velocidad = new Vector2f(0,0);
+        aceleracion = new Vector2f(0,0);
+        aceleracionFuerzas = new Vector2f(0,0);
+        aceleracionImpulsos = new Vector2f(0,0);
         fuerzas = new Vector<Fuerza>();
         impulsos = new Vector<Impulso>();
         tiempoAcumulado = 0;
-        timeDUPA = 0;
-        this.tics = 1.f/(float)tics;
+        this.geometria = geometria;
     }
 
     public Point2D.Float getPosicion() {
         return posicion;
     }
 
-    public Point2D.Float getVelocidad() {
+    public Vector2f getVelocidad() {
         return velocidad;
     }
 
-    public Point2D.Float getAceleracion() {
+    public Vector2f getAceleracion() {
         return aceleracion;
     }
 
     public float getMassa() {
         return massa;
+    }
+
+    public Geometria getGeometria() {
+        return geometria;
     }
 
     public void añadirFuerza(Fuerza fuerza)
@@ -76,7 +86,7 @@ public class MonstruoFisico {
             ax += f.getX()/massa;
             ay += f.getY()/massa;
         }
-        aceleracionFuerzas.setLocation(ax,ay);
+        aceleracionFuerzas.set(ax,ay);
     }
 
     void calcularAceleracionImpulsos()
@@ -87,10 +97,10 @@ public class MonstruoFisico {
             ax += f.getX()/massa;
             ay += f.getY()/massa;
         }
-        aceleracionImpulsos.setLocation(ax,ay);
+        aceleracionImpulsos.set(ax,ay);
     }
 
-    void reducirTiempos()
+    void reducirTiempos(float tics)
     {
         for (int i = 0; i < impulsos.size(); i++) {
 
@@ -109,11 +119,12 @@ public class MonstruoFisico {
     /**
      * calcula la aceleracion aplicada al objeto
      */
-    void calcularAceleracion()
+    void calcularAceleracion(float tics)
     {
+        reducirTiempos(tics);
         calcularAceleracionFuerzas();
         calcularAceleracionImpulsos();
-        aceleracion.setLocation(aceleracionFuerzas.getX()+aceleracionImpulsos.getX(),
+        aceleracion.set(aceleracionFuerzas.getX()+aceleracionImpulsos.getX(),
                 aceleracionFuerzas.getY()+aceleracionImpulsos.getY());
     }
 
@@ -123,17 +134,17 @@ public class MonstruoFisico {
      */
     void calcularPosicion(float time)
     {
-        velocidad.setLocation(velocidad.getX()+aceleracion.getX()*time,velocidad.getY()+aceleracion.getY()*time);
+        velocidad.set(velocidad.getX()+aceleracion.getX()*time,velocidad.getY()+aceleracion.getY()*time);
         posicion.setLocation(posicion.getX()+velocidad.getX()*time,posicion.getY()+velocidad.getY()*time);
+        //logger.debug(posicion);
     }
 
     public void actualizar(float time)
     {
-        if(tiempoAcumulado+time>tics&&tiempoAcumulado+time-tics<tics)
+        /*if(tiempoAcumulado+time>tics&&tiempoAcumulado+time-tics<tics)
         {
 
             calcularPosicion(tics-tiempoAcumulado);
-            reducirTiempos();
             calcularAceleracion();
             calcularPosicion(tiempoAcumulado+time-tics);
             tiempoAcumulado = tiempoAcumulado+time-tics;
@@ -146,10 +157,9 @@ public class MonstruoFisico {
         else if(time>tics)
         {
             calcularPosicion(tics-tiempoAcumulado);
-            reducirTiempos();
             calcularAceleracion();
             tiempoAcumulado=0;
             actualizar(time-(tics-tiempoAcumulado));
-        }
+        }*/
     }
 }
