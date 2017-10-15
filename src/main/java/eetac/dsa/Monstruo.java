@@ -1,5 +1,8 @@
 package eetac.dsa;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Plantilla de un Monstruo, los diferentes tipos de monstruo herederan de esta classe.
  * vida, ataqueBase,defensaBase no son los valores usados en el combate.
@@ -10,6 +13,8 @@ public abstract class Monstruo
 {
     private int nivel;
     private int experiencia;
+
+    private static final Logger logger = LogManager.getLogger(Monstruo.class.getName());
 
     //parametros base a nivel 1
     private int vidaBase;
@@ -161,6 +166,8 @@ public abstract class Monstruo
         {
             vidaActual= vidaActual-(daño-getDefensaEfectiva());
         }
+
+        logger.debug("la vida restantes es: "+vidaActual);
     }
 
     public boolean atacar(Monstruo enemigo, int indiceAtaque)
@@ -174,6 +181,15 @@ public abstract class Monstruo
         tmp.extraAtacante(this);
         tmp.extraEnemigo(enemigo);
         return true;
+    }
+
+    public void atacar(Monstruo enemigo, Ataque ataque)
+    {
+        logger.debug("el monstruo ha atacado con: "+ataque.nombre);
+        Ataque tmp = ataque;
+        enemigo.recibirDaño((int)(tmp.multiplicador*this.getAtaqueEfectivo()));
+        tmp.extraAtacante(this);
+        tmp.extraEnemigo(enemigo);
     }
 
     public void usarObjeto(Objeto objeto)
