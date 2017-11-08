@@ -12,6 +12,18 @@ public class PocionExperiencia extends Objeto {
 
     int experienciaExtra;
 
+
+    @Override
+    @OrdenParametro(indice = 0)
+    public String getNombre() {
+        return super.getNombre();
+    }
+
+    @OrdenParametro(indice = 1)
+    public int getExperienciaExtra() {
+        return experienciaExtra;
+    }
+
     @Override
     public void funcion(Personaje personaje) {
 

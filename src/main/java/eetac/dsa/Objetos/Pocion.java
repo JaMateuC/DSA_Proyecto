@@ -14,6 +14,18 @@ public class Pocion extends Objeto
         this.vida = vida;
     }
 
+
+    @OrdenParametro(indice = 1)
+    public int getVida() {
+        return vida;
+    }
+
+    @Override
+    @OrdenParametro(indice=0)
+    public String getNombre() {
+        return super.getNombre();
+    }
+
     @Override
     public void funcion(Monstruo monstruo) {
         monstruo.añadirVida(vida);

@@ -1,6 +1,6 @@
 package eetac.dsa;
 
-import eetac.dsa.Ejemplos.MonstruoEjemplo;
+import eetac.dsa.Monstruos.MonstruoEjemplo;
 import eetac.dsa.Objetos.Pocion;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +12,7 @@ public class TestPersonaje {
     @Before
     public void creaPersonaje()
     {
-        user = new Usuario("pepito","principal",1,1,true,"pepito@gmail.com","pepe");
+        user = new Usuario("pepito",1,1,true,"pepito@gmail.com","pepe");
         user.añadirMonstruo(new MonstruoEjemplo(1,0));
         user.añadirMonstruo(new MonstruoEjemplo(2,0));
         user.añadirMonstruo(new MonstruoEjemplo(3,0));

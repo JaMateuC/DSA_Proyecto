@@ -58,6 +58,10 @@ public abstract class Monstruo
         return defensaBase;
     }
 
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
     public Lista_Ataques getLista_ataques() {
         return lista_ataques;
     }

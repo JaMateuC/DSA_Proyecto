@@ -1,29 +1,82 @@
 package eetac.dsa;
 
+import eetac.dsa.Excepciones.CargarDeJsonException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Iterator;
+
 public class Mundo {
-    int dimensionX;
-    int dimensionY;
-    Celda[][] mapa;
 
-    public Mundo(int dimensionX, int dimensionY) {
-        this.dimensionX = dimensionX;
-        this.dimensionY = dimensionY;
-        mapa = new Celda[dimensionX][dimensionY];
+    private static final Logger logger = LogManager.getLogger(Mundo.class.getName());
+
+    Escenario escenario;
+    HashMap<String,Personaje> personajesActivos;
+    String nombrePersonaje;
+    Personaje protagonista;
+
+    private static Mundo mundo;
+
+    private Mundo() {
+        personajesActivos = new HashMap<String, Personaje>();
     }
 
-    public void setCelda(int x,int y ,Celda celda)
+    public static Mundo getInstance()
     {
-        mapa[x][y] = celda;
+        if(mundo==null)
+            mundo = new Mundo();
+        return mundo;
     }
 
-    public Celda getCelda(int x,int y)
+    public HashMap<String, Personaje> getPersonajesActivos() {
+        return personajesActivos;
+    }
+
+    public void setPersonajesActivos(HashMap<String, Personaje> personajesActivos) {
+        this.personajesActivos = personajesActivos;
+    }
+
+    public Escenario getEscenario() {
+        return escenario;
+    }
+
+    public String getNombrePersonaje() {
+        return nombrePersonaje;
+    }
+
+    public Personaje getProtagonista(){return personajesActivos.get(nombrePersonaje);}
+
+    public void setNombrePersonaje(String nombrePersonaje) {
+        this.nombrePersonaje = nombrePersonaje;
+        protagonista = getProtagonista();
+    }
+
+    private void cargarDeFichero(String nombre)
     {
-        return mapa[x][y];
-    }
-
-    /*public String cambiarEscenario(Celda celda) {
-        if(celda.getTipo() == "Cambio de escenario"){
-            return siguienteEscenario;
+        try {
+            escenario = CargadorJSON.jsonAEscenario(CargadorJSON.ficheroAJSON("src/main/resources/Escenarios/" + nombre + ".json"));
+            personajesActivos = CargadorJSON.jsonAPersonajes(CargadorJSON.ficheroAJSON("src/main/resources/Escenarios/Personajes"+nombre+".json"));
         }
-    }*/
+        catch (Exception e)
+        {
+            //logger.error("error al cargar un escenario");
+        }
+        for (Personaje p:personajesActivos.values()) {
+            escenario.getCelda((int)p.getPosicion().getX(),(int)p.getPosicion().getY()).setPersonajeEncima(p);
+        }
+    }
+
+    public void cambiarEscenario(String nombre)
+    {
+        cargarDeFichero(nombre);
+        personajesActivos.put(nombrePersonaje,protagonista);
+    }
+
 }

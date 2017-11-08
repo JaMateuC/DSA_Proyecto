@@ -3,10 +3,9 @@ package eetac.dsa.Celdas;
 import eetac.dsa.Celda;
 import eetac.dsa.Personaje;
 
-public class CeldaPared extends Celda {
-
-    public CeldaPared() {
-        super("Pared", 0, 0, false);
+public class CeldaCesped extends Celda {
+    public CeldaCesped() {
+        super("Cesped", 1f, 0.2f, true);
     }
 
     @Override

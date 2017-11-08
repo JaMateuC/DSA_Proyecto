@@ -24,6 +24,18 @@ public abstract class Objeto
         return descripcion;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     public abstract void funcion(Personaje personaje);
     public abstract void funcion(Monstruo monstruo);
 }

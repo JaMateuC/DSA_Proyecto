@@ -5,9 +5,9 @@ import java.util.Random;
  */
 public class Enemigo extends Personaje
 {
-    public Enemigo(String nombre, String escenario, int x, int y, boolean genero)
+    public Enemigo(String nombre, int x, int y, boolean genero)
     {
-        super(nombre, escenario, x, y, genero);
+        super(nombre, x, y, genero);
     }
 
     public int Random()

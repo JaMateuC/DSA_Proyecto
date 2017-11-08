@@ -1,16 +1,81 @@
 package eetac.dsa;
 
-public class App 
+import eetac.dsa.IU.IUConsola;
+import eetac.dsa.Objetos.Pocion;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class App
 {
     public static void main( String[] args )
     {
+        Object p = null;
         System.out.println( "Hello World!" );
-        Enemigo enemigo = new Enemigo("Albert", "Primer", 0,0, true);
+        Enemigo enemigo = new Enemigo("Albert", 0,0, true);
         int N = 0;
         for(int i = 0; i < 8; i++)
         {
             N = enemigo.Random();
             System.out.println("N = " + N);
         }
+        try {
+            Mundo.getInstance().cambiarEscenario("Escenario1");
+            Mundo.getInstance().setNombrePersonaje("juan");
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        IUConsola consola = new IUConsola();
+
+        Personaje protagonista = Mundo.getInstance().getProtagonista();
+
+
+        consola.renderizar();
+
+        while (true)
+        {
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            try {
+                char accion = (char)System.in.read();
+                if(accion == 'w')
+                {
+                    protagonista.mover((int)protagonista.getPosicion().getX(),(int)protagonista.getPosicion().getY()-1);
+                }
+                if(accion == 'a')
+                {
+                    protagonista.mover((int)protagonista.getPosicion().getX()-1,(int)protagonista.getPosicion().getY());
+                }
+                if(accion == 's')
+                {
+                    protagonista.mover((int)protagonista.getPosicion().getX(),(int)protagonista.getPosicion().getY()+1);
+                }
+                if(accion == 'd')
+                {
+                    protagonista.mover((int)protagonista.getPosicion().getX()+1,(int)protagonista.getPosicion().getY());
+                }
+                if(accion == '+')
+                {
+                    consola.getMenu().cursorUp();
+                }
+                if(accion == '-')
+                {
+                    consola.getMenu().cursorDown();
+                }
+                if(accion == '0')
+                {
+                    consola.getMenu().entrar();
+                }
+            }catch (Exception e)
+            {
+
+            }
+            consola.renderizar();
+
+        }
     }
+
 }

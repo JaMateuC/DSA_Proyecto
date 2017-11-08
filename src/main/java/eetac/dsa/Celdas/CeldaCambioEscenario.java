@@ -1,6 +1,7 @@
 package eetac.dsa.Celdas;
 
 import eetac.dsa.Celda;
+import eetac.dsa.Mundo;
 import eetac.dsa.Personaje;
 
 public class CeldaCambioEscenario extends Celda {
@@ -10,13 +11,20 @@ public class CeldaCambioEscenario extends Celda {
     int y;
 
     public CeldaCambioEscenario(String escenario,int x,int y) {
-        super("Cambio de escenario", 0, 0, true);
+        super("CambioDeEscenario", 0, 0, true);
+        this.x = x;
+        this.y = y;
+        this.escenario = escenario;
     }
 
     @Override
     public boolean accionEncima() {
-        this.getPersonajeEncima().setEscenario(escenario);
-        this.getPersonajeEncima().setPosicion(x,y);
+        if(Mundo.getInstance().getNombrePersonaje().equals(this.getPersonajeEncima().getNombre()))
+        {
+            Mundo.getInstance().cambiarEscenario(escenario);
+        }
+        else
+            Mundo.getInstance().getPersonajesActivos().remove(this.getPersonajeEncima().getNombre());
         return true;
     }
 

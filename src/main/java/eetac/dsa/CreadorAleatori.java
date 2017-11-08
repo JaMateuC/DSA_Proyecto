@@ -1,82 +1,46 @@
 package eetac.dsa;
 
-import eetac.dsa.Ejemplos.MonstruoEjemplo;
+import eetac.dsa.Excepciones.CargarDeJsonException;
+import eetac.dsa.Monstruos.MonstruoEjemplo;
 import eetac.dsa.Objetos.Pocion;
 import eetac.dsa.Objetos.PocionExperiencia;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.Vector;
 //TODO(a medida que creemos objetos y monstruos hay que añadirlos en el creadorAleatorio)
 public class CreadorAleatori
 {
-    static Objeto crearObjeto(int rango)
+    static Objeto crearObjeto(int rango) throws CargarDeJsonException, IOException
     {
-        Vector<Objeto> listaObjetosAparecibles = new Vector<Objeto>();
-        switch (rango)
-        {
-            case 0:
-                listaObjetosAparecibles.add(new Pocion("Pocion Pequeña",20));
-                listaObjetosAparecibles.add(new PocionExperiencia("Pocion de Experiencia Pequeña",20));
-                break;
+        JSONObject object = new JSONObject(CargadorJSON.ficheroAJSON("src/main/resources/objetosAleatorios.json"));
+        JSONArray listaNiveles = object.getJSONArray("nivelesDeEscenario");
 
-            case 1:
-                listaObjetosAparecibles.add(new Pocion("Pocion",100));
-                listaObjetosAparecibles.add(new PocionExperiencia("Pocion de Experiencia",100));
-                break;
+        JSONArray objetos = listaNiveles.getJSONObject(rango).getJSONArray("objetos");
 
-            case 2:
-                listaObjetosAparecibles.add(new Pocion("Pocion Mediana",200));
-                listaObjetosAparecibles.add(new PocionExperiencia("Pocion de Experiencia Mediana",200));
-                break;
 
-            case 3:
-                listaObjetosAparecibles.add(new Pocion("Pocion Grande",300));
-                listaObjetosAparecibles.add(new PocionExperiencia("Pocion de Experiencia Grande",300));
-                break;
-
-            case 4:
-                listaObjetosAparecibles.add(new Pocion("Mega Pocion",400));
-                listaObjetosAparecibles.add(new PocionExperiencia("Mega Pocion de Experiencia",400));
-                break;
-        }
         double aleatori = Math.random();
 
-        aleatori *= listaObjetosAparecibles.size();
+        aleatori *= objetos.length();
         int index = (int)aleatori;
 
-        return  listaObjetosAparecibles.get(index);
+        return  CargadorJSON.jsonAObjeto(objetos.getJSONObject(index).toString());
     }
 
-    static Monstruo crearMonstruo(int rango)
+    static Monstruo crearMonstruo(int rango)throws CargarDeJsonException, IOException
     {
-        Vector<Monstruo> listaMonstruos = new Vector<Monstruo>();
-        int randomNivel = (int)(Math.random()*5);
-        switch (rango)
-        {
-            case 0:
-                listaMonstruos.add(new MonstruoEjemplo(randomNivel,0));
-                break;
+        JSONObject object = new JSONObject(CargadorJSON.ficheroAJSON("src/main/resources/monstruosAleatorios.json"));
+        JSONArray listaNiveles = object.getJSONArray("nivelesDeEscenario");
 
-            case 1:
-                listaMonstruos.add(new MonstruoEjemplo(randomNivel+5,0));
-                break;
+        JSONArray objetos = listaNiveles.getJSONObject(rango).getJSONArray("monstruos");
 
-            case 2:
-                listaMonstruos.add(new MonstruoEjemplo(randomNivel+10,0));
-                break;
 
-            case 3:
-                listaMonstruos.add(new MonstruoEjemplo(randomNivel+15,0));
-                break;
-
-            case 4:
-                listaMonstruos.add(new MonstruoEjemplo(randomNivel+20,0));
-                break;
-        }
         double aleatori = Math.random();
 
-        aleatori *= listaMonstruos.size();
+        aleatori *= objetos.length();
         int index = (int)aleatori;
 
-        return  listaMonstruos.get(index);
+        return  CargadorJSON.jsonAMonstruo(objetos.getJSONObject(index).toString());
     }
 }

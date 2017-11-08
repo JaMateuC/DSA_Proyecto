@@ -1,4 +1,4 @@
-package eetac.dsa.Ejemplos;
+package eetac.dsa.Monstruos;
 
 import eetac.dsa.Ataque;
 import eetac.dsa.Ejemplos.AtaqueEjemplo;

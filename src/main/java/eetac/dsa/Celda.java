@@ -67,8 +67,9 @@ public abstract class Celda
      */
     public boolean accion(Personaje personaje)
     {
-        if(this.personajeEncima!= null)
+        if(this.personajeEncima!= null||this.andable==false)
             return false;
+
         double numeroObjeto = Math.random();
         double numeroPersonaje = Math.random();
         this.personajeEncima = personaje;
@@ -92,7 +93,13 @@ public abstract class Celda
      */
     void obtenerObjeto(Personaje personaje)
     {
-        personaje.getInventario().añadirObeto(CreadorAleatori.crearObjeto(0));
+        try {
+            personaje.getInventario().añadirObeto(CreadorAleatori.crearObjeto(Mundo.getInstance().getEscenario().getNivelDeZona()));
+        }
+        catch (Exception e)
+        {
+
+        }
     }
 
     //TODO(falta crear la classe combate i implementarla)
