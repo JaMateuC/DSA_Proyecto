@@ -1,30 +1,14 @@
 package eetac.dsa;
 
 import eetac.dsa.IU.IUConsola;
-import eetac.dsa.Objetos.Pocion;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+public class App {
 
-public class App
-{
-    public static void main( String[] args )
-    {
-        Object p = null;
-        System.out.println( "Hello World!" );
-        Enemigo enemigo = new Enemigo("Albert", 0,0, true);
-        int N = 0;
-        for(int i = 0; i < 8; i++)
-        {
-            N = enemigo.Random();
-            System.out.println("N = " + N);
-        }
+    public static void main(String[] args) {
         try {
             Mundo.getInstance().cambiarEscenario("Escenario1");
             Mundo.getInstance().setNombrePersonaje("juan");
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
 
         }
 
@@ -35,47 +19,37 @@ public class App
 
         consola.renderizar();
 
-        while (true)
-        {
+        while (true) {
             System.out.print("\033[H\033[2J");
             System.out.flush();
             try {
-                char accion = (char)System.in.read();
-                if(accion == 'w')
-                {
-                    protagonista.mover((int)protagonista.getPosicion().getX(),(int)protagonista.getPosicion().getY()-1);
+                char accion = (char) System.in.read();
+                if (accion == 'w') {
+                    protagonista.mover((int) protagonista.getPosicion().getX(), (int) protagonista.getPosicion().getY() - 1);
                 }
-                if(accion == 'a')
-                {
-                    protagonista.mover((int)protagonista.getPosicion().getX()-1,(int)protagonista.getPosicion().getY());
+                if (accion == 'a') {
+                    protagonista.mover((int) protagonista.getPosicion().getX() - 1, (int) protagonista.getPosicion().getY());
                 }
-                if(accion == 's')
-                {
-                    protagonista.mover((int)protagonista.getPosicion().getX(),(int)protagonista.getPosicion().getY()+1);
+                if (accion == 's') {
+                    protagonista.mover((int) protagonista.getPosicion().getX(), (int) protagonista.getPosicion().getY() + 1);
                 }
-                if(accion == 'd')
-                {
-                    protagonista.mover((int)protagonista.getPosicion().getX()+1,(int)protagonista.getPosicion().getY());
+                if (accion == 'd') {
+                    protagonista.mover((int) protagonista.getPosicion().getX() + 1, (int) protagonista.getPosicion().getY());
                 }
-                if(accion == '+')
-                {
+                if (accion == '+') {
                     consola.getMenu().cursorUp();
                 }
-                if(accion == '-')
-                {
+                if (accion == '-') {
                     consola.getMenu().cursorDown();
                 }
-                if(accion == '0')
-                {
+                if (accion == '0') {
                     consola.getMenu().entrar();
                 }
-            }catch (Exception e)
-            {
+            } catch (Exception e) {
 
             }
             consola.renderizar();
 
         }
     }
-
 }
