@@ -1,17 +1,12 @@
 package eetac.dsa;
 
-import eetac.dsa.Excepciones.CargarDeJsonException;
+import eetac.dsa.Servidor.Controlador.CargadorJSON;
+import eetac.dsa.Servidor.Controlador.Escenario;
+import eetac.dsa.Servidor.Controlador.Personaje;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class Mundo {
 

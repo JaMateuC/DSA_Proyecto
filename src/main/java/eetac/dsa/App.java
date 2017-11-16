@@ -1,6 +1,7 @@
 package eetac.dsa;
 
 import eetac.dsa.IU.IUConsola;
+import eetac.dsa.Servidor.Controlador.Personaje;
 
 public class App {
 

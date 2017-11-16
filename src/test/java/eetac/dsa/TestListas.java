@@ -1,9 +1,13 @@
 package eetac.dsa;
 import static org.junit.Assert.assertEquals;
 
-import eetac.dsa.Monstruos.MonstruoEjemplo;
-import eetac.dsa.Objetos.Pocion;
-import eetac.dsa.Objetos.PocionExperiencia;
+import eetac.dsa.Servidor.Controlador.Inventario;
+import eetac.dsa.Servidor.Controlador.Lista_Monstruos;
+import eetac.dsa.Servidor.Controlador.Monstruo;
+import eetac.dsa.Servidor.Controlador.Monstruos.MonstruoEjemplo;
+import eetac.dsa.Servidor.Controlador.Objeto;
+import eetac.dsa.Servidor.Controlador.Objetos.Pocion;
+import eetac.dsa.Servidor.Controlador.Objetos.PocionExperiencia;
 import org.junit.Test;
 
 import java.util.Vector;

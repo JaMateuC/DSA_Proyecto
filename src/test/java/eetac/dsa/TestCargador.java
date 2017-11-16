@@ -1,11 +1,12 @@
 package eetac.dsa;
 
-import eetac.dsa.Excepciones.CargarDeJsonException;
-import eetac.dsa.Monstruos.MonstruoEjemplo;
-import eetac.dsa.Objetos.CarameloRaro;
-import eetac.dsa.Objetos.PiedraTeleport;
-import eetac.dsa.Objetos.Pocion;
-import eetac.dsa.Objetos.PocionExperiencia;
+import eetac.dsa.Servidor.Controlador.*;
+import eetac.dsa.Servidor.Controlador.Excepciones.CargarDeJsonException;
+import eetac.dsa.Servidor.Controlador.Monstruos.MonstruoEjemplo;
+import eetac.dsa.Servidor.Controlador.Objetos.CarameloRaro;
+import eetac.dsa.Servidor.Controlador.Objetos.PiedraTeleport;
+import eetac.dsa.Servidor.Controlador.Objetos.Pocion;
+import eetac.dsa.Servidor.Controlador.Objetos.PocionExperiencia;
 import org.junit.Test;
 import org.junit.Assert;
 

@@ -1,7 +1,8 @@
 package eetac.dsa;
 
-import eetac.dsa.Monstruos.MonstruoEjemplo;
-import eetac.dsa.Objetos.Pocion;
+import eetac.dsa.Servidor.Controlador.Monstruos.MonstruoEjemplo;
+import eetac.dsa.Servidor.Controlador.Objetos.Pocion;
+import eetac.dsa.Servidor.Controlador.Usuario;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;

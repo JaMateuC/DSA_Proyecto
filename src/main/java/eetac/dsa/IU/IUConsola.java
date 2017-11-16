@@ -1,9 +1,8 @@
 package eetac.dsa.IU;
 
-import eetac.dsa.Celda;
-import eetac.dsa.Escenario;
+import eetac.dsa.Servidor.Controlador.Celda;
+import eetac.dsa.Servidor.Controlador.Escenario;
 import eetac.dsa.Mundo;
-import eetac.dsa.Personaje;
 
 import java.awt.*;
 
