@@ -3,6 +3,7 @@ package eetac.dsa.Servidor.Controlador.Objetos;
 import eetac.dsa.Servidor.Controlador.Monstruo;
 import eetac.dsa.Servidor.Controlador.Objeto;
 import eetac.dsa.Servidor.Controlador.Personaje;
+import eetac.dsa.Servidor.Resultado;
 
 public class Pocion extends Objeto
 {
@@ -10,7 +11,7 @@ public class Pocion extends Objeto
     int vida;
 
     public Pocion(String nombre,int vida) {
-        super(nombre, "perimite recuperar "+vida+" puntos de salud de un monstruo","Pocion");
+        super(nombre, "perimite recuperar "+vida+" puntos de salud de un monstruo","Pocion",Destino.Monstruo);
         this.vida = vida;
     }
 
@@ -27,12 +28,12 @@ public class Pocion extends Objeto
     }
 
     @Override
-    public void funcion(Monstruo monstruo) {
+    public void funcion(Monstruo monstruo, Resultado rel) {
         monstruo.añadirVida(vida);
     }
 
     @Override
-    public void funcion(Personaje personaje) {
+    public void funcion(Personaje personaje, Resultado rel) {
 
     }
 }

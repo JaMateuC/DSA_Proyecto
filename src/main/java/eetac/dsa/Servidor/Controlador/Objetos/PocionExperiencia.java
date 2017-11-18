@@ -3,10 +3,11 @@ package eetac.dsa.Servidor.Controlador.Objetos;
 import eetac.dsa.Servidor.Controlador.Monstruo;
 import eetac.dsa.Servidor.Controlador.Objeto;
 import eetac.dsa.Servidor.Controlador.Personaje;
+import eetac.dsa.Servidor.Resultado;
 
 public class PocionExperiencia extends Objeto {
     public PocionExperiencia(String nombre,int experienciaExtra) {
-        super(nombre, "añade experiencia a un monstruo dado","Pocion de Experiencia");
+        super(nombre, "añade experiencia a un monstruo dado","Pocion de Experiencia",Destino.Monstruo);
         this.experienciaExtra = experienciaExtra;
     }
 
@@ -25,12 +26,12 @@ public class PocionExperiencia extends Objeto {
     }
 
     @Override
-    public void funcion(Personaje personaje) {
+    public void funcion(Personaje personaje, Resultado rel) {
 
     }
 
     @Override
-    public void funcion(Monstruo monstruo) {
+    public void funcion(Monstruo monstruo, Resultado rel) {
         monstruo.añadirExperiencia(experienciaExtra);
     }
 }

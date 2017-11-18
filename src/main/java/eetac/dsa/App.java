@@ -6,7 +6,7 @@ import eetac.dsa.Servidor.Controlador.Personaje;
 public class App {
 
     public static void main(String[] args) {
-        try {
+        /*try {
             Mundo.getInstance().cambiarEscenario("Escenario1");
             Mundo.getInstance().setNombrePersonaje("juan");
         } catch (Exception e) {
@@ -51,6 +51,6 @@ public class App {
             }
             consola.renderizar();
 
-        }
+        }*/
     }
 }

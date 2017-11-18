@@ -1,9 +1,13 @@
 package eetac.dsa.Servidor.Controlador.Objetos;
 
+import eetac.dsa.Flag;
 import eetac.dsa.Servidor.Controlador.Monstruo;
 import eetac.dsa.Mundo;
 import eetac.dsa.Servidor.Controlador.Objeto;
 import eetac.dsa.Servidor.Controlador.Personaje;
+import eetac.dsa.Servidor.MundoControlador;
+import eetac.dsa.Servidor.Resultado;
+import eetac.dsa.Servidor.Sesion;
 
 public class PiedraTeleport extends Objeto
 {
@@ -13,7 +17,7 @@ public class PiedraTeleport extends Objeto
     private String escenario;
 
     public PiedraTeleport(int posicionX, int posicionY, String escenario) {
-        super("Piedra de teletransporte", "Teleporta a una posicion neutral deseada", "Teleport");
+        super("Piedra de teletransporte", "Teleporta a una posicion neutral deseada", "Teleport",Destino.Personaje);
         this.posicionX = posicionX;
         this.posicionY = posicionY;
         this.escenario = escenario;
@@ -35,18 +39,19 @@ public class PiedraTeleport extends Objeto
     }
 
     @Override
-    public void funcion(Personaje personaje) {
-        if(personaje.getNombre().equals(Mundo.getInstance().getNombrePersonaje()))
+    public void funcion(Personaje personaje, Resultado rel) {
+        Sesion sesion = MundoControlador.getInstance().getSesion(personaje.getNombre());
+        if(sesion!=null)
         {
-            Mundo.getInstance().cambiarEscenario(escenario);
-            personaje.setPosicion(posicionX,posicionY);
+            sesion.cargarEscenarioFichero(escenario);
+            rel.getFlag().addFlag(Flag.cargarEscenario);
+            rel.setEscenario(sesion.getEscenario());
+            sesion.getProtagonista().mover(posicionX,posicionY,rel);
         }
-        else
-            Mundo.getInstance().getPersonajesActivos().remove(personaje.getNombre());
     }
 
     @Override
-    public void funcion(Monstruo monstruo) {
+    public void funcion(Monstruo monstruo, Resultado rel) {
 
     }
 }

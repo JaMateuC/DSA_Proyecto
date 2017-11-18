@@ -1,15 +1,21 @@
 package eetac.dsa.Servidor.Controlador;
 
+import eetac.dsa.Servidor.Resultado;
+
 public abstract class Objeto
 {
     private String nombre;
     private String tipo;
     private String descripcion;
+    private Destino destino;
 
-    public Objeto(String nombre, String descripcion, String tipo) {
+    public enum Destino{Personaje,Monstruo}
+
+    public Objeto(String nombre, String descripcion, String tipo,Destino destino) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipo = tipo;
+        this.destino = destino;
     }
 
     public String getNombre() {
@@ -36,6 +42,14 @@ public abstract class Objeto
         this.descripcion = descripcion;
     }
 
-    public abstract void funcion(Personaje personaje);
-    public abstract void funcion(Monstruo monstruo);
+    public Destino getDestino() {
+        return destino;
+    }
+
+    public void setDestino(Destino destino) {
+        this.destino = destino;
+    }
+
+    public abstract void funcion(Personaje personaje, Resultado rel);
+    public abstract void funcion(Monstruo monstruo, Resultado rel);
 }

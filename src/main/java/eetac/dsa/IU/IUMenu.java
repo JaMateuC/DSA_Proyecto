@@ -51,7 +51,7 @@ public class IUMenu implements IUMenuBase{
     @Override
     public void cursorDown() {
 
-        Personaje p = Mundo.getInstance().getProtagonista();
+        /*Personaje p = Mundo.getInstance().getProtagonista();
         if(estado=='M')
         {
             posCursor++;
@@ -82,12 +82,12 @@ public class IUMenu implements IUMenuBase{
             {
                 posCursor++;
             }
-        }
+        }*/
     }
 
     @Override
     public String getInfoElemento() {
-        String rel = "";
+        /*String rel = "";
         Personaje p = Mundo.getInstance().getProtagonista();
 
         if(estado=='M')
@@ -106,7 +106,8 @@ public class IUMenu implements IUMenuBase{
         }
 
 
-        return rel;
+        return rel;*/
+        return null;
     }
 
     @Override
@@ -122,7 +123,7 @@ public class IUMenu implements IUMenuBase{
 
         if(estado=='I')
         {
-            Personaje p=Mundo.getInstance().getProtagonista();
+            /*Personaje p=Mundo.getInstance().getProtagonista();
             if(p.getInventario().obtenerTamaño()-offset<alto)
                 maxCursor=p.getInventario().obtenerTamaño()-offset;
             else maxCursor = alto;
@@ -130,7 +131,7 @@ public class IUMenu implements IUMenuBase{
             for(int i =offset;i<offset+maxCursor;i++)
             {
                 out[i-offset] = p.getInventario().buscarObjeto(i).getNombre();
-            }
+            }*/
         }
 
         return out;
@@ -138,7 +139,7 @@ public class IUMenu implements IUMenuBase{
 
     @Override
     public void entrar() {
-        Personaje p = Mundo.getInstance().getProtagonista();
+        /*Personaje p = Mundo.getInstance().getProtagonista();
         if(estado=='M')
         {
             switch (posCursor)
@@ -161,6 +162,6 @@ public class IUMenu implements IUMenuBase{
                     posCursor = 0;
                     break;
             }
-        }
+        }*/
     }
 }

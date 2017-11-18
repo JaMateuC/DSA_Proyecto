@@ -13,8 +13,10 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 public class CargadorJSON {
     private static final Logger logger = LogManager.getLogger(Escenario.class.getName());
@@ -285,9 +287,6 @@ public class CargadorJSON {
     public static String personajeAJson(Personaje personaje) throws CargarDeJsonException
     {
         try {
-            //{"tipo":"Usuario","nombre":"juan","x":0,"y":0,"genero":true,"password":"oscar","email":"oscarmampel@hotmail.com",
-            // "monstruos":[{"tipo":"MonstruoEjemplo","nivel":1,"experiencia":50},{"tipo":"MonstruoEjemplo","nivel":2,"experiencia":100},{"tipo":"MonstruoEjemplo","nivel":3,"experiencia":200}],
-            // "objetos":[{"tipo":"Pocion","extraArgs":{"numeroParametros":2,"Str0":"Pocion pequeña","int1":200}},{"tipo":"PocionExperiencia","extraArgs":{"numeroParametros":2,"Str0":"Pocion pequeña","int1":20}},{"tipo":"PiedraTeleport","extraArgs":{"numeroParametros":3,"int0":1,"int1":2,"Str2":"escenarioDePrueba"}}]}
             StringBuffer resultado = new StringBuffer("{");
 
             if(personaje.getClass()==Usuario.class)
@@ -340,6 +339,22 @@ public class CargadorJSON {
         {
             throw new CargarDeJsonException(e.getLocalizedMessage());
         }
+    }
+
+    public static String personajesAJson(List<Personaje> personajes) throws CargarDeJsonException
+    {
+        StringBuffer resultado = new StringBuffer("{\"personajes\":[");
+        int i;
+        for (i = 0;i<personajes.size();i++)
+        {
+            resultado.append(CargadorJSON.personajeAJson(personajes.get(i)));
+            resultado.append(',');
+        }
+        if(i!=0)resultado.deleteCharAt(resultado.length()-1);
+
+
+        resultado.append("]}");
+        return resultado.toString();
     }
 
 }

@@ -2,6 +2,7 @@ package eetac.dsa.Servidor.Controlador.Celdas;
 
 import eetac.dsa.Servidor.Controlador.Celda;
 import eetac.dsa.Servidor.Controlador.Personaje;
+import eetac.dsa.Servidor.Resultado;
 
 public class CeldaPared extends Celda {
 
@@ -10,12 +11,12 @@ public class CeldaPared extends Celda {
     }
 
     @Override
-    public boolean accionEncima() {
+    public boolean accionEncima(Personaje personaje, Resultado rel) {
         return false;
     }
 
     @Override
-    public boolean accionActivar(Personaje activador) {
+    public boolean accionActivar(Personaje activador,Resultado rel) {
         return false;
     }
 }

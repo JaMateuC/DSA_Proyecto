@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public class Mundo {
 
-    private static final Logger logger = LogManager.getLogger(Mundo.class.getName());
+    /*private static final Logger logger = LogManager.getLogger(Mundo.class.getName());
 
     Escenario escenario;
     HashMap<String,Personaje> personajesActivos;
@@ -72,6 +72,6 @@ public class Mundo {
     {
         cargarDeFichero(nombre);
         personajesActivos.put(nombrePersonaje,protagonista);
-    }
+    }*/
 
 }

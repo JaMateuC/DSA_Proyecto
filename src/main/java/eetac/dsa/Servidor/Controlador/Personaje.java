@@ -1,6 +1,7 @@
 package eetac.dsa.Servidor.Controlador;
 
 import eetac.dsa.Mundo;
+import eetac.dsa.Servidor.Resultado;
 
 import java.awt.*;
 
@@ -10,7 +11,7 @@ import java.awt.*;
 public abstract class Personaje
 {
     private String nombre;
-    private Point posicion;
+    protected Point posicion;
     private Lista_Monstruos lista_montruos;
     private Inventario inventario;
     private boolean genero;
@@ -51,70 +52,33 @@ public abstract class Personaje
 
     public boolean mover(int x,int y)
     {
-        Celda cela = Mundo.getInstance().getEscenario().getCelda(x,y);
-        if(cela.accion(this))
-        {
-            if(cela.getTipo().equals("CambioDeEscenario"))
-            {
-                Mundo.getInstance().getEscenario().getCelda((int)posicion.getX(),(int)posicion.getY()).setPersonajeEncima(this);
-                return true;
-            }
-            Mundo.getInstance().getEscenario().getCelda((int)posicion.getX(),(int)posicion.getY()).setPersonajeEncima(null);
-            this.posicion.setLocation(x,y);
-            return true;
-        }
-        else return false;
+
+        return false;
     }
 
-    public void hacerAccion(Celda celda)
+    public void hacerAccion(Celda celda,Resultado rel)
     {
-        celda.accionActivar(this);
+        celda.accionActivar(this,rel);
     }
 
-    public boolean usarObjetoAMonstruo(int indiceInventario,int indiceMonstruo)
+    public boolean usarObjetoAMonstruo(int indiceInventario,int indiceMonstruo,Resultado rel)
     {
         if(indiceInventario<inventario.obtenerTamaño()&&indiceMonstruo<lista_montruos.getTamaño())
         {
             Objeto obj= inventario.buscarObjeto(indiceInventario);
-            obj.funcion(lista_montruos.obtenerMonstruo(indiceMonstruo));
+            obj.funcion(lista_montruos.obtenerMonstruo(indiceMonstruo),rel);
             inventario.quitarObjeto(obj);
             return true;
         }
         return false;
     }
 
-    public boolean usarObjetoAMonstruo(String nombreObjeto,int indiceMonstruo)
-    {
-        Objeto tmp = inventario.buscarObjetoPorNombre(nombreObjeto);
-        if(indiceMonstruo<lista_montruos.getTamaño()&&tmp!=null)
-        {
-            tmp.funcion(lista_montruos.obtenerMonstruo(indiceMonstruo));
-            inventario.quitarObjeto(tmp);
-            return true;
-        }
-
-        return false;
-    }
-
-    public boolean usarObjeto(String nombreObjeto)
-    {
-        Objeto tmp = inventario.buscarObjetoPorNombre(nombreObjeto);
-        if(tmp!=null)
-        {
-            tmp.funcion(this);
-            inventario.quitarObjeto(tmp);
-            return true;
-        }
-
-        return false;
-    }
-
-    public boolean usarObjeto(int indiceInventario)
+    public boolean usarObjeto(int indiceInventario, Resultado res)
     {
         if(indiceInventario<inventario.obtenerTamaño())
         {
             Objeto obj= inventario.buscarObjeto(indiceInventario);
-            obj.funcion(this);
+            obj.funcion(this,res);
             inventario.quitarObjeto(obj);
             return true;
         }

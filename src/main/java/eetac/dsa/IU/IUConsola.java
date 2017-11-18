@@ -35,7 +35,7 @@ public class IUConsola implements IUBase{
 
     public void rendrizarEscenario() {
 
-        Point personajePosicion = Mundo.getInstance().getPersonajesActivos().get(Mundo.getInstance().getNombrePersonaje()).getPosicion();
+        /*Point personajePosicion = Mundo.getInstance().getPersonajesActivos().get(Mundo.getInstance().getNombrePersonaje()).getPosicion();
         Escenario escenario = Mundo.getInstance().getEscenario();
 
         int xOffset = (int)personajePosicion.getX()-(ANCHO-ANCHOMENU)/2;
@@ -74,7 +74,7 @@ public class IUConsola implements IUBase{
                 else
                     consolaCaracteres[x][y]=' ';
             }
-        }
+        }*/
 
     }
 
