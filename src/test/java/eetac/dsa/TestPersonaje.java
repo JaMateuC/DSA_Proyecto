@@ -21,16 +21,5 @@ public class TestPersonaje {
         user.getInventario().añadirObeto(new Pocion("pocion normal",2));
         user.getInventario().añadirObeto(new Pocion("pocion normal",4));
     }
-
-    @Test
-    public void usarObjeto()
-    {
-        user.obtenerMonstruo(0).setVidaActual(10);
-        user.usarObjetoAMonstruo("pocion normal",0);
-        assertEquals(1,user.getInventario().obtenerTamaño());
-
-        user.usarObjetoAMonstruo(0,0);
-        assertEquals(0,user.getInventario().obtenerTamaño());
-    }
 }
 

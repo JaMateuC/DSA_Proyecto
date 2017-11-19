@@ -2,10 +2,9 @@ package eetac.dsa.Servidor.Controlador.Celdas;
 
 import eetac.dsa.Flag;
 import eetac.dsa.Servidor.Controlador.Celda;
-import eetac.dsa.Mundo;
 import eetac.dsa.Servidor.Controlador.Personaje;
 import eetac.dsa.Servidor.MundoControlador;
-import eetac.dsa.Servidor.Resultado;
+import eetac.dsa.Servidor.ResultadoServidor;
 import eetac.dsa.Servidor.Sesion;
 
 public class CeldaCambioEscenario extends Celda {
@@ -15,14 +14,14 @@ public class CeldaCambioEscenario extends Celda {
     int y;
 
     public CeldaCambioEscenario(String escenario,int x,int y) {
-        super("CambioDeEscenario", 0, 0, true);
+        super(CeldaCambioEscenario.class.getSimpleName(), 0, 0, true);
         this.x = x;
         this.y = y;
         this.escenario = escenario;
     }
 
     @Override
-    public boolean accionEncima(Personaje personaje, Resultado rel) {
+    public boolean accionEncima(Personaje personaje, ResultadoServidor rel) {
         Sesion sesion = MundoControlador.getInstance().getSesion(personaje.getNombre());
 
         if(sesion!=null)
@@ -37,7 +36,7 @@ public class CeldaCambioEscenario extends Celda {
     }
 
     @Override
-    public boolean accionActivar(Personaje activador,Resultado rel) {
+    public boolean accionActivar(Personaje activador,ResultadoServidor rel) {
         return false;
     }
 }

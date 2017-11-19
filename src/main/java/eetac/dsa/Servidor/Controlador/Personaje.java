@@ -1,7 +1,6 @@
 package eetac.dsa.Servidor.Controlador;
 
-import eetac.dsa.Mundo;
-import eetac.dsa.Servidor.Resultado;
+import eetac.dsa.Servidor.ResultadoServidor;
 
 import java.awt.*;
 
@@ -56,12 +55,12 @@ public abstract class Personaje
         return false;
     }
 
-    public void hacerAccion(Celda celda,Resultado rel)
+    public void hacerAccion(Celda celda,ResultadoServidor rel)
     {
         celda.accionActivar(this,rel);
     }
 
-    public boolean usarObjetoAMonstruo(int indiceInventario,int indiceMonstruo,Resultado rel)
+    public boolean usarObjetoAMonstruo(int indiceInventario,int indiceMonstruo,ResultadoServidor rel)
     {
         if(indiceInventario<inventario.obtenerTamaño()&&indiceMonstruo<lista_montruos.getTamaño())
         {
@@ -73,7 +72,7 @@ public abstract class Personaje
         return false;
     }
 
-    public boolean usarObjeto(int indiceInventario, Resultado res)
+    public boolean usarObjeto(int indiceInventario, ResultadoServidor res)
     {
         if(indiceInventario<inventario.obtenerTamaño())
         {

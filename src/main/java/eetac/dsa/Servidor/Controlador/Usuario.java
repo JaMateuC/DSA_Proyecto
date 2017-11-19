@@ -1,7 +1,7 @@
 package eetac.dsa.Servidor.Controlador;
 
 import eetac.dsa.Servidor.MundoControlador;
-import eetac.dsa.Servidor.Resultado;
+import eetac.dsa.Servidor.ResultadoServidor;
 
 /**
  * La Clase Usuario permite instanciar un personaje para el jugador
@@ -52,9 +52,9 @@ public class Usuario extends Personaje
         else*/ return false;
     }
 
-    public boolean mover(int x, int y, Resultado resultado) {
+    public boolean mover(int x, int y, ResultadoServidor resultadoServidor) {
         Celda cela = MundoControlador.getInstance().getSesion(getNombre()).getEscenario().getCelda(x,y);
-        if(cela.accion(this,resultado))
+        if(cela.accion(this, resultadoServidor))
         {
 
             return true;

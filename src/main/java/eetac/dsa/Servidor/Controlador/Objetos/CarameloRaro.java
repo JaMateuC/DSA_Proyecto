@@ -3,7 +3,7 @@ package eetac.dsa.Servidor.Controlador.Objetos;
 import eetac.dsa.Servidor.Controlador.Monstruo;
 import eetac.dsa.Servidor.Controlador.Objeto;
 import eetac.dsa.Servidor.Controlador.Personaje;
-import eetac.dsa.Servidor.Resultado;
+import eetac.dsa.Servidor.ResultadoServidor;
 
 public class CarameloRaro extends Objeto{
 
@@ -12,12 +12,12 @@ public class CarameloRaro extends Objeto{
     }
 
     @Override
-    public void funcion(Personaje personaje, Resultado rel) {
+    public void funcion(Personaje personaje, ResultadoServidor rel) {
 
     }
 
     @Override
-    public void funcion(Monstruo monstruo, Resultado rel) {
+    public void funcion(Monstruo monstruo, ResultadoServidor rel) {
         monstruo.setNivel(monstruo.getNivel()+1);
     }
 }

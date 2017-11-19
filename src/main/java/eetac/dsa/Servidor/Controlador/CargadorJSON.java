@@ -79,6 +79,7 @@ public class CargadorJSON {
             JSONObject monstruoJson = new JSONObject(json);
             Class monstruoClass = Class.forName("eetac.dsa.Servidor.Controlador.Monstruos." + monstruoJson.getString("tipo"));
             Monstruo monstruo = (Monstruo) monstruoClass.getDeclaredConstructor(int.class, int.class).newInstance((Object) monstruoJson.getInt("nivel"), (Object) monstruoJson.getInt("experiencia"));
+            monstruo.setVidaActual(monstruoJson.getInt("vida"));
             return monstruo;
         } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             throw new CargarDeJsonException(e.getLocalizedMessage());
@@ -273,6 +274,8 @@ public class CargadorJSON {
             resultado.append(monstruo.getClass().getSimpleName());
             resultado.append("\",\"nivel\":");
             resultado.append(monstruo.getNivel());
+            resultado.append(",\"vida\":");
+            resultado.append(monstruo.getVidaActual());
             resultado.append(",\"experiencia\":");
             resultado.append(monstruo.getExperiencia());
             resultado.append("}");
@@ -357,4 +360,49 @@ public class CargadorJSON {
         return resultado.toString();
     }
 
+    public static String escenarioParaClienteJson(Escenario escenario)
+    {
+        StringBuffer resultado = new StringBuffer("{\"nombre\":");
+        resultado.append(escenario.getNombre());
+        resultado.append(",\"ancho\":");
+        resultado.append(escenario.getAncho());
+        resultado.append(",\"alto\":");
+        resultado.append(escenario.getAlto());
+        resultado.append(",\"nivelDeEscenario\":");
+        resultado.append(escenario.getNivelDeZona());
+        resultado.append(",\"celdas\":[");
+        int x=0;
+        int y=0;
+        for(x =0;x<escenario.getAncho();x++) {
+            for (y = 0; y < escenario.getAlto(); y++) {
+                resultado.append("{\"tipo\":\"");
+                resultado.append(escenario.getCelda(x, y).getTipo());
+                resultado.append("\",\"x\":");
+                resultado.append(x);
+                resultado.append("\",\"y\":");
+                resultado.append(y);
+                resultado.append("},");
+
+            }
+        }
+
+        if(x!=0||y!=0)
+        {
+            resultado.deleteCharAt(resultado.length()-1);
+        }
+        resultado.append("]}");
+        return  resultado.toString();
+    }
+
+    public static String Lista_MonstruosAJson(Lista_Monstruos monstruos) throws CargarDeJsonException
+    {
+        StringBuffer resultado = new StringBuffer("{\"monstruos\":[");
+        int x =0;
+        for(x=0;x<monstruos.getTamaño();x++)
+        {
+          resultado.append(CargadorJSON.monstruoAJson(monstruos.obtenerMonstruo(x)));
+        }
+        resultado.append("]}");
+        return resultado.toString();
+    }
 }

@@ -12,16 +12,19 @@
         {
           "tipo": "MonstruoEjemplo",
           "nivel": 1,
+          "vida":20,
           "experiencia": 50
         },
         {
           "tipo": "MonstruoEjemplo",
           "nivel": 2,
+          "vida":40,
           "experiencia": 100
         },
         {
           "tipo": "MonstruoEjemplo",
           "nivel": 3,
+          "vida":60,
           "experiencia": 200
         }
       ],
@@ -63,11 +66,13 @@
         {
           "tipo": "MonstruoEjemplo",
           "nivel": 1,
+          "vida":20,
           "experiencia": 50
         },
         {
           "tipo": "MonstruoEjemplo",
           "nivel": 2,
+          "vida":40,
           "experiencia": 100
         }
       ],

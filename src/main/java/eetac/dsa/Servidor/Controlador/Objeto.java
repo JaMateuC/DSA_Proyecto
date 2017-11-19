@@ -1,6 +1,6 @@
 package eetac.dsa.Servidor.Controlador;
 
-import eetac.dsa.Servidor.Resultado;
+import eetac.dsa.Servidor.ResultadoServidor;
 
 public abstract class Objeto
 {
@@ -50,6 +50,6 @@ public abstract class Objeto
         this.destino = destino;
     }
 
-    public abstract void funcion(Personaje personaje, Resultado rel);
-    public abstract void funcion(Monstruo monstruo, Resultado rel);
+    public abstract void funcion(Personaje personaje, ResultadoServidor rel);
+    public abstract void funcion(Monstruo monstruo, ResultadoServidor rel);
 }

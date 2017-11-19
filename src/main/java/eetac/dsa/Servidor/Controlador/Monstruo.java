@@ -179,9 +179,4 @@ public abstract class Monstruo
         tmp.extraEnemigo(enemigo);
         return true;
     }
-
-    public void usarObjeto(Objeto objeto)
-    {
-        objeto.funcion(this);
-    }
 }

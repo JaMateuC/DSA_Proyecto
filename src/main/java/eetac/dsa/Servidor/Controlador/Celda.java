@@ -1,9 +1,8 @@
 package eetac.dsa.Servidor.Controlador;
 
 import eetac.dsa.Flag;
-import eetac.dsa.Mundo;
 import eetac.dsa.Servidor.MundoControlador;
-import eetac.dsa.Servidor.Resultado;
+import eetac.dsa.Servidor.ResultadoServidor;
 
 /**
  * La clase celda es una plantilla para cada conjunto de propiedades que tiene cada una de las posiciones del mapa
@@ -56,21 +55,21 @@ public abstract class Celda
      * funcion miscelanea que se ejecuta cuando un usuario esta encima
      * @return devuelve si la funcion se ha podido ejecutar
      */
-    public abstract boolean accionEncima(Personaje personaje, Resultado rel);
+    public abstract boolean accionEncima(Personaje personaje, ResultadoServidor rel);
 
     /**
      * funcion miscelanea que se activa por un personaje delante de la celda actual
      * @param activador personaje que activa la accion
      * @return devuelve si la funcion se ha podido ejecutar
      */
-    public abstract boolean accionActivar(Personaje activador,Resultado rel);
+    public abstract boolean accionActivar(Personaje activador,ResultadoServidor rel);
 
     /**
      * funcion que se usa para poner un personaje en esta posicion, y calcul si aparece un monstruo o un objeto
      * @param personaje personaje que se mueve
      * @return devuelve true si la casilla esta vacia y se puede acceder, en caso contrario devuelve false
      */
-    public boolean accion(Personaje personaje, Resultado rel)
+    public boolean accion(Personaje personaje, ResultadoServidor rel)
     {
         if(this.personajeEncima!= null||this.andable==false) {
             return false;
@@ -94,7 +93,7 @@ public abstract class Celda
     }
 
 
-    void obtenerObjeto(Personaje personaje,Resultado rel)
+    void obtenerObjeto(Personaje personaje,ResultadoServidor rel)
     {
         try {
             Objeto obj = CreadorAleatori.crearObjeto(MundoControlador.getInstance().getSesion(personaje.getNombre()).getEscenario().getNivelDeZona());
@@ -112,7 +111,7 @@ public abstract class Celda
     /**
      * comienza un combate con un monstruo aleatorio el personaje de la casilla
      */
-    void comenzarCombate(Personaje personaje,Resultado rel)
+    void comenzarCombate(Personaje personaje,ResultadoServidor rel)
     {
         try {
             Monstruo monstruo = CreadorAleatori.crearMonstruo(MundoControlador.getInstance().getSesion(personaje.getNombre()).getEscenario().getNivelDeZona());

@@ -8,6 +8,7 @@ public class Flag {
     final public static long iniciarCombate =                0b100000;
     final public static long añadirObjeto =                 0b1000000;
     final public static long borrarObjeto =                0b10000000;
+    final public static long recargarMonstruos =          0b100000000;
 
     long flag;
 

@@ -2,13 +2,14 @@ package eetac.dsa.Servidor;
 
 import eetac.dsa.Flag;
 import eetac.dsa.Servidor.Controlador.Escenario;
+import eetac.dsa.Servidor.Controlador.Lista_Monstruos;
 import eetac.dsa.Servidor.Controlador.Monstruo;
 import eetac.dsa.Servidor.Controlador.Usuario;
 
 import java.awt.*;
 import java.util.Vector;
 
-public class Resultado {
+public class ResultadoServidor {
     Flag flag; //indica las acciones que tendra que hacer el cliente
     Escenario escenario;//si el flag contiene cargarEscenario, este campo se tiene que llenar
     Point posicion;//si el flag contiene moverProtagonista, este campo se tiene que llenar con la posicion en la que tiene que trasladarse el usuario
@@ -16,7 +17,16 @@ public class Resultado {
     Object objeto; ////si el flag contiene añadirObjeto, este campo se tiene que llenar con el objeto que se añadira el cliente
     int indiceObjeto;//si el flag contiene borrarObjeto, este campo se tiene que llenar con el indice del objeto que se borrara
     Monstruo monstruo; //si el flag contiene iniciarCombate, este es el monstruo con el que combatira
+    Lista_Monstruos lista_monstruos;
 
+
+    public Lista_Monstruos getLista_monstruos() {
+        return lista_monstruos;
+    }
+
+    public void setLista_monstruos(Lista_Monstruos lista_monstruos) {
+        this.lista_monstruos = lista_monstruos;
+    }
 
     public Monstruo getMonstruo() {
         return monstruo;

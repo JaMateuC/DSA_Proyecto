@@ -88,12 +88,12 @@ public class TestCargador {
     }
 
     @Test
-    public void MonstruoAJson()
+    public void Monstruo()
     {
         try {
-            Assert.assertTrue(CargadorJSON.ficheroAJSON("src/test/resources/Monstruo.json").equals(CargadorJSON.monstruoAJson(new MonstruoEjemplo(1,50))));
+            CargadorJSON.jsonAMonstruo(CargadorJSON.monstruoAJson(new MonstruoEjemplo(1,0)));
         }
-        catch (CargarDeJsonException|IOException e)
+        catch (CargarDeJsonException e)
         {
             throw new AssertionError();
         }

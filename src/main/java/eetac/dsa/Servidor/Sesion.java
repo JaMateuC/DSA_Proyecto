@@ -31,18 +31,18 @@ public class Sesion {
     }
 
 
-    public Resultado mover(int x,int y)
+    public ResultadoServidor mover(int x, int y)
     {
-        Resultado rel = new Resultado();
+        ResultadoServidor rel = new ResultadoServidor();
 
         protagonista.mover(protagonista.getPosicion().x,protagonista.getPosicion().y,rel);
 
         return  rel;
     }
 
-    public Resultado usarObjetoProtagonista(int index)
+    public ResultadoServidor usarObjetoProtagonista(int index)
     {
-        Resultado rel = new Resultado();
+        ResultadoServidor rel = new ResultadoServidor();
         if(protagonista.getInventario().buscarObjeto(index).getDestino() == Objeto.Destino.Personaje)
         {
             rel.getFlag().addFlag(Flag.borrarObjeto);
@@ -52,13 +52,25 @@ public class Sesion {
         return rel;
     }
 
-    public Resultado hacerAccion(int x,int y)
+    public ResultadoServidor usarObjetoMonstruo(int indexObjeto, int indexMonstruo)
+    {
+        ResultadoServidor rel = new ResultadoServidor();
+        if(protagonista.getInventario().buscarObjeto(indexObjeto).getDestino() == Objeto.Destino.Monstruo)
+        {
+            rel.getFlag().addFlag(Flag.borrarObjeto);
+            rel.setIndiceObjeto(indexObjeto);
+            protagonista.usarObjetoAMonstruo(indexObjeto,indexMonstruo,rel);
+        }
+        return rel;
+    }
+
+    public ResultadoServidor hacerAccion(int x, int y)
     {
 
         return null;
     }
 
-    //public Resultado resultadoCombate()
+    //public ResultadoServidor resultadoCombate()
 
 
     public boolean cargarEscenarioFichero(String nombre)

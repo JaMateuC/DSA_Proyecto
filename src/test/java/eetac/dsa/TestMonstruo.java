@@ -76,21 +76,4 @@ public class TestMonstruo {
         assertEquals(20,monstruoTestEnemigo.getVidaActual());
     }
 
-    @Test
-    public void testObjetos()
-    {
-        monstruoTest.setVidaActual(10);
-        monstruoTest.usarObjeto(new Pocion("Pocion pequeña",20));
-        assertEquals(30,monstruoTest.getVidaActual());
-
-        monstruoTest.setVidaActual(10);
-        monstruoTest.usarObjeto(new Pocion("Pocion Normal",50));
-        assertEquals(40,monstruoTest.getVidaActual());
-
-        monstruoTest.usarObjeto(new PocionExperiencia("Pocion de Experiencia Normal",70));
-        assertEquals(3,monstruoTest.getNivel());
-        assertEquals(10,monstruoTest.getExperiencia());
-
-    }
-
 }

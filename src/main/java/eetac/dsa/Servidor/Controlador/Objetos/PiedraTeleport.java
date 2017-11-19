@@ -2,11 +2,10 @@ package eetac.dsa.Servidor.Controlador.Objetos;
 
 import eetac.dsa.Flag;
 import eetac.dsa.Servidor.Controlador.Monstruo;
-import eetac.dsa.Mundo;
 import eetac.dsa.Servidor.Controlador.Objeto;
 import eetac.dsa.Servidor.Controlador.Personaje;
 import eetac.dsa.Servidor.MundoControlador;
-import eetac.dsa.Servidor.Resultado;
+import eetac.dsa.Servidor.ResultadoServidor;
 import eetac.dsa.Servidor.Sesion;
 
 public class PiedraTeleport extends Objeto
@@ -39,7 +38,7 @@ public class PiedraTeleport extends Objeto
     }
 
     @Override
-    public void funcion(Personaje personaje, Resultado rel) {
+    public void funcion(Personaje personaje, ResultadoServidor rel) {
         Sesion sesion = MundoControlador.getInstance().getSesion(personaje.getNombre());
         if(sesion!=null)
         {
@@ -51,7 +50,7 @@ public class PiedraTeleport extends Objeto
     }
 
     @Override
-    public void funcion(Monstruo monstruo, Resultado rel) {
+    public void funcion(Monstruo monstruo, ResultadoServidor rel) {
 
     }
 }
