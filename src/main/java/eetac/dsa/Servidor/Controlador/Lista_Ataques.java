@@ -4,18 +4,22 @@ import java.util.Vector;
 
 public class Lista_Ataques
 {
-    Vector<Ataque> lista_ataques;
-    int maxAtaques = 4;
+    private Vector<Ataque> lista_ataques;
+    private int maxAtaques = 4;
 
     public Lista_Ataques() {
-        lista_ataques = new Vector<Ataque>();
+        this.lista_ataques = new Vector<Ataque>();
+    }
+
+    public Vector<Ataque> getLista_ataques() {
+        return lista_ataques;
     }
 
     public Boolean añadirAtaque(Ataque ataque)
     {
-        if(lista_ataques.size()<maxAtaques)
+        if(this.lista_ataques.size()<this.maxAtaques)
         {
-            lista_ataques.add(ataque);
+            this.lista_ataques.add(ataque);
             return true;
         }
         return false;
@@ -28,15 +32,28 @@ public class Lista_Ataques
      */
     public Ataque getAtaque(int i)
     {
-        if(i<lista_ataques.size())
+        if(i<this.lista_ataques.size())
         {
-            return lista_ataques.get(i);
+            return this.lista_ataques.get(i);
         }
         return null;
     }
 
+    public Boolean anadirMultiplesAtaques(Lista_Ataques lista){
+
+        if(this.lista_ataques.size() + lista.getNumeroAtaques() <= this.maxAtaques)
+        {
+            for(Ataque ataque: lista.getLista_ataques()){
+                this.lista_ataques.add(ataque);
+            }
+                return true;
+        }
+        return false;
+
+    }
+
     public int getNumeroAtaques()
     {
-        return lista_ataques.size();
+        return this.lista_ataques.size();
     }
 }

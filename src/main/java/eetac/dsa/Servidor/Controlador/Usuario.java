@@ -34,7 +34,6 @@ public class Usuario extends Personaje
         this.password = password;
     }
 
-
     @Override
     public boolean mover(int x, int y) {
         /*Celda cela = MundoControlador.getInstance().getSesion(getNombre()).getEscenario().getCelda(x,y);

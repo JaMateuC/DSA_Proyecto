@@ -64,4 +64,24 @@ public class Lista_Monstruos {
     {
         return monstruos.size();
     }
+
+    public Monstruo getMonstruo(int i)
+    {
+        if(i<getTamaño())
+        {
+            return this.monstruos.get(i);
+        }
+        return null;
+    }
+
+    public Monstruo buscarMonstruoPorNombre(String nombre)
+    {
+        for (Monstruo monstruo:monstruos) {
+            if(monstruo.getIdMonstruo()==nombre) {
+                return monstruo;
+            }
+        }
+        return null;
+    }
+
 }
