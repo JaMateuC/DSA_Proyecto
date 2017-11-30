@@ -1,7 +1,10 @@
 package eetac.dsa.Servidor.Model;
 
-import eetac.dsa.Servidor.Controlador.*;
 
+import eetac.dsa.Servidor.Controlador.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.Properties;
 
@@ -27,7 +30,7 @@ public class DAO {
                             this.nombreServidor +
                             ":" + this.puerto + "/",
                     connectionProps);
-        } else if (this.dbms.equals("derby")) {
+        } else if (this.dbms.equals("mysql")) {
             this.con = DriverManager.getConnection(
                     "jdbc:" + this.dbms + ":" +
                             this.dbNombre +
@@ -38,175 +41,77 @@ public class DAO {
 
     /*INSERT STATMENTS*/
 
-    public void addUsuarioNuevo(Usuario usuario) throws SQLException{
+    public void insertDB(){
 
-        PreparedStatement addUsuarioN;
+        StringBuffer  buffer = new StringBuffer();
 
-        String usuarioStatment = "INSERT INTO USUARIOS VALUES (?,?,?,?,?,?)";
+        buffer.append("INSERT INTO ");
+        buffer.append(this.getClass().getSimpleName());
+        buffer.append(" (");
 
-        addUsuarioN = this.con.prepareStatement(usuarioStatment);
+        for( Field field : this.getClass().getDeclaredFields()){
+            buffer.append(field.getName()+",");
 
-        addUsuarioN.setString(1,usuario.getNombre());
-        addUsuarioN.setString(2,usuario.getPassword());
-        addUsuarioN.setString(3,usuario.getEmail());
-        addUsuarioN.setBoolean(4,usuario.getGenero());
-        addUsuarioN.setDouble(5,usuario.getPosicion().getX());
-        addUsuarioN.setDouble(6,usuario.getPosicion().getY());
-        addUsuarioN.executeUpdate();
+        }
 
-    }
+        buffer.delete(buffer.length()-1,buffer.length());
+        buffer.append(") ");
+        buffer.append("Values");
+        buffer.append(" (");
+        for(Method method : this.getClass().getDeclaredMethods()){
+            if (method.getName().startsWith("get"))
+                try{
+                    buffer.append(method.invoke(this,null).toString() + ",");
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
 
-    public void addMosntruoNuevo(Monstruo monstruo) throws SQLException{
+        }
+        buffer.delete(buffer.length()-1,buffer.length());
+        buffer.append(") ");
 
-        PreparedStatement addMonstruoN;
-
-        String monstruoStatment = "INSERT INTO MONSTRUO VALUES (?,?,?,?,?,?,?,?,?)";
-
-        addMonstruoN = this.con.prepareStatement(monstruoStatment);
-
-        addMonstruoN.setString(1,monstruo.getIdMonstruo());
-        addMonstruoN.setInt(2,monstruo.getNivel());
-        addMonstruoN.setInt(3,monstruo.getExperiencia());
-        addMonstruoN.setInt(4,monstruo.getVidaBase());
-        addMonstruoN.setInt(5,monstruo.getAtaqueBase());
-        addMonstruoN.setInt(6,monstruo.getDefensaBase());
-        addMonstruoN.setInt(7,monstruo.getExperienciaBase());
-        addMonstruoN.setInt(8,monstruo.getVidaActual());
-        addMonstruoN.setString(9,monstruo.getTipo());
-        addMonstruoN.executeUpdate();
-
-    }
-
-    public void addRelacionObjetos(Usuario usuario, Objeto objeto) throws SQLException{
-
-        PreparedStatement addRelacionObjeto;
-
-        String objetoStatment = "INSERT INTO INVENTARIO VALUES (?,?,?)";
-
-        addRelacionObjeto = this.con.prepareStatement(objetoStatment);
-
-        addRelacionObjeto.setString(1,usuario.getNombre());
-        addRelacionObjeto.setString(2,objeto.getNombre());
-        addRelacionObjeto.setInt(3,usuario.getInventario().buscarObjetoPorNombre(objeto.getNombre()).getNumPropiedad());
-        addRelacionObjeto.executeUpdate();
-
-    }
-
-    public void addRelacionAtaque(Monstruo monstruo, Ataque ataque) throws SQLException{
-
-        PreparedStatement addRelacionAtaque;
-
-        String ataqueStatment = "INSERT INTO LISTAQTAQUES VALUES (?,?)";
-
-        addRelacionAtaque = this.con.prepareStatement(ataqueStatment);
-
-        addRelacionAtaque.setString(1,monstruo.getIdMonstruo());
-        addRelacionAtaque.setString(2,ataque.getNombre());
-        addRelacionAtaque.executeUpdate();
-
-    }
-
-    public void addRelacionMonstruo(Usuario usuario, Monstruo monstruo) throws SQLException {
-
-        PreparedStatement addRelacionAtaque;
-
-        String ataqueStatment = "INSERT INTO LISTMONSTRUOSUSUARIOS VALUES (?,?)";
-
-        addRelacionAtaque = this.con.prepareStatement(ataqueStatment);
-
-        addRelacionAtaque.setString(2, monstruo.getIdMonstruo());
-        addRelacionAtaque.setString(1, usuario.getNombre());
-        addRelacionAtaque.executeUpdate();
     }
 
     /*DELETE STATMENTS*/
 
-    public void dropUsuario(Usuario usuario) throws SQLException{
+    public void deleteDB(){
 
-        PreparedStatement dropUsuario;
+        StringBuffer  buffer = new StringBuffer();
 
-        String usuarioStatment = "DELETE FROM USUARIOS WHERE ID_USUARIO = ?";
+        buffer.append("DELETE FROM ");
+        buffer.append(this.getClass().getSimpleName());
+        buffer.append(" WHERE ");
+        for( Field field : this.getClass().getDeclaredFields()){
+            if (field.getName().startsWith("id")){
+                buffer.append(field.getName());
+            }
+        }
 
-        dropUsuario = this.con.prepareStatement(usuarioStatment);
+        buffer.append(" = ");
 
-        dropUsuario.setString(1,usuario.getNombre());
-        dropUsuario.executeUpdate();
+        buffer.append(getIDObject());
 
-    }
-
-    public void dropMosntruo(Monstruo monstruo) throws SQLException{
-
-        PreparedStatement dropMonstruo;
-
-        String monstruoStatment = "DELETE FROM MONSTRUOS WHERE ID_MONSTRUO = ?";
-
-        dropMonstruo = this.con.prepareStatement(monstruoStatment);
-
-        dropMonstruo.setString(1,monstruo.getIdMonstruo());
-        dropMonstruo.executeUpdate();
-
-    }
-
-    public void dropRelacionObjetos(Usuario usuario, Objeto objeto) throws SQLException{
-
-        PreparedStatement dropRelacionObjeto;
-
-        String objetoStatment = "INSERT INTO INVENTARIO WHERE ID_OBJETO = ? AND ID_USUARIO = ?";
-
-        dropRelacionObjeto = this.con.prepareStatement(objetoStatment);
-
-        dropRelacionObjeto.setString(2,usuario.getNombre());
-        dropRelacionObjeto.setString(1,objeto.getNombre());
-        dropRelacionObjeto.executeUpdate();
-
-    }
-
-    public void dropRelacionAtaque(Monstruo monstruo, Ataque ataque) throws SQLException{
-
-        PreparedStatement addRelacionAtaque;
-
-        String ataqueStatment = "INSERT INTO LISTAQTAQUES WHERE ID_MONSTRUO = ? AND ID_ATAQUE = ?";
-
-        addRelacionAtaque = this.con.prepareStatement(ataqueStatment);
-
-        addRelacionAtaque.setString(1,monstruo.getIdMonstruo());
-        addRelacionAtaque.setString(2,ataque.getNombre());
-        addRelacionAtaque.executeUpdate();
-
-    }
-
-    public void dropRelacionMonstruo(Usuario usuario, Monstruo monstruo) throws SQLException {
-
-        PreparedStatement addRelacionAtaque;
-
-        String ataqueStatment = "INSERT INTO LISTMONSTRUOSUSUARIOS WHERE ID_MONSTRUO = ? AND ID_USUARIO = ?";
-
-        addRelacionAtaque = this.con.prepareStatement(ataqueStatment);
-
-        addRelacionAtaque.setString(2, monstruo.getIdMonstruo());
-        addRelacionAtaque.setString(1, usuario.getNombre());
-        addRelacionAtaque.executeUpdate();
     }
 
     /*SELECT STATMENTS*/
 
-    public void selectUsuarioAllInfo(String nombre) throws SQLException{
+    public void selectDB(){
+        StringBuffer  buffer = new StringBuffer();
 
-        PreparedStatement selectUsuario;
-
-        String usuarioStatment = "SELECT * FROM USUARIOS WHERE ID_USUARIO = ?";
-
-        selectUsuario = this.con.prepareStatement(usuarioStatment);
-
-        selectUsuario.setString(1,nombre);
-        ResultSet result = selectUsuario.executeQuery();
-
-        while (result.next()) {
-
-
-
+        buffer.append("SELECT * FROM ");
+        buffer.append(this.getClass().getSimpleName());
+        buffer.append(" WHERE ");
+        for( Field field : this.getClass().getDeclaredFields()){
+            if (field.getName().startsWith("id")){
+                buffer.append(field.getName());
+            }
         }
 
+        buffer.append(" = ");
+
+        buffer.append(getIDObject());
     }
 
     public void selectMonstruoAllInfo(String nombre) throws SQLException{
@@ -229,5 +134,25 @@ public class DAO {
     }
 
     /*UPDATE STATMENTS*/
+
+    public String getIDObject(){
+
+        for(Method method : this.getClass().getDeclaredMethods()){
+            if (method.getName().startsWith("getID")){
+                try{
+                    String id = method.invoke(this,null).toString();
+                    return id;
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+        return "";
+
+    }
 
 }

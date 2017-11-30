@@ -72,9 +72,9 @@ public abstract class Monstruo
         this.nivel = nivel;
     }
 
-    public Lista_Ataques getLista_ataques() {
+    /*public Lista_Ataques getLista_ataques() {
         return lista_ataques;
-    }
+    }*/
 
     /**
      * obten la vida maxima corregido por el nivel

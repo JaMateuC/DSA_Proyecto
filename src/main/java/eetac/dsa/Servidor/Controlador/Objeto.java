@@ -8,7 +8,6 @@ public abstract class Objeto
     private String tipo;
     private String descripcion;
     private Destino destino;
-    private int numPropiedad;
 
     public enum Destino{Personaje,Monstruo}
 
@@ -17,10 +16,6 @@ public abstract class Objeto
         this.descripcion = descripcion;
         this.tipo = tipo;
         this.destino = destino;
-    }
-
-    public int getNumPropiedad() {
-        return numPropiedad;
     }
 
     public String getNombre() {
