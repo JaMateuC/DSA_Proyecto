@@ -1,22 +1,34 @@
 package eetac.dsa.Servidor.Model;
 
 
-import eetac.dsa.Servidor.Controlador.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.Properties;
+import eetac.dsa.Servidor.Model.PropertiesDB;
 
 public class DAO {
 
     private Connection con = null;
-    private String nombreUsuario = "";
-    private String password = "";
-    private String dbms = "mysql";
-    private String nombreServidor = "localhost";
-    private String puerto = "8060";
-    private String dbNombre = "";
+    private String nombreUsuario;
+    private String password;
+    private String dbms;
+    private String nombreServidor;
+    private String puerto;
+    private String dbNombre;
+
+
+    public void initProperties(){
+
+        this.nombreUsuario = PropertiesDB.getInstance().getText("nombreUsuario");
+        this.password = PropertiesDB.getInstance().getText("password");
+        this.dbms = PropertiesDB.getInstance().getText("dbms");
+        this.nombreServidor = PropertiesDB.getInstance().getText("nombreServidor");
+        this.puerto = PropertiesDB.getInstance().getText("puerto");
+        this.dbNombre = PropertiesDB.getInstance().getText("dbNombre");
+
+    }
 
     public void getConnection() throws SQLException {
 

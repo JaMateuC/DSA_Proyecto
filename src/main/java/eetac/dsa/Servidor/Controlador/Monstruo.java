@@ -8,7 +8,6 @@ package eetac.dsa.Servidor.Controlador;
  */
 public abstract class Monstruo
 {
-    private String idMonstruo;
     private int nivel;
     private int experiencia;
 
@@ -23,7 +22,7 @@ public abstract class Monstruo
 
     private String tipo;
 
-    public Monstruo(int vidaBase, int ataqueBase, int defensaBase, String tipo,int experienciaBase,int nivel, String idMonstruo)
+    public Monstruo(int vidaBase, int ataqueBase, int defensaBase, String tipo,int experienciaBase,int nivel)
     {
         this.vidaBase = vidaBase;
         this.ataqueBase = ataqueBase;
@@ -33,15 +32,6 @@ public abstract class Monstruo
         lista_ataques = new Lista_Ataques();
         this.nivel = nivel;
         this.vidaActual = vidaBase*nivel;
-        this.idMonstruo = idMonstruo;
-    }
-
-    public String getIdMonstruo() {
-        return idMonstruo;
-    }
-
-    public void setIdMonstruo(String idMonstruo) {
-        this.idMonstruo = idMonstruo;
     }
 
     public int getNivel() {
@@ -72,9 +62,9 @@ public abstract class Monstruo
         this.nivel = nivel;
     }
 
-    /*public Lista_Ataques getLista_ataques() {
+    public Lista_Ataques getLista_ataques() {
         return lista_ataques;
-    }*/
+    }
 
     /**
      * obten la vida maxima corregido por el nivel

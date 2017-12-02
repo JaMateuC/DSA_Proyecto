@@ -74,7 +74,7 @@ public class Lista_Monstruos {
         return null;
     }
 
-    public Monstruo buscarMonstruoPorNombre(String nombre)
+    /*public Monstruo buscarMonstruoPorNombre(String nombre)
     {
         for (Monstruo monstruo:monstruos) {
             if(monstruo.getIdMonstruo()==nombre) {
@@ -82,6 +82,6 @@ public class Lista_Monstruos {
             }
         }
         return null;
-    }
+    }*/
 
 }
