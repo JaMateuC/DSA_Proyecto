@@ -1,4 +1,4 @@
-package eetac.dsa.Servidor.Model;
+package eetac.dsa.Servidor.Model.dao;
 
 
 import java.lang.reflect.InvocationTargetException;
@@ -6,7 +6,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.Properties;
-import eetac.dsa.Servidor.Model.PropertiesDB;
 
 public class DAO {
 

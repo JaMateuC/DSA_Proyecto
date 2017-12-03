@@ -1,10 +1,7 @@
 package eetac.dsa.Servidor;
 
 import eetac.dsa.Flag;
-import eetac.dsa.Servidor.Controlador.Escenario;
-import eetac.dsa.Servidor.Controlador.Lista_Monstruos;
-import eetac.dsa.Servidor.Controlador.Monstruo;
-import eetac.dsa.Servidor.Controlador.Usuario;
+import eetac.dsa.Servidor.Controlador.*;
 
 import java.awt.*;
 import java.util.Vector;
@@ -14,19 +11,9 @@ public class ResultadoServidor {
     Escenario escenario;//si el flag contiene cargarEscenario, este campo se tiene que llenar
     Point posicion;//si el flag contiene moverProtagonista, este campo se tiene que llenar con la posicion en la que tiene que trasladarse el usuario
     Usuario protagonista; ////si el flag contiene cargarProtagonista, este campo se tiene que llenar con el usuario actual
-    Object objeto; ////si el flag contiene añadirObjeto, este campo se tiene que llenar con el objeto que se añadira el cliente
+    Objeto objeto; ////si el flag contiene añadirObjeto, este campo se tiene que llenar con el objeto que se añadira el cliente
     int indiceObjeto;//si el flag contiene borrarObjeto, este campo se tiene que llenar con el indice del objeto que se borrara
     Monstruo monstruo; //si el flag contiene iniciarCombate, este es el monstruo con el que combatira
-    Lista_Monstruos lista_monstruos;
-
-
-    public Lista_Monstruos getLista_monstruos() {
-        return lista_monstruos;
-    }
-
-    public void setLista_monstruos(Lista_Monstruos lista_monstruos) {
-        this.lista_monstruos = lista_monstruos;
-    }
 
     public Monstruo getMonstruo() {
         return monstruo;
@@ -68,11 +55,11 @@ public class ResultadoServidor {
         this.protagonista = protagonista;
     }
 
-    public Object getObjeto() {
+    public Objeto getObjeto() {
         return objeto;
     }
 
-    public void setObjeto(Object objeto) {
+    public void setObjeto(Objeto objeto) {
         this.objeto = objeto;
     }
 
@@ -83,4 +70,5 @@ public class ResultadoServidor {
     public void setIndiceObjeto(int indiceObjeto) {
         this.indiceObjeto = indiceObjeto;
     }
+
 }
