@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.Properties;
 
-public class DAO {
+public abstract class DAO {
 
     private Connection con = null;
     private String nombreUsuario;
