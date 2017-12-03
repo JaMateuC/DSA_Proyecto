@@ -99,29 +99,36 @@ public class ResultadoServidorJSON {
         return resultadoServidor;
     }
 
-    public void fromResultadoServidor(ResultadoServidor resultadoServidor) throws Exception
-    {
-        if(resultadoServidor==null)return;
+    public void fromResultadoServidor(ResultadoServidor resultadoServidor) throws Exception {
+        if (resultadoServidor == null) return;
         EscenarioJSON escenarioJSON = new EscenarioJSON();
         escenarioJSON.fromEscenario(resultadoServidor.getEscenario());
         this.escenario = escenarioJSON;
         this.flag = resultadoServidor.getFlag().toLong();
-        this.x = (int)resultadoServidor.getPosicion().getX();
-        this.y = (int)resultadoServidor.getPosicion().getY();
+        if (resultadoServidor.getPosicion() != null) {
+            this.x = (int) resultadoServidor.getPosicion().getX();
+            this.y = (int) resultadoServidor.getPosicion().getY();
+        }
 
         this.indiceObjeto = resultadoServidor.getIndiceObjeto();
+        if (resultadoServidor.getObjeto() != null) {
+            ObjetoJSON objetoJSON = new ObjetoJSON();
+            objetoJSON.fromObjeto(resultadoServidor.getObjeto());
+            this.objeto = objetoJSON;
+        }
 
-        ObjetoJSON objetoJSON = new ObjetoJSON();
-        objetoJSON.fromObjeto(resultadoServidor.getObjeto());
-        this.objeto = objetoJSON;
+        if (resultadoServidor.getMonstruo() != null) {
+            MonstruoJSON monstruoJSON = new MonstruoJSON();
+            monstruoJSON.fromMonstruo(resultadoServidor.getMonstruo());
+            this.monstruo = monstruoJSON;
+        }
 
-        MonstruoJSON monstruoJSON = new MonstruoJSON();
-        monstruoJSON.fromMonstruo(resultadoServidor.getMonstruo());
-        this.monstruo = monstruoJSON;
-
-        UsuarioJSON usuarioJSON = new UsuarioJSON();
+        if (resultadoServidor.getProtagonista() != null)
+        {
+            UsuarioJSON usuarioJSON = new UsuarioJSON();
         usuarioJSON.fromUsuario(resultadoServidor.getProtagonista());
         this.protagonista = usuarioJSON;
+        }
 
     }
 

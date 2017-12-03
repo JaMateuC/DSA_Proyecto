@@ -69,12 +69,11 @@ public abstract class Celda
      * @param personaje personaje que se mueve
      * @return devuelve true si la casilla esta vacia y se puede acceder, en caso contrario devuelve false
      */
-    public boolean accion(Personaje personaje, ResultadoServidor rel)
+    public boolean accion(Personaje personaje, ResultadoServidor rel,int x,int y)
     {
         if(this.personajeEncima!= null||this.andable==false) {
             return false;
         }
-
         double numeroObjeto = Math.random();
         double numeroPersonaje = Math.random();
         this.personajeEncima = personaje;
@@ -86,8 +85,11 @@ public abstract class Celda
         {
             comenzarCombate(personaje,rel);
         }
-
+        personaje.setPosicion(x,y);
         accionEncima(personaje,rel);
+
+        rel.getFlag().addFlag(Flag.moverProtagonista);
+        rel.setPosicion(personaje.getPosicion());
 
         return true;
     }
@@ -117,7 +119,6 @@ public abstract class Celda
             Monstruo monstruo = CreadorAleatori.crearMonstruo(MundoControlador.getInstance().getSesion(personaje.getNombre()).getEscenario().getNivelDeZona());
             rel.getFlag().addFlag(Flag.iniciarCombate);
             rel.setMonstruo(monstruo);
-
         }
         catch (Exception e)
         {

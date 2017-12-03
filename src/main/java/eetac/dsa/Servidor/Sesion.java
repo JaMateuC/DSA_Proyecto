@@ -34,8 +34,7 @@ public class Sesion {
     public ResultadoServidor mover(int x, int y)
     {
         ResultadoServidor rel = new ResultadoServidor();
-
-        protagonista.mover(protagonista.getPosicion().x,protagonista.getPosicion().y,rel);
+        protagonista.mover(protagonista.getPosicion().x+x,protagonista.getPosicion().y+y,rel);
 
         return  rel;
     }
@@ -49,6 +48,30 @@ public class Sesion {
             rel.setIndiceObjeto(index);
             protagonista.usarObjeto(index,rel);
         }
+        return rel;
+    }
+
+    public ResultadoServidor borrarObjeto(int index)
+    {
+        ResultadoServidor rel = new ResultadoServidor();
+        if(index<protagonista.getInventario().obtenerTamaño()) {
+            rel.getFlag().addFlag(Flag.borrarObjeto);
+            rel.setIndiceObjeto(index);
+            protagonista.getInventario().quitarObjeto(index);
+        }
+        rel.getFlag().isFlag(Flag.ERROR);
+        return rel;
+    }
+
+    public ResultadoServidor borrarMonstruo(int index)
+    {
+        ResultadoServidor rel = new ResultadoServidor();
+        if(index<protagonista.getLista_montruos().getTamaño()) {
+            rel.getFlag().addFlag(Flag.borrarMonstruo);
+            rel.setIndiceObjeto(index);
+            protagonista.getLista_montruos().quitarMonstruoPorPosicion(index);
+        }
+        rel.getFlag().isFlag(Flag.ERROR);
         return rel;
     }
 
@@ -77,16 +100,16 @@ public class Sesion {
     {
         try {
             escenario = CargadorJSON.jsonAEscenario(CargadorJSON.ficheroAJSON("src/main/resources/Escenarios/" + nombre + ".json"));
-            personajesDelEscenario = CargadorJSON.jsonAPersonajes(CargadorJSON.ficheroAJSON("src/main/resources/Escenarios/Personajes"+nombre+".json"));
+            //personajesDelEscenario = CargadorJSON.jsonAPersonajes(CargadorJSON.ficheroAJSON("src/main/resources/Escenarios/Personajes"+nombre+".json"));
         }
         catch (Exception e)
         {
             //logger.error("error al cargar un escenario");
             return false;
         }
-        for (Personaje p:personajesDelEscenario.values()) {
+        /*for (Personaje p:personajesDelEscenario.values()) {
             escenario.getCelda((int)p.getPosicion().getX(),(int)p.getPosicion().getY()).setPersonajeEncima(p);
-        }
+        }*/
         return true;
     }
 }

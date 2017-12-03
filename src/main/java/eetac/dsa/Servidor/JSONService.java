@@ -1,6 +1,7 @@
 package eetac.dsa.Servidor;
 
 import eetac.dsa.Servidor.Model.jsonpojo.ResultadoServidorJSON;
+import eetac.dsa.Servidor.Model.jsonpojo.querysclient.*;
 import eetac.dsa.Servidor.MundoControlador;
 import eetac.dsa.Servidor.ResultadoServidor;
 import javax.ws.rs.*;
@@ -12,12 +13,13 @@ import javax.ws.rs.core.Response;
 public class JSONService
 {
     @POST
-    @Path("/{username}/action")
+    @Path("/accion")
     @Consumes(MediaType.APPLICATION_JSON)
-    public ResultadoServidorJSON action(@PathParam("username") String userName, int x, int y)
+    public ResultadoServidorJSON action(QueryHacerAccion queryHacerAccion)
     {
         try {
-            return ResultadoServidorJSON.fromResultadoServidorStatic(MundoControlador.getInstance().getSesion(userName).hacerAccion(x, y));
+            return ResultadoServidorJSON.fromResultadoServidorStatic(
+                    MundoControlador.getInstance().getSesion(queryHacerAccion.getUsuario()).hacerAccion(queryHacerAccion.getX(), queryHacerAccion.getY()));
         }
         catch (Exception e)
         {
@@ -26,23 +28,30 @@ public class JSONService
     }
 
     @POST
-    @Path("/{username}/position")
+    @Path("/mover")
     @Consumes(MediaType.APPLICATION_JSON)
-    public ResultadoServidorJSON position(@PathParam("username") String userName, int x, int y) {
+    public ResultadoServidorJSON position(QueryMover queryMover) {
         try {
-            return ResultadoServidorJSON.fromResultadoServidorStatic(MundoControlador.getInstance().getSesion(userName).mover(x, y));
+            return ResultadoServidorJSON.fromResultadoServidorStatic(
+                    MundoControlador.getInstance().getSesion(queryMover.getUsuario()).mover(queryMover.getX(), queryMover.getY()));
         } catch (Exception e) {
             return null;
         }
     }
 
     @POST
-    @Path("/{username}/usarObjeto/monstruo")
+    @Path("/usarObjeto")
     @Consumes(MediaType.APPLICATION_JSON)
-    public ResultadoServidorJSON useObject(@PathParam("username") String userName, int indexObjeto, int indexMonstruo)
+    public ResultadoServidorJSON useObject(QueryUsarObjeto queryUsarObjeto)
     {
         try {
-            return ResultadoServidorJSON.fromResultadoServidorStatic(MundoControlador.getInstance().getSesion(userName).usarObjetoMonstruo(indexObjeto, indexMonstruo));
+            if(!queryUsarObjeto.isObjetivo())
+            return ResultadoServidorJSON.fromResultadoServidorStatic(
+                    MundoControlador.getInstance().getSesion(queryUsarObjeto.getUsuario()).
+                            usarObjetoMonstruo(queryUsarObjeto.getIndice(), queryUsarObjeto.getIndiceMonstruo()));
+            return ResultadoServidorJSON.fromResultadoServidorStatic(
+                    MundoControlador.getInstance().getSesion(queryUsarObjeto.getUsuario()).
+                            usarObjetoProtagonista(queryUsarObjeto.getIndice()));
         }
         catch (Exception e)
         {
@@ -51,12 +60,30 @@ public class JSONService
     }
 
     @POST
-    @Path("/{username}/usarObjeto/protagonista")
+    @Path("/borrar")
     @Consumes(MediaType.APPLICATION_JSON)
-    public ResultadoServidorJSON useObject(@PathParam("username") String userName, int index)
+    public ResultadoServidorJSON borar(QueryBorrar queryBorrar)
     {
         try {
-            return ResultadoServidorJSON.fromResultadoServidorStatic(MundoControlador.getInstance().getSesion(userName).usarObjetoProtagonista(index));
+            if(!queryBorrar.isObjetivo())
+                return ResultadoServidorJSON.fromResultadoServidorStatic(
+                        MundoControlador.getInstance().getSesion(queryBorrar.getUsuario()).borrarMonstruo(queryBorrar.getIndice()));
+            return ResultadoServidorJSON.fromResultadoServidorStatic(
+                    MundoControlador.getInstance().getSesion(queryBorrar.getUsuario()).borrarObjeto(queryBorrar.getIndice()));
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    @POST
+    @Path("/logging")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public ResultadoServidorJSON borar(QueryLogging queryLogging)
+    {
+        try {
+            return ResultadoServidorJSON.fromResultadoServidorStatic(MundoControlador.getInstance().loggin(queryLogging.getNombre(),queryLogging.getPassword()));
         }
         catch (Exception e)
         {

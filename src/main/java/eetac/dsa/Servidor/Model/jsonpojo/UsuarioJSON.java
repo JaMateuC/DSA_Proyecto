@@ -101,8 +101,10 @@ public class UsuarioJSON {
         this.genero = usuario.getGenero();
         this.nombre = usuario.getNombre();
         this.password = usuario.getPassword();
-        this.x = (int)usuario.getPosicion().getX();
-        this.y = (int)usuario.getPosicion().getY();
+        if(usuario.getPosicion()!=null) {
+            this.x = (int) usuario.getPosicion().getX();
+            this.y = (int) usuario.getPosicion().getY();
+        }
         this.inventario = new ObjetoJSON[usuario.getInventario().obtenerTamaño()];
         this.monstruo = new MonstruoJSON[usuario.getLista_montruos().getTamaño()];
         for(int i =0;i<inventario.length;i++)

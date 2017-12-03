@@ -6,7 +6,7 @@ import eetac.dsa.Servidor.ResultadoServidor;
 
 public class CeldaCesped extends Celda {
     public CeldaCesped() {
-        super(CeldaCesped.class.getSimpleName(), 1f, 0.2f, true);
+        super(CeldaCesped.class.getSimpleName(), 0.2f, 0.2f, true);
     }
 
     @Override

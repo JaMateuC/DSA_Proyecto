@@ -53,6 +53,10 @@ public class Inventario {
     {
         return objetos.remove(o);
     }
+    public void quitarObjeto(int o)
+    {
+        objetos.remove(o);
+    }
     
     public void añadirObeto(Objeto objeto)
     {

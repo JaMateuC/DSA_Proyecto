@@ -15,6 +15,10 @@ public class ResultadoServidor {
     int indiceObjeto;//si el flag contiene borrarObjeto, este campo se tiene que llenar con el indice del objeto que se borrara
     Monstruo monstruo; //si el flag contiene iniciarCombate, este es el monstruo con el que combatira
 
+    public ResultadoServidor() {
+        flag = new Flag();
+    }
+
     public Monstruo getMonstruo() {
         return monstruo;
     }
