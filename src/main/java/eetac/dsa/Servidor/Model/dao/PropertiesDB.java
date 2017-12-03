@@ -1,4 +1,4 @@
-package eetac.dsa.Servidor.Model;
+package eetac.dsa.Servidor.Model.dao;
 
 import java.util.ArrayList;
 import java.util.List;

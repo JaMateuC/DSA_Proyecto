@@ -1,6 +1,6 @@
 package eetac.dsa;
 
-import eetac.dsa.Servidor.Model.PropertiesDB;
+import eetac.dsa.Servidor.Model.dao.PropertiesDB;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 

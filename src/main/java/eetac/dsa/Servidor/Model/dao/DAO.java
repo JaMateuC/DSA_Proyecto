@@ -1,4 +1,4 @@
-package eetac.dsa.Servidor.Model;
+package eetac.dsa.Servidor.Model.dao;
 
 
 import java.lang.reflect.InvocationTargetException;
