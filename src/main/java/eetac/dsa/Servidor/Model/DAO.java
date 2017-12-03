@@ -6,7 +6,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.Properties;
-import eetac.dsa.Servidor.Model.PropertiesDB;
 
 public class DAO {
 
@@ -53,7 +52,7 @@ public class DAO {
 
     /*INSERT STATMENTS*/
 
-    public void insertDB(){
+    public void insertDB() throws SQLException{
 
         StringBuffer  buffer = new StringBuffer();
 
@@ -71,6 +70,7 @@ public class DAO {
         buffer.append("Values");
         buffer.append(" (");
         for(Method method : this.getClass().getDeclaredMethods()){
+
             if (method.getName().startsWith("get"))
                 try{
                     buffer.append(method.invoke(this,null).toString() + ",");
@@ -84,11 +84,15 @@ public class DAO {
         buffer.delete(buffer.length()-1,buffer.length());
         buffer.append(") ");
 
+        Statement st = this.con.createStatement();
+
+        st.executeQuery(buffer.toString());
+
     }
 
     /*DELETE STATMENTS*/
 
-    public void deleteDB(){
+    public void deleteDB() throws SQLException{
 
         StringBuffer  buffer = new StringBuffer();
 
@@ -105,18 +109,22 @@ public class DAO {
 
         buffer.append(getIDObject());
 
+        Statement st = this.con.createStatement();
+
+        st.executeQuery(buffer.toString());
+
     }
 
     /*SELECT STATMENTS*/
 
-    public void selectDB(){
+    public void selectDB() throws SQLException{
         StringBuffer  buffer = new StringBuffer();
 
         buffer.append("SELECT * FROM ");
         buffer.append(this.getClass().getSimpleName());
         buffer.append(" WHERE ");
         for( Field field : this.getClass().getDeclaredFields()){
-            if (field.getName().startsWith("id")){
+            if (field.getName().startsWith("iD")){
                 buffer.append(field.getName());
             }
         }
@@ -124,28 +132,74 @@ public class DAO {
         buffer.append(" = ");
 
         buffer.append(getIDObject());
-    }
 
-    public void selectMonstruoAllInfo(String nombre) throws SQLException{
+        Statement st = this.con.createStatement();
 
-        PreparedStatement selectMonstruo;
+        ResultSet rs = st.executeQuery(buffer.toString());
 
-        String monstruoStatment = "SELECT * FROM MONSTRUOS WHERE ID_MONSTRUO = ?";
+        while(rs.next()){
 
-        selectMonstruo = this.con.prepareStatement(monstruoStatment);
+            for( Field field : this.getClass().getDeclaredFields()){
+                for(Method method : this.getClass().getDeclaredMethods()){
+                    String fieldC = field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
+                    if (method.getName().equals("set" + fieldC))
+                        try{
+                            method.invoke(this,null);
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        } catch (InvocationTargetException e) {
+                            e.printStackTrace();
+                        }
 
-        selectMonstruo.setString(1,nombre);
-        ResultSet result = selectMonstruo.executeQuery();
+                }
 
-        while (result.next()) {
-
-
+            }
 
         }
 
     }
 
     /*UPDATE STATMENTS*/
+
+    public void updateDB() throws SQLException{
+
+        StringBuffer  buffer = new StringBuffer();
+
+        buffer.append("UPDATE ");
+        buffer.append(this.getClass().getSimpleName());
+        buffer.append(" SET ");
+        for( Field field : this.getClass().getDeclaredFields()){
+            for(Method method : this.getClass().getDeclaredMethods()){
+
+                buffer.append(field.getName() + " = ");
+
+                String fieldC = field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
+                if (method.getName().equals("get" + fieldC))
+                    try{
+                        buffer.append(method.invoke(this,null).toString());
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    }
+
+            }
+
+        }
+        buffer.append(" WHERE ");
+        for( Field field : this.getClass().getDeclaredFields()){
+            if (field.getName().startsWith("iD")){
+                buffer.append(field.getName());
+            }
+        }
+
+        buffer.append(getIDObject());
+
+        Statement st = this.con.createStatement();
+
+        st.executeQuery(buffer.toString());
+
+    }
 
     public String getIDObject(){
 
