@@ -8,6 +8,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 
-public @interface OrderMethods {
+public @interface OrderSetMethods {
     int indice() default 0;
 }

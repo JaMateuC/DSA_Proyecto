@@ -1,7 +1,5 @@
 package eetac.dsa.Servidor.Model.dao;
 
-import eetac.dsa.Servidor.Controlador.Objetos.OrdenParametro;
-
 public class MapaDAO {
 
     @OrderFields(indice = 0)
@@ -14,29 +12,32 @@ public class MapaDAO {
     public MapaDAO() {
     }
 
-    @OrderMethods(indice = 0)
+    @OrderGetMethods(indice = 0)
     public String getNom() {
         return nom;
     }
 
+    @OrderSetMethods(indice = 0)
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-    @OrderMethods(indice = 1)
+    @OrderGetMethods(indice = 1)
     public String getDireccioFile() {
         return direccioFile;
     }
 
+    @OrderSetMethods(indice = 1)
     public void setDireccioFile(String direccioFile) {
         this.direccioFile = direccioFile;
     }
 
-    @OrderMethods(indice = 2)
+    @OrderGetMethods(indice = 2)
     public String getNomUsuario() {
         return nomUsuario;
     }
 
+    @OrderSetMethods(indice = 2)
     public void setNomUsuario(String nomUsuario) {
         this.nomUsuario = nomUsuario;
     }

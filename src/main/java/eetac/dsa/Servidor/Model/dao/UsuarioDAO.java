@@ -1,7 +1,5 @@
 package eetac.dsa.Servidor.Model.dao;
 
-import eetac.dsa.Servidor.Controlador.Objetos.OrdenParametro;
-
 public class UsuarioDAO {
 
     @OrderFields(indice = 0)
@@ -19,47 +17,52 @@ public class UsuarioDAO {
     public UsuarioDAO() {
     }
 
-    @OrderMethods(indice = 0)
+    @OrderGetMethods(indice = 0)
     public String getNombre() {
         return nombre;
     }
 
+    @OrderSetMethods(indice = 0)
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    @OrderMethods(indice = 1)
+    @OrderGetMethods(indice = 1)
     public String getPassword() {
         return password;
     }
 
+    @OrderSetMethods(indice = 1)
     public void setPassword(String password) {
         this.password = password;
     }
 
-    @OrderMethods(indice = 2)
+    @OrderGetMethods(indice = 2)
     public int getX() {
         return x;
     }
 
+    @OrderSetMethods(indice = 2)
     public void setX(int x) {
         this.x = x;
     }
 
-    @OrderMethods(indice = 3)
+    @OrderGetMethods(indice = 3)
     public int getY() {
         return y;
     }
 
+    @OrderSetMethods(indice = 3)
     public void setY(int y) {
         this.y = y;
     }
 
-    @OrderMethods(indice = 4)
+    @OrderGetMethods(indice = 4)
     public boolean isGenero() {
         return genero;
     }
 
+    @OrderSetMethods(indice = 4)
     public void setGenero(boolean genero) {
         this.genero = genero;
     }

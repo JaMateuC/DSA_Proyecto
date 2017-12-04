@@ -42,13 +42,16 @@ public abstract class DAO {
         connectionProps.put("user", this.nombreUsuario);
         connectionProps.put("password", this.password);
 
-        this.con = DriverManager.getConnection(
-               "jdbc:" + this.dbms + "://" +
-               this.nombreServidor +
-               ":" + this.puerto + "/",
+        String connectionString = "jdbc:" + this.dbms + "://" +
+                this.nombreServidor +
+                ":" + this.puerto + "/" + dbNombre;
+
+        logger.info(connectionString);
+
+        this.con = DriverManager.getConnection(connectionString,
                connectionProps);
 
-        logger.info(con.toString());
+
 
     }
 
@@ -56,7 +59,7 @@ public abstract class DAO {
 
     public void insertDB() throws SQLException{
 
-        //getConnection();
+        getConnection();
 
         StringBuffer  buffer = new StringBuffer();
 
@@ -76,13 +79,17 @@ public abstract class DAO {
         buffer.append("Values");
         buffer.append(" (");
 
-        Method[] methods = ordenarMethods();
+        Method[] methods = ordenarGetMethods();
 
         for(Method method : methods){
 
             if (method.getName().startsWith("get"))
                 try{
-                    buffer.append(method.invoke(this,null).toString() + ",");
+                if(method.getReturnType().equals(String.class)) {
+                    buffer.append("'" + method.invoke(this, null).toString() + "'" + ",");
+                } else {
+                    buffer.append(method.invoke(this, null).toString() + ",");
+                }
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 } catch (InvocationTargetException e) {
@@ -95,15 +102,17 @@ public abstract class DAO {
 
         logger.info(buffer.toString());
 
-        //Statement st = this.con.createStatement();
+        Statement st = this.con.createStatement();
 
-        //st.executeQuery(buffer.toString());
+        st.executeUpdate(buffer.toString());
 
     }
 
     /*DELETE STATMENTS*/
 
     public void deleteDB() throws SQLException{
+
+        getConnection();
 
         StringBuffer  buffer = new StringBuffer();
 
@@ -122,15 +131,18 @@ public abstract class DAO {
 
         logger.info(buffer.toString());
 
-        //Statement st = this.con.createStatement();
+        Statement st = this.con.createStatement();
 
-        //st.executeQuery(buffer.toString());
+        st.executeUpdate(buffer.toString());
 
     }
 
     /*SELECT STATMENTS*/
 
-    public void selectDB() throws SQLException{
+    public void selectDB(String id) throws SQLException{
+
+        getConnection();
+
         StringBuffer  buffer = new StringBuffer();
 
         buffer.append("SELECT * FROM ");
@@ -142,41 +154,55 @@ public abstract class DAO {
             }
         }
 
-        buffer.append(" = ");
-
-        buffer.append(getIDObject());
+        buffer.append(" = '" + id + "'");
 
         logger.info(buffer.toString());
 
-        /*Statement st = this.con.createStatement();
+        Statement st = this.con.createStatement();
 
         ResultSet rs = st.executeQuery(buffer.toString());
 
+        Method[] methods = ordenarSetMethods();
+
         while(rs.next()){
 
-            for( Field field : this.getClass().getDeclaredFields()){
-                for(Method method : this.getClass().getDeclaredMethods()){
-                    String fieldC = field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
-                    if (method.getName().equals("set" + fieldC))
-                        try{
-                            method.invoke(this,null);
-                        } catch (IllegalAccessException e) {
-                            e.printStackTrace();
-                        } catch (InvocationTargetException e) {
-                            e.printStackTrace();
-                        }
+            ResultSetMetaData rsmd = rs.getMetaData();
+            try{
+                for(int i = 1; i <= rsmd.getColumnCount(); i++){
+
+                    int sqlTypes = rsmd.getColumnType(i);
+
+                    switch (sqlTypes) {
+                        case Types.VARCHAR:
+                            methods[i-1].invoke(this,rs.getString(i));
+                            break;
+                        case Types.BOOLEAN:
+                            methods[i-1].invoke(this,rs.getBoolean(i));
+                            break;
+                        case Types.INTEGER:
+                            methods[i-1].invoke(this,rs.getInt(i));
+                            break;
+
+                    }
 
                 }
 
+            }catch (Exception e){
+                e.printStackTrace();
             }
 
-        }*/
+
+
+        }
+
 
     }
 
     /*UPDATE STATMENTS*/
 
     public void updateDB() throws SQLException{
+
+        getConnection();
 
         StringBuffer  buffer = new StringBuffer();
 
@@ -185,7 +211,7 @@ public abstract class DAO {
         buffer.append(" SET ");
 
         Field[] fields = ordenarFields();
-        Method[] methods = ordenarMethods();
+        Method[] methods = ordenarGetMethods();
 
         for( Field field : fields){
 
@@ -205,16 +231,20 @@ public abstract class DAO {
 
                 int methodIndex = 0;
 
-                Annotation aMethod = method.getAnnotation(OrderMethods.class);
-                if (aMethod != null && aMethod instanceof OrderMethods){
-                    final OrderMethods anotacion = (OrderMethods) aMethod;
+                Annotation aMethod = method.getAnnotation(OrderGetMethods.class);
+                if (aMethod != null && aMethod instanceof OrderGetMethods){
+                    final OrderGetMethods anotacion = (OrderGetMethods) aMethod;
                     methodIndex = anotacion.indice();
                 }
 
 
                 if (fieldIndex == methodIndex)
                     try{
-                        buffer.append(method.invoke(this,null).toString() + " ");
+                        if(method.getReturnType().equals(String.class)) {
+                            buffer.append("'" + method.invoke(this, null).toString() + "'" + ",");
+                        } else {
+                            buffer.append(method.invoke(this, null).toString() + ",");
+                        }
                         break;
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
@@ -225,6 +255,8 @@ public abstract class DAO {
             }
 
         }
+        buffer.delete(buffer.length()-1,buffer.length());
+
         buffer.append(" WHERE ");
         for( Field field : this.getClass().getDeclaredFields()){
             if (field.getName().startsWith("id")){
@@ -239,9 +271,9 @@ public abstract class DAO {
 
         logger.info(buffer.toString());
 
-        //Statement st = this.con.createStatement();
+        Statement st = this.con.createStatement();
 
-        //st.executeQuery(buffer.toString());
+        st.executeUpdate(buffer.toString());
 
     }
 
@@ -250,7 +282,7 @@ public abstract class DAO {
         for(Method method : this.getClass().getDeclaredMethods()){
             if (method.getName().startsWith("getId")){
                 try{
-                    String id = method.invoke(this,null).toString();
+                    String id = "'" + method.invoke(this,null).toString() + "'";
                     return id;
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
@@ -290,14 +322,39 @@ public abstract class DAO {
 
     }
 
-    public Method[] ordenarMethods(){
+    public Method[] ordenarGetMethods(){
 
         Method[] methods = this.getClass().getDeclaredMethods();
         Arrays.sort(methods, new Comparator<Method>() {
             @Override
             public int compare(Method o1, Method o2) {
-                OrderMethods or1 = o1.getAnnotation(OrderMethods.class);
-                OrderMethods or2 = o2.getAnnotation(OrderMethods.class);
+                OrderGetMethods or1 = o1.getAnnotation(OrderGetMethods.class);
+                OrderGetMethods or2 = o2.getAnnotation(OrderGetMethods.class);
+                if (or1 != null && or2 != null) {
+                    return or1.indice() - or2.indice();
+                } else
+                if (or1 != null && or2 == null) {
+                    return -1;
+                } else
+                if (or1 == null && or2 != null) {
+                    return 1;
+                }
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+
+        return methods;
+
+    }
+
+    public Method[] ordenarSetMethods(){
+
+        Method[] methods = this.getClass().getDeclaredMethods();
+        Arrays.sort(methods, new Comparator<Method>() {
+            @Override
+            public int compare(Method o1, Method o2) {
+                OrderSetMethods or1 = o1.getAnnotation(OrderSetMethods.class);
+                OrderSetMethods or2 = o2.getAnnotation(OrderSetMethods.class);
                 if (or1 != null && or2 != null) {
                     return or1.indice() - or2.indice();
                 } else
