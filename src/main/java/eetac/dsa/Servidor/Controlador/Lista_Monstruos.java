@@ -1,5 +1,6 @@
 package eetac.dsa.Servidor.Controlador;
 
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -13,6 +14,12 @@ public class Lista_Monstruos {
 
     public Lista_Monstruos() {
         monstruos = new Vector<Monstruo>();
+    }
+
+    //Devuelve toda la lista con los monstruos
+    public Vector<Monstruo> getListMonstruos()
+    {
+        return monstruos;
     }
 
     public boolean añadirMonstruo(Monstruo monstruo)

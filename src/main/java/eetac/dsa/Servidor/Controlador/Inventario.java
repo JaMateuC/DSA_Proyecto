@@ -8,8 +8,12 @@ public class Inventario {
     public Inventario() {
         this.objetos = new Vector<Objeto>();
     }
-    
-    
+
+    public Vector<Objeto> getListObjetos()
+    {
+        return objetos;
+    }
+
     public Objeto buscarObjeto(int index)
     {
         if(index<objetos.size())
