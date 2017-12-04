@@ -3,20 +3,13 @@ package eetac.dsa.Servidor.Model.jsonpojo;
 import eetac.dsa.Servidor.Controlador.Monstruo;
 import eetac.dsa.Servidor.Model.dao.DAO;
 
-public class MonstruoJSON extends DAO{
+public class MonstruoJSON{
     String tipo;
     int experiencia;
     int nivel;
     int vidaActual;
 
     public MonstruoJSON() {
-    }
-
-    public MonstruoJSON(String tipo, int experiencia, int nivel, int vidaActual) {
-        this.tipo = tipo;
-        this.experiencia = experiencia;
-        this.nivel = nivel;
-        this.vidaActual = vidaActual;
     }
 
     public String getTipo() {
