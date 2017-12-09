@@ -1,17 +1,17 @@
 package eetac.dsa.Servidor;
 
+import eetac.dsa.Servidor.Model.Testeo;
 import eetac.dsa.Servidor.Model.jsonpojo.ResultadoServidorJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.querysclient.*;
-import eetac.dsa.Servidor.MundoControlador;
-import eetac.dsa.Servidor.ResultadoServidor;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 @Path("/json")
 
 public class JSONService
 {
+    private String name;
+
     @POST
     @Path("/accion")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -82,7 +82,8 @@ public class JSONService
     @Consumes(MediaType.APPLICATION_JSON)
     public ResultadoServidorJSON borar(QueryLogging queryLogging)
     {
-        try {
+        try
+        {
             return ResultadoServidorJSON.fromResultadoServidorStatic(MundoControlador.getInstance().loggin(queryLogging.getNombre(),queryLogging.getPassword()));
         }
         catch (Exception e)
@@ -91,4 +92,29 @@ public class JSONService
         }
     }
 
+
+
+    //TEST
+
+
+    @POST
+    @Path("/test")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Testeo testeos(Testeo test)
+    {
+        if(test.getValue().equals("Albert")){  test.setValue("Ok");    }
+        else{   test.setValue("NO");    }
+        return test;
+    }
+
+    @GET
+    @Path("/logtest")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Testeo logtest()
+    {
+        Testeo tst = new Testeo();
+        tst.setValue("Hello World");
+        return tst;
+    }
 }
