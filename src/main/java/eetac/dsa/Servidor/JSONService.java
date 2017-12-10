@@ -2,6 +2,7 @@ package eetac.dsa.Servidor;
 
 import eetac.dsa.Servidor.Model.Testeo;
 import eetac.dsa.Servidor.Model.jsonpojo.ResultadoServidorJSON;
+import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.querysclient.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -117,4 +118,19 @@ public class JSONService
         tst.setValue("Hello World");
         return tst;
     }
+
+    @GET
+    @Path("/usuario/{nombre}/{pass}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public UsuarioJSON pruebaandroid(@PathParam("nombre") String nombre, @PathParam("pass") String pass) {
+
+        UsuarioJSON u = new UsuarioJSON();
+        u.setEmail("jesus");
+        u.setPassword("123");
+
+        return u;
+
+    }
+
+
 }
