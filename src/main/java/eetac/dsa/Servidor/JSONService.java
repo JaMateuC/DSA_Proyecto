@@ -1,16 +1,25 @@
 package eetac.dsa.Servidor;
 
+import eetac.dsa.Servidor.Controlador.Usuario;
 import eetac.dsa.Servidor.Model.Testeo;
+import eetac.dsa.Servidor.Model.jsonpojo.CeldaJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.ResultadoServidorJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.querysclient.*;
+import org.apache.logging.log4j.LogManager;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.logging.Logger;
 
 @Path("/json")
 
+
 public class JSONService
 {
+    private static final org.apache.logging.log4j.Logger logger = LogManager.getLogger(JSONService.class.getName());
+
     private String name;
 
     @POST
@@ -101,11 +110,35 @@ public class JSONService
     @POST
     @Path("/test")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    //@Produces(MediaType.APPLICATION_JSON)
     public Testeo testeos(Testeo test)
     {
         if(test.getValue().equals("Albert")){  test.setValue("Ok");    }
         else{   test.setValue("NO");    }
+        logger.info(test.getValue());
+        //return test;
+
+        return test;
+
+    }
+
+    @POST
+    @Path("/registro")
+    @Consumes(MediaType.APPLICATION_JSON)
+    //@Produces(MediaType.APPLICATION_JSON)
+    public UsuarioJSON registro(UsuarioJSON u)
+    {
+        return  u;
+
+    }
+
+    @POST
+    @Path("/hacer2")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public UsuarioJSON hacerpedido(UsuarioJSON test) {
+
+        //return Response.status(201).entity("hecho").build();
+        logger.info("asdsa");
         return test;
     }
 
@@ -124,9 +157,11 @@ public class JSONService
     @Produces(MediaType.APPLICATION_JSON)
     public UsuarioJSON pruebaandroid(@PathParam("nombre") String nombre, @PathParam("pass") String pass) {
 
+        logger.info("asdsa");
         UsuarioJSON u = new UsuarioJSON();
-        u.setEmail("jesus");
-        u.setPassword("123");
+        u.setEmail(nombre);
+        u.setPassword(pass);
+        u.setGenero(true);
 
         return u;
 
