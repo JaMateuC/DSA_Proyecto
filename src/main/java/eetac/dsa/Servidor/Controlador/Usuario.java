@@ -19,6 +19,8 @@ public class Usuario extends Personaje
         this.password = password;
     }
 
+
+
     public String getEmail() {
         return email;
     }

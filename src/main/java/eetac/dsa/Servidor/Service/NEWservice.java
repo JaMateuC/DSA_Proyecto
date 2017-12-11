@@ -1,7 +1,7 @@
 package eetac.dsa.Servidor.Service;
 
 import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
-import eetac.dsa.Servidor.Model.jsonpojo.UserNew;
+import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -16,7 +16,7 @@ public class NEWservice
     @Path("/user")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public KeyUser registro(UserNew user)
+    public KeyUser registro(UsuarioJSON user)
     {
         //La función registra al usuario y devuelve un codigo
 
