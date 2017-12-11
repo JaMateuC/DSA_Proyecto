@@ -1,7 +1,5 @@
 package eetac.dsa.Servidor.Service;
 
-import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
-
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 import org.apache.logging.log4j.LogManager;
 import javax.ws.rs.*;
@@ -15,22 +13,16 @@ public class AUTHservice
     @POST
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public KeyUser login(UsuarioJSON user)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Integer login(UsuarioJSON user)
     {
 
-
-        KeyUser key = new KeyUser();
         if(user.getPassword().equals("123"))    //En el equals va la respuesta de la memoria (password)
         {
-            key.setKey(new Random().nextInt(2048));
-            return key;
+            return(new Random().nextInt(2048)+1);
         }
-        key.setKey(0);
+
         logger.info(user.getPassword());
-        logger.info(key.getKey());
-
-
-        return key;
+        return 0;
     }
 }

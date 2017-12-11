@@ -1,6 +1,5 @@
 package eetac.dsa.Servidor.Service;
 
-import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 
 import javax.ws.rs.Consumes;
@@ -15,14 +14,16 @@ public class NEWservice
     @POST
     @Path("/user")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public KeyUser registro(UsuarioJSON user)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Integer registro(UsuarioJSON user)
     {
         //La función registra al usuario y devuelve un codigo
 
-        KeyUser key = new KeyUser();
-        key.setKey(0);  //Registro con éxito
-        //key.setKey(-1); //No se ha podido registrar
-        return key;
+
+
+        //-1; //No se ha podido registrar
+        return 0;
+
+
     }
 }
