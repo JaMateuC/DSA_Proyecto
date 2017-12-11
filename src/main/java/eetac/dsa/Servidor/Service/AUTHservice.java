@@ -1,4 +1,4 @@
-package eetac.dsa.Servidor;
+package eetac.dsa.Servidor.Service;
 
 import eetac.dsa.Servidor.Model.jsonpojo.UserLog;
 

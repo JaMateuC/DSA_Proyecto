@@ -1,4 +1,4 @@
-package eetac.dsa.Servidor;
+package eetac.dsa.Servidor.Service;
 
 import eetac.dsa.Servidor.Controlador.Usuario;
 import eetac.dsa.Servidor.Model.Testeo;
@@ -6,6 +6,7 @@ import eetac.dsa.Servidor.Model.jsonpojo.CeldaJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.ResultadoServidorJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.querysclient.*;
+import eetac.dsa.Servidor.MundoControlador;
 import org.apache.logging.log4j.LogManager;
 
 import javax.ws.rs.*;
