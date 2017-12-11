@@ -1,10 +1,10 @@
 package eetac.dsa.Servidor.Model.jsonpojo;
 
-public class KeyLog
+public class KeyUser
 {
     private int key;
 
-    public KeyLog() { }
+    public KeyUser() { }
 
     public int getKey() { return key; }
 
