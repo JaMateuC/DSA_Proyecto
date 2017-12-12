@@ -112,7 +112,7 @@ public class USERservice
             return null;
         }
     }
-
+*/
     @GET
     @Path("/listamonstruo/{nombre}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -124,6 +124,6 @@ public class USERservice
         return null;
 
     }
-    }*/
-
 }
+
+

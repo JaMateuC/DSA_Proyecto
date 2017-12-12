@@ -1,10 +1,6 @@
 package eetac.dsa.Servidor.Service;
 
-import eetac.dsa.Servidor.Controlador.Personaje;
-import eetac.dsa.Servidor.Controlador.Usuario;
 import eetac.dsa.Servidor.MapUsuarios;
-import eetac.dsa.Servidor.Controlador.Usuario;
-import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
 import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 import org.apache.logging.log4j.LogManager;
@@ -22,7 +18,7 @@ public class AUTHservice
     public KeyUser login(UsuarioJSON user)
     {
         KeyUser key = new KeyUser();
-        if(user.getPassword().equals("123"))    //En el equals va la respuesta de la memoria (password)
+        if(MapUsuarios.getInstance().loggin(user.getNombre(), user.getPassword()))    //En el equals va la respuesta de la memoria (password)
         {
             key.setKey((new Random().nextInt(2048)+1));
             return key;
