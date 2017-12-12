@@ -2,21 +2,27 @@ package eetac.dsa.Servidor;
 
 import eetac.dsa.Flag;
 import eetac.dsa.Servidor.Controlador.*;
+import eetac.dsa.Servidor.Controlador.Celdas.CeldaCambioEscenario;
+import eetac.dsa.Servidor.Model.jsonpojo.EscenarioJSON;
+import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
+import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
+import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultCambiarEscenario;
+import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultLoginArgs;
 
 import java.util.HashMap;
+import java.util.Random;
 
 public class Sesion {
     Escenario escenario;
     Usuario protagonista;
-    HashMap<String,Personaje> personajesDelEscenario;
+    Monstruo monstruoCombate;
 
     public Sesion(Usuario protagonista, String nombreEscenario) {
         this.protagonista = protagonista;
+        monstruoCombate=null;
 
         cargarEscenarioFichero(nombreEscenario);
         escenario.getCelda((int)protagonista.getPosicion().getX(),(int)protagonista.getPosicion().getY()).setPersonajeEncima(protagonista);
-
-        personajesDelEscenario = new HashMap<String, Personaje>();
     }
 
     public Escenario getEscenario() {
@@ -27,82 +33,37 @@ public class Sesion {
         return protagonista;
     }
 
-
-    public HashMap<String, Personaje> getPersonajesDelEscenario() {
-        return personajesDelEscenario;
-    }
-
-    public void setPersonajesDelEscenario(String nombre){
-        personajesDelEscenario.get(nombre);
-
-    }
-
-
-
-
-    public ResultadoServidor mover(int x, int y)
+    public ResultCambiarEscenario cambiarEscenario(int x,int y)
     {
-        ResultadoServidor rel = new ResultadoServidor();
-        protagonista.mover(protagonista.getPosicion().x+x,protagonista.getPosicion().y+y,rel);
-
-        return  rel;
-    }
-
-    public ResultadoServidor usarObjetoProtagonista(int index)
-    {
-        ResultadoServidor rel = new ResultadoServidor();
-        if(protagonista.getInventario().buscarObjeto(index).getDestino() == Objeto.Destino.Personaje)
+        Celda celda = escenario.getCelda(x,y);
+        if(celda.getTipo().equals(CeldaCambioEscenario.class.getSimpleName()))
         {
-            rel.getFlag().addFlag(Flag.borrarObjeto);
-            rel.setIndiceObjeto(index);
-            protagonista.usarObjeto(index,rel);
+            CeldaCambioEscenario cCE = (CeldaCambioEscenario)celda;
+            ResultCambiarEscenario resultCambiarEscenario = new ResultCambiarEscenario();
+            resultCambiarEscenario.setPermitido(false);
+            cargarEscenarioFichero(cCE.getEscenario());
+            resultCambiarEscenario.setX(cCE.getX());
+            resultCambiarEscenario.setY(cCE.getY());
+            resultCambiarEscenario.setPermitido(true);
+            return resultCambiarEscenario;
         }
-        return rel;
+        ResultCambiarEscenario resultCambiarEscenario = new ResultCambiarEscenario();
+        resultCambiarEscenario.setPermitido(false);
+        return resultCambiarEscenario;
     }
 
-    public ResultadoServidor borrarObjeto(int index)
+    public ResultLoginArgs resultLoginArgs() throws Exception
     {
-        ResultadoServidor rel = new ResultadoServidor();
-        if(index<protagonista.getInventario().obtenerTamaño()) {
-            rel.getFlag().addFlag(Flag.borrarObjeto);
-            rel.setIndiceObjeto(index);
-            protagonista.getInventario().quitarObjeto(index);
-        }
-        rel.getFlag().isFlag(Flag.ERROR);
-        return rel;
+        ResultLoginArgs resultLoginArgs = new ResultLoginArgs();
+        EscenarioJSON escenarioJSON = new EscenarioJSON();
+        escenarioJSON.fromEscenario(escenario);
+        resultLoginArgs.setEscenarioJSON(escenarioJSON);
+        UsuarioJSON usuarioJSON = new UsuarioJSON();
+        usuarioJSON.fromUsuario(protagonista);
+        resultLoginArgs.setUsuarioJSON(usuarioJSON);
+        resultLoginArgs.setPermitido(true);
+        return resultLoginArgs;
     }
-
-    public ResultadoServidor borrarMonstruo(int index)
-    {
-        ResultadoServidor rel = new ResultadoServidor();
-        if(index<protagonista.getLista_montruos().getTamaño()) {
-            rel.getFlag().addFlag(Flag.borrarMonstruo);
-            rel.setIndiceObjeto(index);
-            protagonista.getLista_montruos().quitarMonstruoPorPosicion(index);
-        }
-        rel.getFlag().isFlag(Flag.ERROR);
-        return rel;
-    }
-
-    public ResultadoServidor usarObjetoMonstruo(int indexObjeto, int indexMonstruo)
-    {
-        ResultadoServidor rel = new ResultadoServidor();
-        if(protagonista.getInventario().buscarObjeto(indexObjeto).getDestino() == Objeto.Destino.Monstruo)
-        {
-            rel.getFlag().addFlag(Flag.borrarObjeto);
-            rel.setIndiceObjeto(indexObjeto);
-            protagonista.usarObjetoAMonstruo(indexObjeto,indexMonstruo,rel);
-        }
-        return rel;
-    }
-
-    public ResultadoServidor hacerAccion(int x, int y)
-    {
-
-        return null;
-    }
-
-    //public ResultadoServidor resultadoCombate()
 
 
     public boolean cargarEscenarioFichero(String nombre)
@@ -116,9 +77,6 @@ public class Sesion {
             //logger.error("error al cargar un escenario");
             return false;
         }
-        /*for (Personaje p:personajesDelEscenario.values()) {
-            escenario.getCelda((int)p.getPosicion().getX(),(int)p.getPosicion().getY()).setPersonajeEncima(p);
-        }*/
         return true;
     }
 }

@@ -1,16 +1,17 @@
 package eetac.dsa.Servidor.Model.jsonpojo.querysclient;
 
-public class QueryMover {
-    String usuario;
+
+public class QueryCambiarEscenario {
     int x;
     int y;
+    int key;
 
-    public String getUsuario() {
-        return usuario;
+    public int getKey() {
+        return key;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setKey(int key) {
+        this.key = key;
     }
 
     public int getX() {

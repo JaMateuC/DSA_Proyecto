@@ -1,8 +1,5 @@
 package eetac.dsa.IU;
 
-import eetac.dsa.Mundo;
-import eetac.dsa.Servidor.Controlador.Personaje;
-
 public class IUMenu implements IUMenuBase{
 
     int posCursor;

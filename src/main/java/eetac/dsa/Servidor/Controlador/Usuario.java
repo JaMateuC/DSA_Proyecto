@@ -54,16 +54,16 @@ public class Usuario extends Personaje
         else*/ return false;
     }
 
-    public boolean mover(int x, int y, ResultadoServidor resultadoServidor) {
-        Celda cela = MundoControlador.getInstance().getSesion(getNombre()).getEscenario().getCelda(x,y);
+    /*public boolean mover(int x, int y, ResultadoServidor resultadoServidor) {
+        //Celda cela = MundoControlador.getInstance().getSesion(getNombre()).getEscenario().getCelda(x,y);
         if(cela.accion(this, resultadoServidor,x,y))
         {
-            /*this.posicion.x = x;
+            this.posicion.x = x;
             this.posicion.y = y;
             resultadoServidor.getFlag().addFlag(Flag.moverProtagonista);
-            resultadoServidor.setPosicion(this.getPosicion());*/
+            resultadoServidor.setPosicion(this.getPosicion());
             return true;
         }
         else return false;
-    }
+    }*/
 }
