@@ -1,8 +1,11 @@
 package eetac.dsa.Servidor.Service;
 
+import eetac.dsa.Servidor.Controlador.Usuario;
 import eetac.dsa.Servidor.MapUsuarios;
 import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
+import eetac.dsa.Servidor.MundoControlador;
+import eetac.dsa.Servidor.Sesion;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -21,8 +24,10 @@ public class NEWservice
     {
         //La función registra al usuario y devuelve un codigo
         KeyUser key = new KeyUser();
-        if (MapUsuarios.getInstance().Registrarse(user))
+        if (MapUsuarios.getInstance().Registrarse(user)) {
+            MundoControlador.getInstance().addSesion(key.getKey(), new Sesion(new Usuario("pepito", 1, 1, true, " ", " "), "Escenario1"));
             key.setKey(0);
+        }
         else
             key.setKey(-1);
         //key.setKey(0);  //Registro con éxito
