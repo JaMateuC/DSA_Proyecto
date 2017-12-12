@@ -15,6 +15,8 @@ public class Sesion {
 
         cargarEscenarioFichero(nombreEscenario);
         escenario.getCelda((int)protagonista.getPosicion().getX(),(int)protagonista.getPosicion().getY()).setPersonajeEncima(protagonista);
+
+        personajesDelEscenario = new HashMap<String, Personaje>();
     }
 
     public Escenario getEscenario() {
@@ -29,6 +31,13 @@ public class Sesion {
     public HashMap<String, Personaje> getPersonajesDelEscenario() {
         return personajesDelEscenario;
     }
+
+    public void setPersonajesDelEscenario(String nombre){
+        personajesDelEscenario.get(nombre);
+
+    }
+
+
 
 
     public ResultadoServidor mover(int x, int y)

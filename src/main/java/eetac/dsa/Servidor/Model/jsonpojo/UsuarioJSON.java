@@ -4,10 +4,16 @@ import eetac.dsa.Servidor.Controlador.Monstruo;
 import eetac.dsa.Servidor.Controlador.Objeto;
 import eetac.dsa.Servidor.Controlador.Usuario;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class UsuarioJSON
 {
     private ObjetoJSON[] inventario;
     private MonstruoJSON[] monstruo;
+    private ArrayList<ObjetoJSON> inventariol;
+    private ArrayList<MonstruoJSON> monstruosl;
     private String nombre;
     private String password;
     private String email;
@@ -30,6 +36,35 @@ public class UsuarioJSON
     public void setGenero(boolean genero) {
         this.genero = genero;
     }
+//
+
+    public ArrayList<ObjetoJSON> getInventariol() {
+        return inventariol;
+    }
+
+    public void setInventariol(ArrayList<ObjetoJSON> inventariol) {
+        this.inventariol = inventariol;
+    }
+
+    public ArrayList<MonstruoJSON> getMonstruosl() {
+        return monstruosl;
+    }
+
+    public void setMonstruosl(ArrayList<MonstruoJSON> monstruosl) {
+        this.monstruosl = monstruosl;
+    }
+
+    public UsuarioJSON(ArrayList<ObjetoJSON> inventariol, ArrayList<MonstruoJSON> monstruosl, String nombre, String password, String email, boolean genero) {
+        this.inventariol = inventariol;
+        this.monstruosl = monstruosl;
+        this.nombre = nombre;
+        this.password = password;
+        this.email = email;
+        this.genero = genero;
+    }
+
+//
+
 
     public UsuarioJSON() { }
 

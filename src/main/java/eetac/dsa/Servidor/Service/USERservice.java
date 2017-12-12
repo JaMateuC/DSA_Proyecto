@@ -1,15 +1,16 @@
 package eetac.dsa.Servidor.Service;
 
+import eetac.dsa.Servidor.MapUsuarios;
+import eetac.dsa.Servidor.Model.jsonpojo.MonstruoJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.ResultadoServidorJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.querysclient.*;
 import eetac.dsa.Servidor.MundoControlador;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 
 @Path("/user")
 public class USERservice
@@ -96,6 +97,18 @@ public class USERservice
         {
             return null;
         }
+    }
+
+    @GET
+    @Path("/listamonstruo/{nombre}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ArrayList<MonstruoJSON> pruebaandroid(@PathParam("nombre") String nombre) {
+
+        logger.info(nombre);
+        if(MapUsuarios.getInstance().getUsuarios().containsKey(nombre))
+            return MapUsuarios.getInstance().getUsuarios().get(nombre).getMonstruosl();
+        return null;
+
     }
 
 }

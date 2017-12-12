@@ -1,5 +1,6 @@
 package eetac.dsa.Servidor.Service;
 
+import eetac.dsa.Servidor.MapUsuarios;
 import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 
@@ -20,7 +21,11 @@ public class NEWservice
     {
         //La función registra al usuario y devuelve un codigo
         KeyUser key = new KeyUser();
-        key.setKey(0);  //Registro con éxito
+        if (MapUsuarios.getInstance().Registrarse(user))
+            key.setKey(0);
+        else
+            key.setKey(-1);
+        //key.setKey(0);  //Registro con éxito
         // key.setKey(-1); //No se ha podido registrar
         return key;
     }

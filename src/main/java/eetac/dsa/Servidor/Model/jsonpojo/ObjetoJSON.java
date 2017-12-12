@@ -40,6 +40,7 @@ public class ObjetoJSON {
         this.args = args;
     }
 
+
     public Objeto toObjeto() throws Exception
     {
         Class clase = Class.forName("eetac.dsa.Servidor.Controlador.Objetos." + tipo);

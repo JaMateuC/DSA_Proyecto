@@ -44,6 +44,13 @@ public class MonstruoJSON{
         this.vidaActual = vidaActual;
     }
 
+    public MonstruoJSON(String tipo, int experiencia, int nivel, int vidaActual) {
+        this.tipo = tipo;
+        this.experiencia = experiencia;
+        this.nivel = nivel;
+        this.vidaActual = vidaActual;
+    }
+
     public Monstruo toMonstruo() throws Exception
     {
         Class monstruoClass = Class.forName("eetac.dsa.Servidor.Controlador.Monstruos." + tipo);
