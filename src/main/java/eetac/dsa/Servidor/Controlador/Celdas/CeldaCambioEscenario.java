@@ -20,18 +20,32 @@ public class CeldaCambioEscenario extends Celda {
         this.escenario = escenario;
     }
 
+    public String getEscenario() {
+        return escenario;
+    }
+
+    public void setEscenario(String escenario) {
+        this.escenario = escenario;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
     @Override
     public boolean accionEncima(Personaje personaje, ResultadoServidor rel) {
-        Sesion sesion = MundoControlador.getInstance().getSesion(personaje.getNombre());
-
-        if(sesion!=null)
-        {
-            sesion.cargarEscenarioFichero(escenario);
-            rel.getFlag().addFlag(Flag.cargarEscenario);
-            rel.setEscenario(sesion.getEscenario());
-            sesion.getProtagonista().mover(x,y,rel);
-            return true;
-        }
         return false;
     }
 

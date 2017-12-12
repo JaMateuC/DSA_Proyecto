@@ -1,11 +1,5 @@
 package eetac.dsa.IU;
 
-import eetac.dsa.Servidor.Controlador.Celda;
-import eetac.dsa.Servidor.Controlador.Escenario;
-import eetac.dsa.Mundo;
-
-import java.awt.*;
-
 public class IUConsola implements IUBase{
 
     char[][] consolaCaracteres;
