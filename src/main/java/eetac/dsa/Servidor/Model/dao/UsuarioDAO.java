@@ -1,5 +1,13 @@
 package eetac.dsa.Servidor.Model.dao;
 
+import eetac.dsa.Servidor.Controlador.Monstruo;
+import eetac.dsa.Servidor.Model.jsonpojo.MonstruoJSON;
+import eetac.dsa.Servidor.Model.jsonpojo.ObjetoJSON;
+import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class UsuarioDAO {
 
     @OrderFields(indice = 0)
@@ -66,4 +74,57 @@ public class UsuarioDAO {
     public void setGenero(boolean genero) {
         this.genero = genero;
     }
+
+    public void parseToUsuario(UsuarioJSON usuario){
+
+        this.setNombre(usuario.getNombre());
+        this.setGenero(usuario.isGenero());
+        this.setPassword(usuario.getPassword());
+        this.setX(usuario.getX());
+        this.setY(usuario.getY());
+
+    }
+
+    public ArrayList<ObjetoDAO> parseInventario(UsuarioJSON usuario){
+
+        ArrayList<ObjetoJSON> listObjetos= usuario.getInventariol();
+        if(listObjetos.size() >= 0) {
+            ObjetoDAO objetoD = new ObjetoDAO();
+            ArrayList<ObjetoDAO> listObjetoDAO = new ArrayList<>();
+
+            for (ObjetoJSON objeto : listObjetos) {
+
+                objetoD.parseToObject(objeto, usuario.getNombre());
+                listObjetoDAO.add(objetoD);
+
+            }
+
+            return listObjetoDAO;
+        }
+
+        return null;
+
+    }
+
+    public ArrayList<MonstruoDAO> parseMonstruos(UsuarioJSON usuario){
+
+        ArrayList<MonstruoJSON> listMonsturos = usuario.getMonstruosl();
+        if(listMonsturos.size() >= 0) {
+            MonstruoDAO monstruoD = new MonstruoDAO();
+            ArrayList<MonstruoDAO> listMonstruoDAO = new ArrayList<>();
+
+            for (MonstruoJSON monstruo : listMonsturos) {
+
+                monstruoD.parseToMonstruo(monstruo, usuario.getNombre());
+                listMonstruoDAO.add(monstruoD);
+
+            }
+
+            return listMonstruoDAO;
+        }
+
+        return null;
+
+    }
+
 }

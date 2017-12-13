@@ -1,5 +1,7 @@
 package eetac.dsa.Servidor.Model.dao;
 
+import eetac.dsa.Servidor.Model.jsonpojo.ObjetoJSON;
+
 public class ObjetoDAO extends DAO{
 
     @OrderFields(indice = 0)
@@ -39,6 +41,14 @@ public class ObjetoDAO extends DAO{
     @OrderSetMethods(indice = 2)
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
+    }
+
+    public void parseToObject(ObjetoJSON objeto, String usuario){
+
+        this.setTipo(objeto.getTipo());
+        this.setExtra(objeto.getArgs());
+        this.setNombreUsuario(usuario);
+
     }
 
 }

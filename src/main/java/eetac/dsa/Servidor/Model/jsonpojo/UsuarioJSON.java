@@ -116,6 +116,8 @@ public class UsuarioJSON
         this.y = y;
     }
 
+
+
     public Usuario toUsario()throws Exception
     {
         Usuario usuario = new Usuario(nombre,x,y,genero,email,password);

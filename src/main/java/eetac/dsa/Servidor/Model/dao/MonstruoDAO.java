@@ -1,5 +1,7 @@
 package eetac.dsa.Servidor.Model.dao;
 
+import eetac.dsa.Servidor.Model.jsonpojo.MonstruoJSON;
+
 public class MonstruoDAO extends DAO{
 
     @OrderFields(indice = 0)
@@ -93,6 +95,17 @@ public class MonstruoDAO extends DAO{
         return "id: " + this.id + ", tipo: " + this.tipo + ", experiencia: " + this.experiencia +
                 ", nivel: " + this.nivel + ", vidaActual: " + this.vidaActual + ", nombreUsuario: " +
                 this.nombreUsuario;
+
+    }
+
+    public void parseToMonstruo(MonstruoJSON monstruo, String usuario){
+
+        this.setId(monstruo.getName());
+        this.setExperiencia(monstruo.getExperiencia());
+        this.setNivel(monstruo.getNivel());
+        this.setTipo(monstruo.getTipo());
+        this.setVidaActual(monstruo.getVidaActual());
+        this.setNombreUsuario(usuario);
 
     }
 

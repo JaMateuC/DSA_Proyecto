@@ -42,21 +42,21 @@ public class MapUsuarios {
         this.usuarios = new HashMap<String,UsuarioJSON>();
 
         ArrayList<MonstruoJSON> monstruos= new ArrayList<MonstruoJSON>();
-        monstruos.add(new MonstruoJSON("tierra",12,100,12));
-        monstruos.add(new MonstruoJSON("agua",4,1,4));
+        monstruos.add(new MonstruoJSON("tierra",12,100,12, "aaa"));
+        monstruos.add(new MonstruoJSON("agua",4,1,4, "aaa"));
 
         usuarios.put("juan",new UsuarioJSON(null,monstruos,"juan","123","juan123",true));
 
         ArrayList<MonstruoJSON> monstruos2= new ArrayList<MonstruoJSON>();
-        monstruos2.add(new MonstruoJSON("viento",12,100,12));
-        monstruos2.add(new MonstruoJSON("agua",11,10,12));
+        monstruos2.add(new MonstruoJSON("viento",12,100,12,"aaa"));
+        monstruos2.add(new MonstruoJSON("agua",11,10,12,"aaa"));
         usuarios.put("pepe",new UsuarioJSON(null,monstruos2,"pepe","1234","pepe3",true));
 
         ArrayList<MonstruoJSON> monstruos3= new ArrayList<MonstruoJSON>();
-        monstruos3.add(new MonstruoJSON("tierra",12,100,12));
-        monstruos3.add(new MonstruoJSON("agua",12,100,12));
-        monstruos3.add(new MonstruoJSON("agua",11,10,12));
-        monstruos3.add(new MonstruoJSON("agua",11,10,12));
+        monstruos3.add(new MonstruoJSON("tierra",12,100,12,"aaa"));
+        monstruos3.add(new MonstruoJSON("agua",12,100,12,"aaa"));
+        monstruos3.add(new MonstruoJSON("agua",11,10,12,"aaa"));
+        monstruos3.add(new MonstruoJSON("agua",11,10,12,"aaa"));
         usuarios.put("oscar",new UsuarioJSON(null,monstruos3,"oscar","123","oscar123",true));
 
 
@@ -82,9 +82,9 @@ public class MapUsuarios {
         if (usuarios.containsKey(user.getNombre()))
             return false;
         ArrayList<MonstruoJSON> monstruos= new ArrayList<MonstruoJSON>();
-        monstruos.add(new MonstruoJSON("tierra",12,100,12));
-        monstruos.add(new MonstruoJSON("agua",123,1000,1232));
-        monstruos.add(new MonstruoJSON("viento",1,10,12));
+        monstruos.add(new MonstruoJSON("tierra",12,100,12,"aaa"));
+        monstruos.add(new MonstruoJSON("agua",123,1000,1232,"aaa"));
+        monstruos.add(new MonstruoJSON("viento",1,10,12,"aaa"));
 
 
         //ArrayList<ObjetoJSON> inventario= new ArrayList<ObjetoJSON>();

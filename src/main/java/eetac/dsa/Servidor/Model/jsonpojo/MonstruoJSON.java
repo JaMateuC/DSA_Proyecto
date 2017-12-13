@@ -4,6 +4,7 @@ import eetac.dsa.Servidor.Controlador.Monstruo;
 import eetac.dsa.Servidor.Model.dao.DAO;
 
 public class MonstruoJSON{
+    String name;
     String tipo;
     int experiencia;
     int nivel;
@@ -44,11 +45,21 @@ public class MonstruoJSON{
         this.vidaActual = vidaActual;
     }
 
-    public MonstruoJSON(String tipo, int experiencia, int nivel, int vidaActual) {
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public MonstruoJSON(String tipo, int experiencia, int nivel, int vidaActual, String name) {
         this.tipo = tipo;
         this.experiencia = experiencia;
         this.nivel = nivel;
         this.vidaActual = vidaActual;
+        this.name = name;
     }
 
     public Monstruo toMonstruo() throws Exception
