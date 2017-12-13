@@ -4,6 +4,7 @@ import eetac.dsa.Servidor.MapUsuarios;
 import eetac.dsa.Servidor.Model.jsonpojo.MonstruoJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
 import eetac.dsa.Servidor.Model.jsonpojo.ResultadoServidorJSON;
+import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.querysclient.*;
 import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultCambiarEscenario;
 import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultLoginArgs;
@@ -14,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
+import java.util.Collections;
 
 @Path("/user")
 public class USERservice
@@ -124,6 +126,18 @@ public class USERservice
         return null;
 
     }
+    @GET
+    @Path("/ranking")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ArrayList<UsuarioJSON> ranking() {
+
+        ArrayList<UsuarioJSON> list = new ArrayList<UsuarioJSON>(MapUsuarios.getInstance().getUsuarios().values());
+        Collections.sort(list,UsuarioJSON.Productoventascomparator);
+        return list;
+
+    }
+
+
 }
 
 

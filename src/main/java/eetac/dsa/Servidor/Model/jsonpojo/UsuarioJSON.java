@@ -6,6 +6,7 @@ import eetac.dsa.Servidor.Controlador.Usuario;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class UsuarioJSON
@@ -157,5 +158,19 @@ public class UsuarioJSON
             obj.fromMonstruo(usuario.getLista_montruos().getMonstruo(i));
             monstruo[i] = obj;
         }
+
+
     }
+    public static Comparator<UsuarioJSON> Productoventascomparator
+            = new Comparator<UsuarioJSON>() {
+
+        public int compare(UsuarioJSON u1, UsuarioJSON u2) {
+
+
+
+            return u1.getMonstruosl().size()-u2.getMonstruosl().size();
+
+        }
+
+    };
 }
