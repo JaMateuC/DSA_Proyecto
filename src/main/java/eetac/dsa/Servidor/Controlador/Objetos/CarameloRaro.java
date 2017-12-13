@@ -12,12 +12,12 @@ public class CarameloRaro extends Objeto{
     }
 
     @Override
-    public void funcion(Personaje personaje, ResultadoServidor rel) {
+    public void funcion(Personaje personaje) {
 
     }
 
     @Override
-    public void funcion(Monstruo monstruo, ResultadoServidor rel) {
+    public void funcion(Monstruo monstruo) {
         monstruo.setNivel(monstruo.getNivel()+1);
     }
 }

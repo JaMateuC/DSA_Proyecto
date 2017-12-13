@@ -26,12 +26,12 @@ public class PocionExperiencia extends Objeto {
     }
 
     @Override
-    public void funcion(Personaje personaje, ResultadoServidor rel) {
+    public void funcion(Personaje personaje) {
 
     }
 
     @Override
-    public void funcion(Monstruo monstruo, ResultadoServidor rel) {
+    public void funcion(Monstruo monstruo) {
         monstruo.añadirExperiencia(experienciaExtra);
     }
 }

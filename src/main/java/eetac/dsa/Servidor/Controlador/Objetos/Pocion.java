@@ -28,12 +28,12 @@ public class Pocion extends Objeto
     }
 
     @Override
-    public void funcion(Monstruo monstruo, ResultadoServidor rel) {
+    public void funcion(Monstruo monstruo) {
         monstruo.añadirVida(vida);
     }
 
     @Override
-    public void funcion(Personaje personaje, ResultadoServidor rel) {
+    public void funcion(Personaje personaje) {
 
     }
 }

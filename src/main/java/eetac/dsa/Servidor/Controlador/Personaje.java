@@ -60,12 +60,12 @@ public abstract class Personaje
         celda.accionActivar(this,rel);
     }
 
-    public boolean usarObjetoAMonstruo(int indiceInventario,int indiceMonstruo,ResultadoServidor rel)
+    public boolean usarObjetoAMonstruo(int indiceInventario,int indiceMonstruo)
     {
         if(indiceInventario<inventario.obtenerTamaño()&&indiceMonstruo<lista_montruos.getTamaño())
         {
             Objeto obj= inventario.buscarObjeto(indiceInventario);
-            obj.funcion(lista_montruos.obtenerMonstruo(indiceMonstruo),rel);
+            obj.funcion(lista_montruos.obtenerMonstruo(indiceMonstruo));
             inventario.quitarObjeto(obj);
             return true;
         }
@@ -74,13 +74,13 @@ public abstract class Personaje
 
     public boolean usarObjeto(int indiceInventario, ResultadoServidor res)
     {
-        if(indiceInventario<inventario.obtenerTamaño())
+        /*if(indiceInventario<inventario.obtenerTamaño())
         {
             Objeto obj= inventario.buscarObjeto(indiceInventario);
             obj.funcion(this,res);
             inventario.quitarObjeto(obj);
             return true;
-        }
+        }*/
         return false;
     }
 

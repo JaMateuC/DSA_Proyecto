@@ -38,19 +38,19 @@ public class PiedraTeleport extends Objeto
     }
 
     @Override
-    public void funcion(Personaje personaje, ResultadoServidor rel) {
-        Sesion sesion = MundoControlador.getInstance().getSesion(personaje.getNombre());
+    public void funcion(Personaje personaje) {
+        /*Sesion sesion = MundoControlador.getInstance().getSesion(personaje.getNombre());
         if(sesion!=null)
         {
             sesion.cargarEscenarioFichero(escenario);
             rel.getFlag().addFlag(Flag.cargarEscenario);
             rel.setEscenario(sesion.getEscenario());
             sesion.getProtagonista().mover(posicionX,posicionY,rel);
-        }
+        }*/
     }
 
     @Override
-    public void funcion(Monstruo monstruo, ResultadoServidor rel) {
+    public void funcion(Monstruo monstruo) {
 
     }
 }

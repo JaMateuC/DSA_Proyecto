@@ -50,6 +50,6 @@ public abstract class Objeto
         this.destino = destino;
     }
 
-    public abstract void funcion(Personaje personaje, ResultadoServidor rel);
-    public abstract void funcion(Monstruo monstruo, ResultadoServidor rel);
+    public abstract void funcion(Personaje personaje);
+    public abstract void funcion(Monstruo monstruo);
 }

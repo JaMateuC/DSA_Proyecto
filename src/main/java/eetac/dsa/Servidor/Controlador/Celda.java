@@ -97,7 +97,7 @@ public abstract class Celda
 
     void obtenerObjeto(Personaje personaje,ResultadoServidor rel)
     {
-        try {
+        /*try {
             Objeto obj = CreadorAleatori.crearObjeto(MundoControlador.getInstance().getSesion(personaje.getNombre()).getEscenario().getNivelDeZona());
             personaje.getInventario().añadirObeto(obj);
             rel.getFlag().addFlag(Flag.añadirObjeto);
@@ -106,7 +106,7 @@ public abstract class Celda
         catch (Exception e)
         {
 
-        }
+        }*/
     }
 
     //TODO(falta crear la classe combate i implementarla)
@@ -115,7 +115,7 @@ public abstract class Celda
      */
     void comenzarCombate(Personaje personaje,ResultadoServidor rel)
     {
-        try {
+        /*try {
             Monstruo monstruo = CreadorAleatori.crearMonstruo(MundoControlador.getInstance().getSesion(personaje.getNombre()).getEscenario().getNivelDeZona());
             rel.getFlag().addFlag(Flag.iniciarCombate);
             rel.setMonstruo(monstruo);
@@ -123,7 +123,7 @@ public abstract class Celda
         catch (Exception e)
         {
 
-        }
+        }*/
     }
 
 }
