@@ -26,7 +26,7 @@ public class TestParse {
 
         monstruo = new MonstruoJSON("Fuego",0,1,2, "aaa");
         monstruoD = new MonstruoDAO();
-        objeto = new ObjetoJSON("")
+        //objeto = new ObjetoJSON("")
 
 
     }
@@ -34,7 +34,7 @@ public class TestParse {
     @Test
     public void testMonstruo(){
 
-        monstruoD.parseToMonstruo(monstruo);
+        //monstruoD.parseToMonstruo(monstruo);
         logger.info(monstruoD.toString());
 
     }
