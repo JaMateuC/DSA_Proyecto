@@ -24,6 +24,22 @@ public class USERservice
 
     private String name;
 
+    @GET
+    @Path("/profile/{nombre}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public UsuarioJSON cambiarEscenario(@PathParam("nombre") String nombre)
+    {
+        //Buscar Usuario por nombre y devolverlo al cliente
+
+        UsuarioJSON user = new UsuarioJSON();
+        user.setNombre(nombre);
+        user.setPassword(null);                 //La contraseña no se envia al cliente
+        user.setEmail(nombre+"@dsa.edu");
+        user.setGenero(true);
+
+        return user;
+    }
+
     @POST
     @Path("/cambiarEscenario")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -124,8 +140,8 @@ public class USERservice
         if(MapUsuarios.getInstance().getUsuarios().containsKey(nombre))
             return MapUsuarios.getInstance().getUsuarios().get(nombre).getMonstruosl();
         return null;
-
     }
+
     @GET
     @Path("/ranking")
     @Produces(MediaType.APPLICATION_JSON)
