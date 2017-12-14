@@ -51,4 +51,12 @@ public class ObjetoDAO extends DAO{
 
     }
 
+    @Override
+    public String toString(){
+
+        return "tipo: " + this.tipo + ", args: " + this.extra + ", nombreUsuario: " +
+                this.nombreUsuario;
+
+    }
+
 }

@@ -1,6 +1,7 @@
 package eetac.dsa.Servidor.Service;
 
 import eetac.dsa.Servidor.MapUsuarios;
+import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
 import eetac.dsa.Servidor.Model.jsonpojo.MonstruoJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
 import eetac.dsa.Servidor.Model.jsonpojo.ResultadoServidorJSON;
@@ -14,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -27,17 +29,27 @@ public class USERservice
     @GET
     @Path("/profile/{nombre}")
     @Produces(MediaType.APPLICATION_JSON)
-    public UsuarioJSON cambiarEscenario(@PathParam("nombre") String nombre)
+    public UsuarioJSON getUsuario(@PathParam("nombre") String nombre)
     {
         //Buscar Usuario por nombre y devolverlo al cliente
+        try {
+            UsuarioDAO userD = new UsuarioDAO();
+            userD.selectDB(nombre);
 
-        UsuarioJSON user = new UsuarioJSON();
-        user.setNombre(nombre);
-        user.setPassword(null);                 //La contraseña no se envia al cliente
-        user.setEmail(nombre+"@dsa.edu");
-        user.setGenero(true);
 
-        return user;
+            UsuarioJSON user = new UsuarioJSON();
+            user.parseFromDB(userD);
+            //user.setNombre(nombre);
+            user.setPassword(null);                 //La contraseña no se envia al cliente
+            user.setEmail(nombre + "@dsa.edu");
+            //user.setGenero(true);
+
+            return user;
+        }catch (SQLException e){
+            return null;                          // TODO: poner otro error
+        }
+
+
     }
 
     @POST

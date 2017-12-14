@@ -2,8 +2,12 @@ package eetac.dsa;
 
 import eetac.dsa.Servidor.Controlador.Monstruo;
 import eetac.dsa.Servidor.Model.dao.MonstruoDAO;
+import eetac.dsa.Servidor.Model.dao.ObjetoDAO;
+import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
 import eetac.dsa.Servidor.Model.jsonpojo.MonstruoJSON;
 import eetac.dsa.Servidor.Model.dao.DAO;
+import eetac.dsa.Servidor.Model.jsonpojo.ObjetoJSON;
+import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Before;
@@ -11,25 +15,49 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DatabaseStatements {
 
     MonstruoDAO monstruo;
     MonstruoDAO monstruo1;
     MonstruoDAO monstruo3;
-    private static final Logger logger = LogManager.getLogger(DAO.class.getName());
+    MonstruoJSON monstruo2;
+    ObjetoJSON objeto;
+    ObjetoJSON objeto2;
+    UsuarioJSON usuario1;
+    ArrayList<ObjetoDAO> listObj;
+    ArrayList<MonstruoDAO> listMon;
+    UsuarioDAO usuarioD;
+    UsuarioDAO usuarioD2;
+    ArrayList<ObjetoJSON> listObjetos;
+    ArrayList<MonstruoJSON> listMonstruos;
+    private static final Logger logger = LogManager.getLogger(DatabaseStatements.class.getName());
 
     @Before
     public void prepareClass(){
 
+        monstruo2 = new MonstruoJSON("Hierba",0,1,2, "bbb");
+        usuarioD = new UsuarioDAO();
+        usuarioD2 = new UsuarioDAO();
+        objeto = new ObjetoJSON("botella","aaa");
+        objeto2 = new ObjetoJSON("comida","bbb");
+        listMonstruos = new ArrayList<>();
+        listMonstruos.add(monstruo2);
+        listObjetos = new ArrayList<>();
+        listObjetos.add(objeto);
+        listObjetos.add(objeto2);
+        listObj = new ArrayList<>();
+        usuario1 = new UsuarioJSON(listObjetos,listMonstruos,"jaume","aaa","bbb",true);
         monstruo = new MonstruoDAO("Primero","Hierba",100,1,1000,"Jaume");
         monstruo1 = new MonstruoDAO("Primero","Fuego",100,1,1000,"Jaume");
         monstruo3 = new MonstruoDAO();
 
+
     }
 
     @Test
-    public void addTest(){
+    public void addTestM(){
 
         try{
             monstruo.insertDB();
@@ -41,7 +69,7 @@ public class DatabaseStatements {
     }
 
     @Test
-    public void deleteTest(){
+    public void deleteTestM(){
 
         try{
             monstruo.deleteDB();
@@ -52,7 +80,7 @@ public class DatabaseStatements {
     }
 
     @Test
-    public void selectTest(){
+    public void selectTestM(){
 
         try{
             monstruo3.selectDB("Primero");
@@ -67,12 +95,34 @@ public class DatabaseStatements {
     }
 
     @Test
-    public  void updateTest(){
+    public  void updateTestM(){
 
         try{
             monstruo1.updateDB();
         }catch (SQLException e){
             e.getSQLState();
+        }
+
+    }
+
+    @Test
+    public void insertTestU(){
+
+        try{
+            usuarioD.parseToUsuario(usuario1);
+
+            logger.info(usuarioD.getId() + " " + usuarioD.getPassword());
+
+            usuarioD.insertDB();
+            usuarioD2.selectDB("jaume");
+            usuario1 = new UsuarioJSON();
+            usuario1.parseFromDB(usuarioD2);
+
+            logger.info(usuario1.getNombre() + " " + usuario1.getPassword());
+
+        }catch (SQLException e){
+            logger.error(e.getSQLState());
+            logger.error(e.getErrorCode());
         }
 
     }

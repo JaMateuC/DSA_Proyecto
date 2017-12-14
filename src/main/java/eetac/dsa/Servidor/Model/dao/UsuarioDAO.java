@@ -8,10 +8,10 @@ import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class UsuarioDAO {
+public class UsuarioDAO extends DAO{
 
     @OrderFields(indice = 0)
-    private String nombre;
+    private String id;
     @OrderFields(indice = 1)
     private String password;
     @OrderFields(indice = 2)
@@ -26,13 +26,13 @@ public class UsuarioDAO {
     }
 
     @OrderGetMethods(indice = 0)
-    public String getNombre() {
-        return nombre;
+    public String getId() {
+        return id;
     }
 
     @OrderSetMethods(indice = 0)
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setId(String nombre) {
+        this.id = nombre;
     }
 
     @OrderGetMethods(indice = 1)
@@ -66,7 +66,7 @@ public class UsuarioDAO {
     }
 
     @OrderGetMethods(indice = 4)
-    public boolean isGenero() {
+    public boolean getGenero() {
         return genero;
     }
 
@@ -77,7 +77,7 @@ public class UsuarioDAO {
 
     public void parseToUsuario(UsuarioJSON usuario){
 
-        this.setNombre(usuario.getNombre());
+        this.setId(usuario.getNombre());
         this.setGenero(usuario.isGenero());
         this.setPassword(usuario.getPassword());
         this.setX(usuario.getX());
@@ -89,11 +89,12 @@ public class UsuarioDAO {
 
         ArrayList<ObjetoJSON> listObjetos= usuario.getInventariol();
         if(listObjetos.size() >= 0) {
-            ObjetoDAO objetoD = new ObjetoDAO();
+
             ArrayList<ObjetoDAO> listObjetoDAO = new ArrayList<>();
 
             for (ObjetoJSON objeto : listObjetos) {
 
+                ObjetoDAO objetoD = new ObjetoDAO();
                 objetoD.parseToObject(objeto, usuario.getNombre());
                 listObjetoDAO.add(objetoD);
 
@@ -110,11 +111,12 @@ public class UsuarioDAO {
 
         ArrayList<MonstruoJSON> listMonsturos = usuario.getMonstruosl();
         if(listMonsturos.size() >= 0) {
-            MonstruoDAO monstruoD = new MonstruoDAO();
+
             ArrayList<MonstruoDAO> listMonstruoDAO = new ArrayList<>();
 
             for (MonstruoJSON monstruo : listMonsturos) {
 
+                MonstruoDAO monstruoD = new MonstruoDAO();
                 monstruoD.parseToMonstruo(monstruo, usuario.getNombre());
                 listMonstruoDAO.add(monstruoD);
 

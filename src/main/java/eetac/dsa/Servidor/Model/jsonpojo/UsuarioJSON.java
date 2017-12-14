@@ -3,6 +3,7 @@ package eetac.dsa.Servidor.Model.jsonpojo;
 import eetac.dsa.Servidor.Controlador.Monstruo;
 import eetac.dsa.Servidor.Controlador.Objeto;
 import eetac.dsa.Servidor.Controlador.Usuario;
+import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -173,4 +174,14 @@ public class UsuarioJSON
         }
 
     };
+
+    public void parseFromDB(UsuarioDAO usuario){
+
+        this.setNombre(usuario.getId());
+        this.setGenero(usuario.getGenero());
+        this.setPassword(usuario.getPassword());
+        this.setX(usuario.getX());
+        this.setY(usuario.getY());
+
+    }
 }

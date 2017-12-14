@@ -16,6 +16,11 @@ public class ObjetoJSON {
 
     public ObjetoJSON() { }
 
+    public ObjetoJSON(String tipo, String args) {
+        this.tipo = tipo;
+        this.args = args;
+    }
+
     public String getTipo() {
         return tipo;
     }
