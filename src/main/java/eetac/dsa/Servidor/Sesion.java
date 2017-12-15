@@ -10,8 +10,8 @@ public class Sesion {
 
     public Sesion(UsuarioJSON protagonista, String nombreEscenario) {
         this.protagonista = protagonista;
-
-        cargarEscenarioFichero(nombreEscenario);
+        //TODO: Es te que buscar un escenari a partir del seu nom i llavors obtindre la seva dirrecio
+        cargarEscenarioFichero(nombreEscenario/*aqui aniria la direccio del fitcher*/ );
     }
 
     public EscenarioJSON getEscenario() {
@@ -22,24 +22,6 @@ public class Sesion {
         return protagonista;
     }
 
-    /*public ResultCambiarEscenario cambiarEscenario(int x,int y)
-    {
-        Celda celda = escenario.getCelda(x,y);
-        if(celda.getTipo().equals(CeldaCambioEscenario.class.getSimpleName()))
-        {
-            CeldaCambioEscenario cCE = (CeldaCambioEscenario)celda;
-            ResultCambiarEscenario resultCambiarEscenario = new ResultCambiarEscenario();
-            resultCambiarEscenario.setPermitido(false);
-            cargarEscenarioFichero(cCE.getEscenario());
-            resultCambiarEscenario.setX(cCE.getX());
-            resultCambiarEscenario.setY(cCE.getY());
-            resultCambiarEscenario.setPermitido(true);
-            return resultCambiarEscenario;
-        }
-        ResultCambiarEscenario resultCambiarEscenario = new ResultCambiarEscenario();
-        resultCambiarEscenario.setPermitido(false);
-        return resultCambiarEscenario;
-    }*/
 
     public ResultLoginArgs resultLoginArgs() throws Exception
     {
@@ -53,10 +35,10 @@ public class Sesion {
     }
 
 
-    public boolean cargarEscenarioFichero(String nombre)
+    public boolean cargarEscenarioFichero(String direccion)
     {
         try {
-            //escenario = CargadorJSON.jsonAEscenario(CargadorJSON.ficheroAJSON("src/main/resources/Escenarios/" + nombre + ".json"));
+            escenario = CargadorJSON.fileToEscenario(direccion);
         }
         catch (Exception e)
         {
