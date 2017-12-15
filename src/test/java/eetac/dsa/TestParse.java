@@ -1,6 +1,5 @@
 package eetac.dsa;
 
-import eetac.dsa.Servidor.Controlador.Objeto;
 import eetac.dsa.Servidor.Model.dao.DAO;
 import eetac.dsa.Servidor.Model.dao.MonstruoDAO;
 import eetac.dsa.Servidor.Model.dao.ObjetoDAO;

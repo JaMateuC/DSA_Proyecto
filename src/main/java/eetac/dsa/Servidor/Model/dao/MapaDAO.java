@@ -8,8 +8,6 @@ public class MapaDAO {
     private String nom;
     @OrderFields(indice = 1)
     private String direccioFile;
-    @OrderFields(indice = 2)
-    private String nomUsuario;
 
     public MapaDAO() {
     }
@@ -32,16 +30,6 @@ public class MapaDAO {
     @OrderSetMethods(indice = 1)
     public void setDireccioFile(String direccioFile) {
         this.direccioFile = direccioFile;
-    }
-
-    @OrderGetMethods(indice = 2)
-    public String getNomUsuario() {
-        return nomUsuario;
-    }
-
-    @OrderSetMethods(indice = 2)
-    public void setNomUsuario(String nomUsuario) {
-        this.nomUsuario = nomUsuario;
     }
 
     public void parseToMapa(EscenarioJSON mapa){

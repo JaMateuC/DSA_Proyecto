@@ -1,8 +1,5 @@
 package eetac.dsa.Servidor.Model.jsonpojo;
 
-import eetac.dsa.Servidor.Controlador.Monstruo;
-import eetac.dsa.Servidor.Controlador.Objeto;
-import eetac.dsa.Servidor.Controlador.Usuario;
 import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
 
 import java.util.ArrayList;
@@ -70,6 +67,15 @@ public class UsuarioJSON
 
     public UsuarioJSON() { }
 
+    public UsuarioJSON(String nombre, String password, String email, int x, int y, boolean genero) {
+        this.nombre = nombre;
+        this.password = password;
+        this.email = email;
+        this.x = x;
+        this.y = y;
+        this.genero = genero;
+    }
+
     public ObjetoJSON[] getInventario() {
         return inventario;
     }
@@ -118,50 +124,6 @@ public class UsuarioJSON
         this.y = y;
     }
 
-
-
-    public Usuario toUsario()throws Exception
-    {
-        Usuario usuario = new Usuario(nombre,x,y,genero,email,password);
-        for(int i =0;i<monstruo.length;i++)
-        {
-            usuario.añadirMonstruo(monstruo[i].toMonstruo());
-        }
-        for(int i =0;i<inventario.length;i++)
-        {
-            usuario.getInventario().añadirObeto(inventario[i].toObjeto());
-        }
-        return usuario;
-    }
-
-    public void fromUsuario(Usuario usuario) throws Exception
-    {
-        this.email = usuario.getEmail();
-        this.genero = usuario.getGenero();
-        this.nombre = usuario.getNombre();
-        this.password = usuario.getPassword();
-        if(usuario.getPosicion()!=null) {
-            this.x = (int) usuario.getPosicion().getX();
-            this.y = (int) usuario.getPosicion().getY();
-        }
-        this.inventario = new ObjetoJSON[usuario.getInventario().obtenerTamaño()];
-        this.monstruo = new MonstruoJSON[usuario.getLista_montruos().getTamaño()];
-        for(int i =0;i<inventario.length;i++)
-        {
-            ObjetoJSON obj = new ObjetoJSON();
-            obj.fromObjeto(usuario.getInventario().buscarObjeto(i));
-            inventario[i] = obj;
-        }
-
-        for(int i =0;i<monstruo.length;i++)
-        {
-            MonstruoJSON obj = new MonstruoJSON();
-            obj.fromMonstruo(usuario.getLista_montruos().getMonstruo(i));
-            monstruo[i] = obj;
-        }
-
-
-    }
     public static Comparator<UsuarioJSON> Productoventascomparator
             = new Comparator<UsuarioJSON>() {
 

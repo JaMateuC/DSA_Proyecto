@@ -26,7 +26,9 @@ public class AUTHservice
         if(MapUsuarios.getInstance().loggin(user.getNombre(), user.getPassword()))    //En el equals va la respuesta de la memoria (password)
         {
             key.setKey((new Random().nextInt(2048)+1));
+
             logger.info(key.getKey());
+
             return key;
         }
         key.setKey(0);

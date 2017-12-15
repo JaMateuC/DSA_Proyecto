@@ -53,21 +53,6 @@ public class USERservice
     }
 
     @POST
-    @Path("/cambiarEscenario")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public ResultCambiarEscenario cambiarEscenario(QueryCambiarEscenario qCE)
-    {
-        try
-        {
-            return MundoControlador.getInstance().getSesion(qCE.getKey()).cambiarEscenario(qCE.getX(),qCE.getY());
-        }
-        catch (Exception e)
-        {
-            return null;
-        }
-    }
-
-    @POST
     @Path("/getLogginArgs")
     @Consumes(MediaType.APPLICATION_JSON)
     public ResultLoginArgs getLoggingArgs(KeyUser keyUser)

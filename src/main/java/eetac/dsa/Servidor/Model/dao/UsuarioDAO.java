@@ -1,6 +1,5 @@
 package eetac.dsa.Servidor.Model.dao;
 
-import eetac.dsa.Servidor.Controlador.Monstruo;
 import eetac.dsa.Servidor.Model.jsonpojo.MonstruoJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.ObjetoJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
