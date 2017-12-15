@@ -9,6 +9,7 @@ import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.querysclient.*;
 import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultCambiarEscenario;
 import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultLoginArgs;
+import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultadoAceptar;
 import eetac.dsa.Servidor.MundoControlador;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -67,15 +68,14 @@ public class USERservice
         }
     }
 
-
-    /*@POST
-    @Path("/iniciarCombate")
+    @POST
+    @Path("/getEscenario")
     @Consumes(MediaType.APPLICATION_JSON)
-    public ResultadoServidorJSON iniciarCombate(QueryLogging queryLogging)
+    public ResultCambiarEscenario getLoggingArgs(QueryCambiarEscenario qCamEsc)
     {
         try
         {
-            return ResultadoServidorJSON.fromResultadoServidorStatic(MundoControlador.getInstance().loggin(queryLogging.getNombre(),queryLogging.getPassword()));
+            return MundoControlador.getInstance().getSesion(qCamEsc.getKey()).cambiarEscenario(qCamEsc.getNombre(),qCamEsc.getX(),qCamEsc.getY());
         }
         catch (Exception e)
         {
@@ -84,50 +84,25 @@ public class USERservice
     }
 
     @POST
-    @Path("/resultadoCombate")
+    @Path("/updateUsuario")
     @Consumes(MediaType.APPLICATION_JSON)
-    public ResultadoServidorJSON resultadoCombate(QueryLogging queryLogging)
+    public ResultadoAceptar updateUsuario(QueryUpdateUsuario qUpUsuario)
     {
         try
         {
-            return ResultadoServidorJSON.fromResultadoServidorStatic(MundoControlador.getInstance().loggin(queryLogging.getNombre(),queryLogging.getPassword()));
+            MundoControlador.getInstance().getSesion(qUpUsuario.getKey()).setProtagonista(qUpUsuario.getUsuarioJson());
+            ResultadoAceptar resultadoAceptar = new ResultadoAceptar();
+            resultadoAceptar.setPermitido(true);
+            return resultadoAceptar;
         }
         catch (Exception e)
         {
-            return null;
+            ResultadoAceptar resultadoAceptar = new ResultadoAceptar();
+            resultadoAceptar.setPermitido(false);
+            return resultadoAceptar;
         }
     }
 
-    @POST
-    @Path("/obtenerObjeto")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public ResultadoServidorJSON obtenerObjeto(QueryLogging queryLogging)
-    {
-        try
-        {
-            return ResultadoServidorJSON.fromResultadoServidorStatic(MundoControlador.getInstance().loggin(queryLogging.getNombre(),queryLogging.getPassword()));
-        }
-        catch (Exception e)
-        {
-            return null;
-        }
-    }
-
-    @POST
-    @Path("/borrarObjeto")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public ResultadoServidorJSON borrarObjeto(QueryLogging queryLogging)
-    {
-        try
-        {
-            return ResultadoServidorJSON.fromResultadoServidorStatic(MundoControlador.getInstance().loggin(queryLogging.getNombre(),queryLogging.getPassword()));
-        }
-        catch (Exception e)
-        {
-            return null;
-        }
-    }
-*/
     @GET
     @Path("/listamonstruo/{nombre}")
     @Produces(MediaType.APPLICATION_JSON)

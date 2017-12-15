@@ -2,6 +2,7 @@ package eetac.dsa.Servidor;
 
 import eetac.dsa.Servidor.Model.jsonpojo.EscenarioJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
+import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultCambiarEscenario;
 import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultLoginArgs;
 
 public class Sesion {
@@ -16,6 +17,10 @@ public class Sesion {
 
     public EscenarioJSON getEscenario() {
         return escenario;
+    }
+
+    public void setProtagonista(UsuarioJSON protagonista) {
+        this.protagonista = protagonista;
     }
 
     public UsuarioJSON getProtagonista() {
@@ -34,6 +39,14 @@ public class Sesion {
         return resultLoginArgs;
     }
 
+    public ResultCambiarEscenario cambiarEscenario(String nombreEscenario,int x,int y)
+    {
+            ResultCambiarEscenario resultCambiarEscenario = new ResultCambiarEscenario();
+            resultCambiarEscenario.setPermitido(false);
+            resultCambiarEscenario.setPermitido(true);
+            return resultCambiarEscenario;
+    }
+
 
     public boolean cargarEscenarioFichero(String direccion)
     {
@@ -42,7 +55,6 @@ public class Sesion {
         }
         catch (Exception e)
         {
-            //logger.error("error al cargar un escenario");
             return false;
         }
         return true;

@@ -5,6 +5,15 @@ public class QueryCambiarEscenario {
     int x;
     int y;
     int key;
+    String nombre;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public int getKey() {
         return key;
