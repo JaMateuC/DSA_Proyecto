@@ -4,10 +4,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.annotation.Annotation;
+import java.lang.annotation.ElementType;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Properties;
@@ -198,6 +200,162 @@ public abstract class DAO {
 
     }
 
+    public ArrayList<MonstruoDAO> selectListMonstruoDB() throws SQLException{
+
+        ArrayList<MonstruoDAO> monstruoList = new ArrayList<>();
+
+        getConnection();
+
+        StringBuffer  buffer = new StringBuffer();
+
+        buffer.append("SELECT * FROM ");
+        buffer.append("MonstruoDAO");
+        buffer.append(" WHERE ");
+        for( Field field : this.getClass().getDeclaredFields()){
+            if (field.getName().startsWith("id")){
+                buffer.append(field.getName());
+            }
+        }
+
+        for(Method method : this.getClass().getDeclaredMethods()){
+            try {
+                if (method.getName().endsWith("Id")) {
+                    buffer.append(" = '" + method.invoke(this, null).toString() + "'");
+                }
+            }catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+
+        logger.info(buffer.toString());
+
+        Statement st = this.con.createStatement();
+
+        ResultSet rs = st.executeQuery(buffer.toString());
+
+        MonstruoDAO monstruoRes = new MonstruoDAO();
+
+        Method[] methods = monstruoRes.ordenarSetMethods();
+
+        while(rs.next()){
+
+            monstruoRes = new MonstruoDAO();
+
+            ResultSetMetaData rsmd = rs.getMetaData();
+            try{
+                for(int i = 1; i <= rsmd.getColumnCount(); i++){
+
+                    int sqlTypes = rsmd.getColumnType(i);
+
+                    switch (sqlTypes) {
+                        case Types.VARCHAR:
+                            methods[i-1].invoke(this,rs.getString(i));
+                            break;
+                        case Types.BOOLEAN:
+                            methods[i-1].invoke(this,rs.getBoolean(i));
+                            break;
+                        case Types.INTEGER:
+                            methods[i-1].invoke(this,rs.getInt(i));
+                            break;
+
+                    }
+
+                }
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            monstruoList.add(monstruoRes);
+
+
+        }
+
+
+        return monstruoList;
+
+    }
+
+    public ArrayList<ObjetoDAO> selectListObjetoDB() throws SQLException{
+
+        ArrayList<ObjetoDAO> objetoList = new ArrayList<>();
+
+        getConnection();
+
+        StringBuffer  buffer = new StringBuffer();
+
+        buffer.append("SELECT * FROM ");
+        buffer.append("MonstruoDAO");
+        buffer.append(" WHERE ");
+        for( Field field : this.getClass().getDeclaredFields()){
+            if (field.getName().startsWith("id")){
+                buffer.append(field.getName());
+            }
+        }
+
+        for(Method method : this.getClass().getDeclaredMethods()){
+            try {
+                if (method.getName().endsWith("Id")) {
+                    buffer.append(" = '" + method.invoke(this, null).toString() + "'");
+                }
+            }catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+
+        logger.info(buffer.toString());
+
+        Statement st = this.con.createStatement();
+
+        ResultSet rs = st.executeQuery(buffer.toString());
+
+        ObjetoDAO objetoRes = new ObjetoDAO();
+
+        Method[] methods = objetoRes.ordenarSetMethods();
+
+        while(rs.next()){
+
+            objetoRes = new ObjetoDAO();
+
+            ResultSetMetaData rsmd = rs.getMetaData();
+            try{
+                for(int i = 1; i <= rsmd.getColumnCount(); i++){
+
+                    int sqlTypes = rsmd.getColumnType(i);
+
+                    switch (sqlTypes) {
+                        case Types.VARCHAR:
+                            methods[i-1].invoke(this,rs.getString(i));
+                            break;
+                        case Types.BOOLEAN:
+                            methods[i-1].invoke(this,rs.getBoolean(i));
+                            break;
+                        case Types.INTEGER:
+                            methods[i-1].invoke(this,rs.getInt(i));
+                            break;
+
+                    }
+
+                }
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            objetoList.add(objetoRes);
+
+
+        }
+
+
+        return objetoList;
+
+    }
+
     /*UPDATE STATMENTS*/
 
     public void updateDB() throws SQLException{
@@ -276,6 +434,8 @@ public abstract class DAO {
         st.executeUpdate(buffer.toString());
 
     }
+
+    /*FUNCTIONS*/
 
     public String getIDObject(){
 

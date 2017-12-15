@@ -1,6 +1,7 @@
 package eetac.dsa.Servidor.Service;
 
 import eetac.dsa.Servidor.MapUsuarios;
+import eetac.dsa.Servidor.Model.ConsultaDB;
 import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
 import eetac.dsa.Servidor.Model.jsonpojo.MonstruoJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
@@ -33,16 +34,12 @@ public class USERservice
     {
         //Buscar Usuario por nombre y devolverlo al cliente
         try {
-            UsuarioDAO userD = new UsuarioDAO();
-            userD.selectDB(nombre);
-
 
             UsuarioJSON user = new UsuarioJSON();
-            user.parseFromDB(userD);
-            //user.setNombre(nombre);
+
+            ConsultaDB.getInstance().getUsuario(nombre);
+
             user.setPassword(null);                 //La contraseña no se envia al cliente
-            user.setEmail(nombre + "@dsa.edu");
-            //user.setGenero(true);
 
             return user;
         }catch (SQLException e){
@@ -134,6 +131,9 @@ public class USERservice
     public ArrayList<MonstruoJSON> pruebaandroid(@PathParam("nombre") String nombre) {
 
         logger.info(nombre);
+
+
+
         if(MapUsuarios.getInstance().getUsuarios().containsKey(nombre))
             return MapUsuarios.getInstance().getUsuarios().get(nombre).getMonstruosl();
         return null;

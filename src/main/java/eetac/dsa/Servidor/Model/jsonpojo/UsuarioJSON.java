@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UsuarioJSON
 {
-    private ObjetoJSON[] inventario;
+    private ObjetoJSON[] inventario; //TODO: cambiar vectors to list
     private MonstruoJSON[] monstruo;
     private ArrayList<ObjetoJSON> inventariol;
     private ArrayList<MonstruoJSON> monstruosl;
