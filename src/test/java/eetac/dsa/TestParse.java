@@ -37,8 +37,8 @@ public class TestParse {
         monstruo2 = new MonstruoJSON("Hierba",0,1,2, "bbb");
         monstruoD = new MonstruoDAO();
         usuarioD = new UsuarioDAO();
-        objeto = new ObjetoJSON("botella","aaa");
-        objeto2 = new ObjetoJSON("comida","bbb");
+        objeto = new ObjetoJSON("Pvida","botella","aaa");
+        objeto2 = new ObjetoJSON("Pastel","comida","bbb");
         listMonstruos = new ArrayList<>();
         listMonstruos.add(monstruo);
         listMonstruos.add(monstruo2);

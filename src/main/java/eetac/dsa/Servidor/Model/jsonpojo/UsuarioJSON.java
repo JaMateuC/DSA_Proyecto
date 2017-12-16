@@ -128,6 +128,7 @@ public class UsuarioJSON
         this.setPassword(usuario.getPassword());
         this.setX(usuario.getX());
         this.setY(usuario.getY());
+        this.setEmail(usuario.getEmail());
 
     }
 }

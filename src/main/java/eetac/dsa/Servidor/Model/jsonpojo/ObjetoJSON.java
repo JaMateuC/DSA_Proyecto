@@ -1,15 +1,28 @@
 package eetac.dsa.Servidor.Model.jsonpojo;
 
+import eetac.dsa.Servidor.Model.dao.ObjetoDAO;
+
 public class ObjetoJSON {
+
+    String id;
     String tipo;
     int numArgs;
     String args;
 
     public ObjetoJSON() { }
 
-    public ObjetoJSON(String tipo, String args) {
+    public ObjetoJSON(String id,String tipo, String args) {
         this.tipo = tipo;
         this.args = args;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTipo() {
@@ -36,6 +49,12 @@ public class ObjetoJSON {
         this.args = args;
     }
 
+    public void parseFromObjectDB(ObjetoDAO objetoD){
 
+        this.setId(objetoD.getId());
+        this.setTipo(objetoD.getTipo());
+        this.setArgs(objetoD.getExtra());
+
+    }
 
 }

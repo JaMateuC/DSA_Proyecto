@@ -1,5 +1,6 @@
 package eetac.dsa;
 
+import eetac.dsa.Servidor.Model.ConsultaDB;
 import eetac.dsa.Servidor.Model.dao.MonstruoDAO;
 import eetac.dsa.Servidor.Model.dao.ObjetoDAO;
 import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
@@ -25,10 +26,12 @@ public class DatabaseStatements {
     ObjetoJSON objeto;
     ObjetoJSON objeto2;
     UsuarioJSON usuario1;
+    ArrayList<UsuarioDAO> usuarioDAOArrayList;
     ArrayList<ObjetoDAO> listObj;
     ArrayList<MonstruoDAO> listMon;
     UsuarioDAO usuarioD;
     UsuarioDAO usuarioD2;
+    ObjetoDAO objetoD;
     ArrayList<ObjetoJSON> listObjetos;
     ArrayList<MonstruoJSON> listMonstruos;
     private static final Logger logger = LogManager.getLogger(DatabaseStatements.class.getName());
@@ -39,8 +42,10 @@ public class DatabaseStatements {
         monstruo2 = new MonstruoJSON("Hierba",0,1,2, "bbb");
         usuarioD = new UsuarioDAO();
         usuarioD2 = new UsuarioDAO();
-        objeto = new ObjetoJSON("botella","aaa");
-        objeto2 = new ObjetoJSON("comida","bbb");
+        usuarioDAOArrayList = new ArrayList<>();
+        objeto = new ObjetoJSON("Pvida","botella","aaa");
+        objeto2 = new ObjetoJSON("Pastel","comida","bbb");
+        objetoD =new ObjetoDAO();
         listMonstruos = new ArrayList<>();
         listMonstruos.add(monstruo2);
         listObjetos = new ArrayList<>();
@@ -124,6 +129,62 @@ public class DatabaseStatements {
             logger.error(e.getErrorCode());
         }
 
+    }
+
+    @Test
+    public void insertTestO(){
+
+        try{
+            objetoD.parseToObjectDB(objeto,usuario1.getNombre());
+
+            logger.info(objetoD.getId());
+
+            objetoD.insertDB();
+            objetoD = new ObjetoDAO();
+            objetoD.selectDB("Pvida");
+            ObjetoJSON objeto3 = new ObjetoJSON();
+            objeto3.parseFromObjectDB(objetoD);
+
+            logger.info(objeto3.toString());
+
+        }catch (SQLException e){
+            logger.error(e.getSQLState());
+            logger.error(e.getErrorCode());
+        }
+
+    }
+
+    @Test
+    public void retrieveListObj(){
+
+        try{
+        usuarioD.parseToUsuario(usuario1);
+        listObj = usuarioD.selectListObjetoDB();
+
+        for(ObjetoDAO obj: listObj){
+            logger.info(obj.toString());
+        }
+
+        }catch (SQLException e){
+            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
+        }
+
+    }
+
+    @Test
+    public  void getAllUsersTest(){
+
+        try{
+
+            usuarioDAOArrayList = ConsultaDB.getInstance().selectAllUsers();
+
+            for(UsuarioDAO usr: usuarioDAOArrayList){
+                logger.info(usr.getId());
+            }
+
+        }catch (SQLException e){
+            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
+        }
     }
 
 }

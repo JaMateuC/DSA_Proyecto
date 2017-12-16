@@ -1,6 +1,8 @@
 package eetac.dsa.Servidor.Model.jsonpojo;
 
 
+import eetac.dsa.Servidor.Model.dao.MonstruoDAO;
+
 public class MonstruoJSON{
     String name;
     String tipo;
@@ -58,6 +60,16 @@ public class MonstruoJSON{
         this.nivel = nivel;
         this.vidaActual = vidaActual;
         this.name = name;
+    }
+
+    public void parseFromMonstruoDB(MonstruoDAO monstruo){
+
+        this.setName(monstruo.getId());
+        this.setExperiencia(monstruo.getExperiencia());
+        this.setNivel(monstruo.getNivel());
+        this.setTipo(monstruo.getTipo());
+        this.setVidaActual(monstruo.getVidaActual());
+
     }
 
 }

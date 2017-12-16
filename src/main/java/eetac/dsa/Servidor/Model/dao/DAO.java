@@ -169,31 +169,8 @@ public abstract class DAO {
         while(rs.next()){
 
             ResultSetMetaData rsmd = rs.getMetaData();
-            try{
-                for(int i = 1; i <= rsmd.getColumnCount(); i++){
 
-                    int sqlTypes = rsmd.getColumnType(i);
-
-                    switch (sqlTypes) {
-                        case Types.VARCHAR:
-                            methods[i-1].invoke(this,rs.getString(i));
-                            break;
-                        case Types.BOOLEAN:
-                            methods[i-1].invoke(this,rs.getBoolean(i));
-                            break;
-                        case Types.INTEGER:
-                            methods[i-1].invoke(this,rs.getInt(i));
-                            break;
-
-                    }
-
-                }
-
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
-
+            parseResults(methods,rsmd ,rs);
 
         }
 
@@ -206,34 +183,14 @@ public abstract class DAO {
 
         getConnection();
 
-        StringBuffer  buffer = new StringBuffer();
+        PreparedStatement preparedStatement;
+        String selectSQL = "SELECT * FROM Monstruodao WHERE nombreUsuario = ?";
 
-        buffer.append("SELECT * FROM ");
-        buffer.append("MonstruoDAO");
-        buffer.append(" WHERE ");
-        for( Field field : this.getClass().getDeclaredFields()){
-            if (field.getName().startsWith("id")){
-                buffer.append(field.getName());
-            }
-        }
+        preparedStatement = this.con.prepareStatement(selectSQL);
+        String idState = appendId();
+        preparedStatement.setString(1, idState);
 
-        for(Method method : this.getClass().getDeclaredMethods()){
-            try {
-                if (method.getName().endsWith("Id")) {
-                    buffer.append(" = '" + method.invoke(this, null).toString() + "'");
-                }
-            }catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
-        }
-
-        logger.info(buffer.toString());
-
-        Statement st = this.con.createStatement();
-
-        ResultSet rs = st.executeQuery(buffer.toString());
+        ResultSet rs = preparedStatement.executeQuery();
 
         MonstruoDAO monstruoRes = new MonstruoDAO();
 
@@ -244,29 +201,8 @@ public abstract class DAO {
             monstruoRes = new MonstruoDAO();
 
             ResultSetMetaData rsmd = rs.getMetaData();
-            try{
-                for(int i = 1; i <= rsmd.getColumnCount(); i++){
 
-                    int sqlTypes = rsmd.getColumnType(i);
-
-                    switch (sqlTypes) {
-                        case Types.VARCHAR:
-                            methods[i-1].invoke(this,rs.getString(i));
-                            break;
-                        case Types.BOOLEAN:
-                            methods[i-1].invoke(this,rs.getBoolean(i));
-                            break;
-                        case Types.INTEGER:
-                            methods[i-1].invoke(this,rs.getInt(i));
-                            break;
-
-                    }
-
-                }
-
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+            monstruoRes.parseResults(methods, rsmd ,rs);
 
             monstruoList.add(monstruoRes);
 
@@ -284,34 +220,14 @@ public abstract class DAO {
 
         getConnection();
 
-        StringBuffer  buffer = new StringBuffer();
+        PreparedStatement preparedStatement;
+        String selectSQL = "SELECT * FROM objetodao WHERE nombreUsuario = ?";
 
-        buffer.append("SELECT * FROM ");
-        buffer.append("MonstruoDAO");
-        buffer.append(" WHERE ");
-        for( Field field : this.getClass().getDeclaredFields()){
-            if (field.getName().startsWith("id")){
-                buffer.append(field.getName());
-            }
-        }
+        preparedStatement = this.con.prepareStatement(selectSQL);
+        String idState = appendId();
+        preparedStatement.setString(1, idState);
 
-        for(Method method : this.getClass().getDeclaredMethods()){
-            try {
-                if (method.getName().endsWith("Id")) {
-                    buffer.append(" = '" + method.invoke(this, null).toString() + "'");
-                }
-            }catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
-        }
-
-        logger.info(buffer.toString());
-
-        Statement st = this.con.createStatement();
-
-        ResultSet rs = st.executeQuery(buffer.toString());
+        ResultSet rs = preparedStatement.executeQuery();
 
         ObjetoDAO objetoRes = new ObjetoDAO();
 
@@ -322,29 +238,8 @@ public abstract class DAO {
             objetoRes = new ObjetoDAO();
 
             ResultSetMetaData rsmd = rs.getMetaData();
-            try{
-                for(int i = 1; i <= rsmd.getColumnCount(); i++){
 
-                    int sqlTypes = rsmd.getColumnType(i);
-
-                    switch (sqlTypes) {
-                        case Types.VARCHAR:
-                            methods[i-1].invoke(this,rs.getString(i));
-                            break;
-                        case Types.BOOLEAN:
-                            methods[i-1].invoke(this,rs.getBoolean(i));
-                            break;
-                        case Types.INTEGER:
-                            methods[i-1].invoke(this,rs.getInt(i));
-                            break;
-
-                    }
-
-                }
-
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+            objetoRes.parseResults(methods, rsmd ,rs);
 
             objetoList.add(objetoRes);
 
@@ -356,83 +251,125 @@ public abstract class DAO {
 
     }
 
-    /*UPDATE STATMENTS*/
+    public ArrayList<UsuarioDAO> selectAllUsers() throws SQLException{
 
-    public void updateDB() throws SQLException{
+        ArrayList<UsuarioDAO> usuarioDAOArrayList = new ArrayList<>();
 
         getConnection();
 
-        StringBuffer  buffer = new StringBuffer();
+        PreparedStatement preparedStatement;
+        String selectSQL = "SELECT * FROM usuariodao";
 
-        buffer.append("UPDATE ");
-        buffer.append(this.getClass().getSimpleName());
-        buffer.append(" SET ");
+        preparedStatement = this.con.prepareStatement(selectSQL);
 
-        Field[] fields = ordenarFields();
-        Method[] methods = ordenarGetMethods();
+        ResultSet rs = preparedStatement.executeQuery();
 
-        for( Field field : fields){
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-            int fieldIndex = 1;
+        Method[] methods = usuarioDAO.ordenarSetMethods();
 
-            Annotation aField = field.getAnnotation(OrderFields.class);
-            if (aField != null && aField instanceof OrderFields){
-                final OrderFields anotacion = (OrderFields) aField;
-                fieldIndex = anotacion.indice();
-            }
+        while(rs.next()){
 
-            buffer.append(field.getName() + " = ");
+            usuarioDAO = new UsuarioDAO();
 
-            for(Method method : methods){
+            ResultSetMetaData rsmd = rs.getMetaData();
+
+            usuarioDAO.parseResults(methods, rsmd ,rs);
+
+            usuarioDAOArrayList.add(usuarioDAO);
 
 
+        }
 
-                int methodIndex = 0;
 
-                Annotation aMethod = method.getAnnotation(OrderGetMethods.class);
-                if (aMethod != null && aMethod instanceof OrderGetMethods){
-                    final OrderGetMethods anotacion = (OrderGetMethods) aMethod;
-                    methodIndex = anotacion.indice();
+        return usuarioDAOArrayList;
+
+    }
+
+    /*UPDATE STATMENTS*/
+
+    public Boolean updateDB() throws SQLException{
+
+        try {
+            getConnection();
+
+            StringBuffer buffer = new StringBuffer();
+
+            buffer.append("UPDATE ");
+            buffer.append(this.getClass().getSimpleName());
+            buffer.append(" SET ");
+
+            Field[] fields = ordenarFields();
+            Method[] methods = ordenarGetMethods();
+
+            for (Field field : fields) {
+
+                int fieldIndex = 1;
+
+                Annotation aField = field.getAnnotation(OrderFields.class);
+                if (aField != null && aField instanceof OrderFields) {
+                    final OrderFields anotacion = (OrderFields) aField;
+                    fieldIndex = anotacion.indice();
                 }
 
+                buffer.append(field.getName() + " = ");
 
-                if (fieldIndex == methodIndex)
-                    try{
-                        if(method.getReturnType().equals(String.class)) {
-                            buffer.append("'" + method.invoke(this, null).toString() + "'" + ",");
-                        } else {
-                            buffer.append(method.invoke(this, null).toString() + ",");
-                        }
-                        break;
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
+                for (Method method : methods) {
+
+
+                    int methodIndex = 0;
+
+                    Annotation aMethod = method.getAnnotation(OrderGetMethods.class);
+                    if (aMethod != null && aMethod instanceof OrderGetMethods) {
+                        final OrderGetMethods anotacion = (OrderGetMethods) aMethod;
+                        methodIndex = anotacion.indice();
                     }
 
+
+                    if (fieldIndex == methodIndex)
+                        try {
+                            if (method.getReturnType().equals(String.class)) {
+                                buffer.append("'" + method.invoke(this, null).toString() + "'" + ",");
+                            } else {
+                                buffer.append(method.invoke(this, null).toString() + ",");
+                            }
+                            break;
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        } catch (InvocationTargetException e) {
+                            e.printStackTrace();
+                        }
+
+                }
             }
 
-        }
-        buffer.delete(buffer.length()-1,buffer.length());
+            buffer.delete(buffer.length() - 1, buffer.length());
 
-        buffer.append(" WHERE ");
-        for( Field field : this.getClass().getDeclaredFields()){
-            if (field.getName().startsWith("id")){
-                buffer.append(field.getName());
-                break;
+            buffer.append(" WHERE ");
+            for (Field field : this.getClass().getDeclaredFields()) {
+                if (field.getName().startsWith("id")) {
+                    buffer.append(field.getName());
+                    break;
+                }
             }
+
+            buffer.append(" = ");
+
+            buffer.append(getIDObject());
+
+            logger.info(buffer.toString());
+
+            Statement st = this.con.createStatement();
+
+            st.executeUpdate(buffer.toString());
+
+            return true;
+
+        }catch (SQLException e){
+
+            return false;
+
         }
-
-        buffer.append(" = ");
-
-        buffer.append(getIDObject());
-
-        logger.info(buffer.toString());
-
-        Statement st = this.con.createStatement();
-
-        st.executeUpdate(buffer.toString());
-
     }
 
     /*FUNCTIONS*/
@@ -529,6 +466,50 @@ public abstract class DAO {
         });
 
         return methods;
+
+    }
+
+    public void parseResults(Method[] methods, ResultSetMetaData rsmd ,ResultSet rs){
+        try{
+            for(int i = 1; i <= rsmd.getColumnCount(); i++){
+
+                int sqlTypes = rsmd.getColumnType(i);
+
+                switch (sqlTypes) {
+                    case Types.VARCHAR:
+                        methods[i-1].invoke(this,rs.getString(i));
+                        break;
+                    case Types.BOOLEAN:
+                        methods[i-1].invoke(this,rs.getBoolean(i));
+                        break;
+                    case Types.INTEGER:
+                        methods[i-1].invoke(this,rs.getInt(i));
+                        break;
+
+                }
+
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public String appendId(){
+
+        for(Method method : this.getClass().getDeclaredMethods()){
+            try {
+                if (method.getName().endsWith("Id")) {
+                    return method.invoke(this, null).toString();
+                }
+            }catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
 
     }
 

@@ -19,6 +19,8 @@ public class UsuarioDAO extends DAO{
     private int y;
     @OrderFields(indice = 4)
     private boolean genero;
+    @OrderFields(indice = 5)
+    private String email;
 
 
     public UsuarioDAO() {
@@ -74,6 +76,16 @@ public class UsuarioDAO extends DAO{
         this.genero = genero;
     }
 
+    @OrderGetMethods(indice = 5)
+    public String getEmail() {
+        return email;
+    }
+
+    @OrderGetMethods(indice = 5)
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public void parseToUsuario(UsuarioJSON usuario){
 
         this.setId(usuario.getNombre());
@@ -81,6 +93,7 @@ public class UsuarioDAO extends DAO{
         this.setPassword(usuario.getPassword());
         this.setX(usuario.getX());
         this.setY(usuario.getY());
+        this.setEmail(getEmail());
 
     }
 
@@ -94,7 +107,7 @@ public class UsuarioDAO extends DAO{
             for (ObjetoJSON objeto : listObjetos) {
 
                 ObjetoDAO objetoD = new ObjetoDAO();
-                objetoD.parseToObject(objeto, usuario.getNombre());
+                objetoD.parseToObjectDB(objeto, usuario.getNombre());
                 listObjetoDAO.add(objetoD);
 
             }

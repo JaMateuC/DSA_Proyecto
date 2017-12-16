@@ -37,7 +37,7 @@ public class USERservice
 
             UsuarioJSON user = new UsuarioJSON();
 
-            ConsultaDB.getInstance().getUsuario(nombre);
+            ConsultaDB.getInstance().getUsuarioBasic(nombre);
 
             user.setPassword(null);                 //La contraseña no se envia al cliente
 
@@ -104,13 +104,25 @@ public class USERservice
     @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<MonstruoJSON> pruebaandroid(@PathParam("nombre") String nombre) {
 
-        logger.info(nombre);
+        ArrayList<MonstruoJSON> list = new ArrayList<>();
 
+        try{
+            list = ConsultaDB.getInstance().getMonstruosUsuario(nombre);
 
+            /*if(MapUsuarios.getInstance().getUsuarios().containsKey(nombre))
+                return MapUsuarios.getInstance().getUsuarios().get(nombre).getMonstruosl();
+            return null;*/
 
-        if(MapUsuarios.getInstance().getUsuarios().containsKey(nombre))
-            return MapUsuarios.getInstance().getUsuarios().get(nombre).getMonstruosl();
-        return null;
+        }catch (SQLException e){
+            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
+        }
+
+        finally {
+
+            return list;
+
+        }
+
     }
 
     @GET
@@ -118,9 +130,23 @@ public class USERservice
     @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<UsuarioJSON> ranking() {
 
-        ArrayList<UsuarioJSON> list = new ArrayList<UsuarioJSON>(MapUsuarios.getInstance().getUsuarios().values());
-        Collections.sort(list,UsuarioJSON.Productoventascomparator);
-        return list;
+        ArrayList<UsuarioJSON> list = new ArrayList<>();
+
+        try{
+            list = ConsultaDB.getInstance().getAllUsers();
+
+            //ArrayList<UsuarioJSON> list = new ArrayList<UsuarioJSON>(MapUsuarios.getInstance().getUsuarios().values());
+            Collections.sort(list,UsuarioJSON.Productoventascomparator);
+
+        }catch (SQLException e){
+            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
+        }
+
+        finally {
+
+            return list;
+
+        }
 
     }
 
