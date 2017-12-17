@@ -1,5 +1,6 @@
 package eetac.dsa.Servidor;
 
+import eetac.dsa.Servidor.Model.ConsultaDB;
 import eetac.dsa.Servidor.Model.jsonpojo.EscenarioJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultCambiarEscenario;
@@ -11,8 +12,7 @@ public class Sesion {
 
     public Sesion(UsuarioJSON protagonista, String nombreEscenario) {
         this.protagonista = protagonista;
-        //TODO: Es te que buscar un escenari a partir del seu nom i llavors obtindre la seva dirrecio
-        cargarEscenarioFichero(nombreEscenario/*aqui aniria la direccio del fitcher*/ );
+        cargarEscenarioFichero(ConsultaDB.getInstance().getMapa(nombreEscenario).getDireccioFile());
     }
 
     public EscenarioJSON getEscenario() {

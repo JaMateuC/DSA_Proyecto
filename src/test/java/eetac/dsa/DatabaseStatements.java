@@ -52,9 +52,9 @@ public class DatabaseStatements {
         listObjetos.add(objeto);
         listObjetos.add(objeto2);
         listObj = new ArrayList<>();
-        usuario1 = new UsuarioJSON(listObjetos,listMonstruos,"jaume","aaa","bbb",true);
-        monstruo = new MonstruoDAO("Primero","Hierba",100,1,1000,"Jaume");
-        monstruo1 = new MonstruoDAO("Primero","Fuego",100,1,1000,"Jaume");
+        usuario1 = new UsuarioJSON(listObjetos,listMonstruos,"pepito","aaa","bbb",true);
+        monstruo = new MonstruoDAO("Primero","Hierba",100,1,1000,"jaume");
+        monstruo1 = new MonstruoDAO("Primero","Fuego",100,1,1000,"jaume");
         monstruo3 = new MonstruoDAO();
 
 
@@ -185,6 +185,17 @@ public class DatabaseStatements {
         }catch (SQLException e){
             logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
         }
+    }
+
+    @Test
+    public  void deleteAllTest(){
+
+        if(ConsultaDB.getInstance().deleteUserRowDB(usuario1)){
+            logger.info("Hecho");
+        }else{
+            logger.error("Error algo no ha funcionado");
+        }
+
     }
 
 }

@@ -1,5 +1,6 @@
 package eetac.dsa.Servidor.Service;
 
+import eetac.dsa.Servidor.Model.ConsultaDB;
 import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
 import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
@@ -22,30 +23,18 @@ public class AUTHservice
     @Produces(MediaType.APPLICATION_JSON)
     public KeyUser login(UsuarioJSON user)
     {
-            KeyUser key = new KeyUser();
-            logger.info("asd");
+        KeyUser key = new KeyUser();
 
-            UsuarioDAO usuarioD = new UsuarioDAO();
+        if (ConsultaDB.getInstance().getUsuarioBasic(user.getNombre()).getPassword().equals(user.getPassword()))    //En el equals va la respuesta de la memoria (password)
+        {
+            key.setKey((new Random().nextInt(2048) + 1));
 
-            try {
-                usuarioD.selectDB(user.getNombre());
 
-                if (usuarioD.getPassword().equals(user.getPassword()))    //En el equals va la respuesta de la memoria (password)
-                {
-                    key.setKey((new Random().nextInt(2048) + 1));
+        }else{
+            key.setKey(0);
+        }
 
-                    logger.info(key.getKey());
-
-                }
-            }catch (SQLException e){
-                key.setKey(0);
-                logger.info(key.getKey());
-            }
-
-            finally {
-
-                return key;
-
-            }
+        logger.info(key.getKey());
+        return key;
     }
 }

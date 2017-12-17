@@ -33,18 +33,14 @@ public class USERservice
     public UsuarioJSON getUsuario(@PathParam("nombre") String nombre)
     {
         //Buscar Usuario por nombre y devolverlo al cliente
-        try {
 
-            UsuarioJSON user = new UsuarioJSON();
+        UsuarioJSON user = new UsuarioJSON();
 
-            ConsultaDB.getInstance().getUsuarioBasic(nombre);
+        ConsultaDB.getInstance().getUsuarioBasic(nombre);
 
-            user.setPassword(null);                 //La contraseña no se envia al cliente
+        user.setPassword(null);                 //La contraseña no se envia al cliente
 
-            return user;
-        }catch (SQLException e){
-            return null;                          // TODO: poner otro error
-        }
+        return user;
 
 
     }
@@ -105,23 +101,13 @@ public class USERservice
     public ArrayList<MonstruoJSON> pruebaandroid(@PathParam("nombre") String nombre) {
 
         ArrayList<MonstruoJSON> list = new ArrayList<>();
-
-        try{
-            list = ConsultaDB.getInstance().getMonstruosUsuario(nombre);
+        list = ConsultaDB.getInstance().getMonstruosUsuario(nombre);
 
             /*if(MapUsuarios.getInstance().getUsuarios().containsKey(nombre))
                 return MapUsuarios.getInstance().getUsuarios().get(nombre).getMonstruosl();
             return null;*/
 
-        }catch (SQLException e){
-            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
-        }
-
-        finally {
-
-            return list;
-
-        }
+        return list;
 
     }
 
@@ -132,21 +118,12 @@ public class USERservice
 
         ArrayList<UsuarioJSON> list = new ArrayList<>();
 
-        try{
-            list = ConsultaDB.getInstance().getAllUsers();
+        list = ConsultaDB.getInstance().getAllUsers();
 
-            //ArrayList<UsuarioJSON> list = new ArrayList<UsuarioJSON>(MapUsuarios.getInstance().getUsuarios().values());
-            Collections.sort(list,UsuarioJSON.Productoventascomparator);
+        //ArrayList<UsuarioJSON> list = new ArrayList<UsuarioJSON>(MapUsuarios.getInstance().getUsuarios().values());
+        Collections.sort(list,UsuarioJSON.Productoventascomparator);
+        return list;
 
-        }catch (SQLException e){
-            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
-        }
-
-        finally {
-
-            return list;
-
-        }
 
     }
 

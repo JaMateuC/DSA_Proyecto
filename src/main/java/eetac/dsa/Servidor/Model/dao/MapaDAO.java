@@ -2,7 +2,7 @@ package eetac.dsa.Servidor.Model.dao;
 
 import eetac.dsa.Servidor.Model.jsonpojo.EscenarioJSON;
 
-public class MapaDAO {
+public class MapaDAO extends DAO{
 
     @OrderFields(indice = 0)
     private String nom;
@@ -36,7 +36,6 @@ public class MapaDAO {
 
         this.setNom(mapa.getNombre());
         //this.setDireccioFile();
-        //this.setNomUsuario(mapa.get);
 
     }
 }

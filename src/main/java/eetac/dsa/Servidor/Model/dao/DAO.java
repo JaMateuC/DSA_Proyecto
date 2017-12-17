@@ -139,6 +139,28 @@ public abstract class DAO {
 
     }
 
+    public void deleteMonstruosAndObjetosUsuario() throws  SQLException{
+
+        getConnection();
+
+        PreparedStatement preparedStatement;
+        String selectSQL = "DELETE FROM Monstruodao WHERE nombreUsuario = ?";
+
+        preparedStatement = this.con.prepareStatement(selectSQL);
+        String idState = appendId();
+        preparedStatement.setString(1, idState);
+
+        preparedStatement.executeUpdate();
+
+        selectSQL = "DELETE FROM Objetodao WHERE nombreUsuario = ?";
+
+        preparedStatement = this.con.prepareStatement(selectSQL);
+        preparedStatement.setString(1, idState);
+
+        preparedStatement.executeUpdate();
+
+    }
+
     /*SELECT STATMENTS*/
 
     public void selectDB(String id) throws SQLException{
@@ -378,14 +400,20 @@ public abstract class DAO {
 
         for(Method method : this.getClass().getDeclaredMethods()){
             if (method.getName().startsWith("getId")){
-                try{
-                    String id = "'" + method.invoke(this,null).toString() + "'";
-                    return id;
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                }
+                return invokeName(method);
+            }
+
+        }
+
+        return "";
+
+    }
+
+    public String getUserName(){
+
+        for(Method method : this.getClass().getDeclaredMethods()){
+            if (method.getName().startsWith("Usuario")){
+                return invokeName(method);
             }
 
         }
@@ -510,6 +538,21 @@ public abstract class DAO {
         }
 
         return null;
+
+    }
+
+    public String invokeName(Method method){
+
+        try{
+            String usuario = "'" + method.invoke(this,null).toString() + "'";
+            return usuario;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            return "";
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+            return "";
+        }
 
     }
 

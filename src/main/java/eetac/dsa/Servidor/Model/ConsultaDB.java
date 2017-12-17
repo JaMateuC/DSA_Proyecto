@@ -1,12 +1,12 @@
 package eetac.dsa.Servidor.Model;
 
-import eetac.dsa.Servidor.Model.dao.DAO;
-import eetac.dsa.Servidor.Model.dao.MonstruoDAO;
-import eetac.dsa.Servidor.Model.dao.ObjetoDAO;
-import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
+import eetac.dsa.Servidor.Model.dao.*;
+import eetac.dsa.Servidor.Model.jsonpojo.EscenarioJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.MonstruoJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.ObjetoJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,8 +14,10 @@ import java.util.ArrayList;
 public class ConsultaDB extends DAO {
 
     private static ConsultaDB singleConsulta = null;
+    private static final Logger logger = LogManager.getLogger(ConsultaDB.class.getName());
 
     private ConsultaDB(){
+
 
     }
 
@@ -31,59 +33,76 @@ public class ConsultaDB extends DAO {
 
     }
 
-    public UsuarioJSON getUsuarioBasic(String name) throws SQLException{
+    public UsuarioJSON getUsuarioBasic(String name) {
 
         UsuarioDAO usuarioD = new UsuarioDAO();
         UsuarioJSON usuario = new UsuarioJSON();
-        usuarioD.selectDB(name);
-        usuario.parseFromDB(usuarioD);
+
+        try{
+
+            usuarioD.selectDB(name);
+            usuario.parseFromDB(usuarioD);
+
+        }catch(SQLException e){
+            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
+        }
+
         return usuario;
 
     }
 
-    public ArrayList<ObjetoJSON> getObjtosUsuario(String name) throws SQLException{
+    public ArrayList<ObjetoJSON> getObjtosUsuario(String name) {
 
         UsuarioDAO usuarioD = new UsuarioDAO();
         ArrayList<ObjetoDAO> listObj;
         ArrayList<ObjetoJSON> objetoJSONArrayList = new ArrayList<>();
 
-        usuarioD.selectDB(name);
-        listObj = usuarioD.selectListObjetoDB();
+        try {
 
-        for(ObjetoDAO obj: listObj){
+            usuarioD.selectDB(name);
+            listObj = usuarioD.selectListObjetoDB();
 
-            ObjetoJSON objetoJSON = new ObjetoJSON();
-            objetoJSON.parseFromObjectDB(obj);
-            objetoJSONArrayList.add(objetoJSON);
+            for (ObjetoDAO obj : listObj) {
 
+                ObjetoJSON objetoJSON = new ObjetoJSON();
+                objetoJSON.parseFromObjectDB(obj);
+                objetoJSONArrayList.add(objetoJSON);
+
+            }
+        }catch (SQLException e){
+            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
         }
 
         return objetoJSONArrayList;
 
     }
 
-    public ArrayList<MonstruoJSON> getMonstruosUsuario(String name) throws SQLException{
+    public ArrayList<MonstruoJSON> getMonstruosUsuario(String name) {
 
         UsuarioDAO usuarioD = new UsuarioDAO();
         ArrayList<MonstruoDAO> monstruoDAOArrayList;
         ArrayList<MonstruoJSON> monstruoJSONArrayList = new ArrayList<>();
 
-        usuarioD.selectDB(name);
-        monstruoDAOArrayList = usuarioD.selectListMonstruoDB();
+        try {
+            usuarioD.selectDB(name);
+            monstruoDAOArrayList = usuarioD.selectListMonstruoDB();
 
-        for(MonstruoDAO mon: monstruoDAOArrayList){
+            for (MonstruoDAO mon : monstruoDAOArrayList) {
 
-            MonstruoJSON monstruoJSON = new MonstruoJSON();
-            monstruoJSON.parseFromMonstruoDB(mon);
-            monstruoJSONArrayList.add(monstruoJSON);
+                MonstruoJSON monstruoJSON = new MonstruoJSON();
+                monstruoJSON.parseFromMonstruoDB(mon);
+                monstruoJSONArrayList.add(monstruoJSON);
 
+            }
+        }catch (SQLException e){
+            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
         }
 
         return monstruoJSONArrayList;
 
     }
 
-    public UsuarioJSON getUsuarioEntero(String name)throws SQLException{
+    public UsuarioJSON getUsuarioEntero(String name){
 
         UsuarioJSON usuarioJSON;
         usuarioJSON = ConsultaDB.getInstance().getUsuarioBasic(name);
@@ -93,22 +112,84 @@ public class ConsultaDB extends DAO {
 
     }
 
-    public  ArrayList<UsuarioJSON> getAllUsers() throws SQLException{
+    public  ArrayList<UsuarioJSON> getAllUsers() {
 
         ArrayList<UsuarioDAO> usuarioDAOArrayList;
         ArrayList<UsuarioJSON> usuarioJSONArrayList = new ArrayList<>();
 
-        usuarioDAOArrayList = selectAllUsers();
+        try {
 
-        for(UsuarioDAO usuarioDAO: usuarioDAOArrayList){
+            usuarioDAOArrayList = selectAllUsers();
 
-            UsuarioJSON usuarioJSON = new UsuarioJSON();
-            usuarioJSON = ConsultaDB.getInstance().getUsuarioEntero(usuarioDAO.getId());
-            usuarioJSONArrayList.add(usuarioJSON);
+            for (UsuarioDAO usuarioDAO : usuarioDAOArrayList) {
 
+                UsuarioJSON usuarioJSON = new UsuarioJSON();
+                usuarioJSON = ConsultaDB.getInstance().getUsuarioEntero(usuarioDAO.getId());
+                usuarioJSONArrayList.add(usuarioJSON);
+
+            }
+        }catch (SQLException e){
+            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
         }
 
         return usuarioJSONArrayList;
+
+    }
+
+    public MapaDAO getMapa(String name){
+
+        MapaDAO mapaDAO =new MapaDAO();
+
+        try{
+
+            mapaDAO.selectDB(name);
+
+        }catch (SQLException e){
+
+            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
+
+        }
+
+        return  mapaDAO;
+
+    }
+
+    public Boolean insertUser(UsuarioJSON usuarioJSON){
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+        usuarioDAO.parseToUsuario(usuarioJSON);
+
+        try{
+            usuarioDAO.insertDB();
+            return true;
+
+        }catch (SQLException e){
+
+            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
+            return false;
+
+        }
+
+    }
+
+    public Boolean deleteUserRowDB(UsuarioJSON usuarioJSON){
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+        usuarioDAO.parseToUsuario(usuarioJSON);
+
+        try{
+            usuarioDAO.deleteDB();
+            usuarioDAO.deleteMonstruosAndObjetosUsuario();
+            return true;
+
+        }catch (SQLException e){
+
+            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
+            return false;
+
+        }
 
     }
 
