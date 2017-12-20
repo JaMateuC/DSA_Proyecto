@@ -1,6 +1,6 @@
 create database dsa;
 
-CREATE TABLE monstruoDAO (id varchar(100), tipo varchar(45), experiencia int, nivel int, vidaActual int, nombreUsuario varchar(100));
+CREATE TABLE monstruoDAO (id varchar(100), tipo varchar(45), experiencia int, nivel int, vidaActual int, nombreUsuario varchar(100), nombreMapa varchar(100));
 
 create table objetoDAO (id varchar(100), tipo varchar(100), extra varchar(100), nombreUsuario(100));
 
