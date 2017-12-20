@@ -23,9 +23,6 @@ import java.util.Collections;
 @Path("/user")
 public class USERservice
 {
-    private static final Logger logger = LogManager.getLogger(USERservice.class.getName());
-
-    private String name;
 
     @GET
     @Path("/profile/{nombre}")
@@ -63,7 +60,7 @@ public class USERservice
     @POST
     @Path("/getEscenario")
     @Consumes(MediaType.APPLICATION_JSON)
-    public ResultCambiarEscenario getLoggingArgs(QueryCambiarEscenario qCamEsc)
+    public ResultCambiarEscenario getCambiarEscenario(QueryCambiarEscenario qCamEsc)
     {
         try
         {
@@ -84,7 +81,8 @@ public class USERservice
         {
             MundoControlador.getInstance().getSesion(qUpUsuario.getKey()).setProtagonista(qUpUsuario.getUsuarioJson());
             ResultadoAceptar resultadoAceptar = new ResultadoAceptar();
-            resultadoAceptar.setPermitido(true);
+            resultadoAceptar.setPermitido(ConsultaDB.getInstance().updateUserDB(qUpUsuario.getUsuarioJson(),qUpUsuario.getNomEscenarip()));
+
             return resultadoAceptar;
         }
         catch (Exception e)
@@ -100,7 +98,7 @@ public class USERservice
     @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<MonstruoJSON> pruebaandroid(@PathParam("nombre") String nombre) {
 
-        ArrayList<MonstruoJSON> list = new ArrayList<>();
+        ArrayList<MonstruoJSON> list;
         list = ConsultaDB.getInstance().getMonstruosUsuario(nombre);
 
             /*if(MapUsuarios.getInstance().getUsuarios().containsKey(nombre))
@@ -116,7 +114,7 @@ public class USERservice
     @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<UsuarioJSON> ranking() {
 
-        ArrayList<UsuarioJSON> list = new ArrayList<>();
+        ArrayList<UsuarioJSON> list;
 
         list = ConsultaDB.getInstance().getAllUsers();
 

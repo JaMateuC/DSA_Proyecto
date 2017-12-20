@@ -193,4 +193,23 @@ public class ConsultaDB extends DAO {
 
     }
 
+    public Boolean updateUserDB(UsuarioJSON usuarioJSON, String mapaNombre){
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+        usuarioDAO.parseToUsuario(usuarioJSON,mapaNombre);
+
+        try{
+            usuarioDAO.updateDB();
+            return true;
+
+        }catch (SQLException e){
+
+            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
+            return false;
+
+        }
+
+    }
+
 }

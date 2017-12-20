@@ -42,8 +42,9 @@ public class Sesion {
     public ResultCambiarEscenario cambiarEscenario(String nombreEscenario,int x,int y)
     {
             ResultCambiarEscenario resultCambiarEscenario = new ResultCambiarEscenario();
-            resultCambiarEscenario.setPermitido(false);
+            cargarEscenarioFichero(ConsultaDB.getInstance().getMapa(nombreEscenario).getDireccioFile());
             resultCambiarEscenario.setPermitido(true);
+            resultCambiarEscenario.setEscenarioJSON(escenario);
             return resultCambiarEscenario;
     }
 
