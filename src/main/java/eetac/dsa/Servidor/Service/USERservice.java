@@ -14,6 +14,7 @@ import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultadoAceptar;
 import eetac.dsa.Servidor.MundoControlador;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -77,10 +78,11 @@ public class USERservice
     @GET
     @Path("/getMonstruosEncontrables")
     @Produces(MediaType.APPLICATION_JSON)
-    public MonstruoJSON[][] getMonstruosEncontrables()
+    public String getMonstruosEncontrables()
     {
         try {
-            return CargadorJSON.monnstruosEncontrables();
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(CargadorJSON.monnstruosEncontrables());
         }
         catch (Exception e)
         {

@@ -99,7 +99,7 @@ public class MonstruoDAO extends DAO{
     }
 
     public void parseToMonstruo(MonstruoJSON monstruo, String usuario){
-        
+
         this.setExperiencia(monstruo.getExperiencia());
         this.setNivel(monstruo.getNivel());
         this.setTipo(monstruo.getTipo());

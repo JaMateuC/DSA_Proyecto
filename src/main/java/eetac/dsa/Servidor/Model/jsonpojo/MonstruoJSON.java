@@ -55,7 +55,6 @@ public class MonstruoJSON{
 
     public void parseFromMonstruoDB(MonstruoDAO monstruo){
 
-        this.setName(monstruo.getId());
         this.setExperiencia(monstruo.getExperiencia());
         this.setNivel(monstruo.getNivel());
         this.setTipo(monstruo.getTipo());
