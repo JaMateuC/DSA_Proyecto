@@ -2,10 +2,10 @@ package eetac.dsa.Servidor.Service;
 
 import eetac.dsa.Servidor.CargadorJSON;
 import eetac.dsa.Servidor.MapUsuarios;
+import eetac.dsa.Servidor.Model.ConsultaDB;
 import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
 import eetac.dsa.Servidor.Model.jsonpojo.MonstruoJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
-import eetac.dsa.Servidor.Model.jsonpojo.ResultadoServidorJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.querysclient.*;
 import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultCambiarEscenario;
@@ -25,9 +25,6 @@ import java.util.Vector;
 @Path("/user")
 public class USERservice
 {
-    private static final Logger logger = LogManager.getLogger(USERservice.class.getName());
-
-    private String name;
 
     @GET
     @Path("/profile/{nombre}")
@@ -35,22 +32,14 @@ public class USERservice
     public UsuarioJSON getUsuario(@PathParam("nombre") String nombre)
     {
         //Buscar Usuario por nombre y devolverlo al cliente
-        try {
-            UsuarioDAO userD = new UsuarioDAO();
-            userD.selectDB(nombre);
 
+        UsuarioJSON user = new UsuarioJSON();
 
-            UsuarioJSON user = new UsuarioJSON();
-            user.parseFromDB(userD);
-            //user.setNombre(nombre);
-            user.setPassword(null);                 //La contraseña no se envia al cliente
-            user.setEmail(nombre + "@dsa.edu");
-            //user.setGenero(true);
+        ConsultaDB.getInstance().getUsuarioBasic(nombre);
 
-            return user;
-        }catch (SQLException e){
-            return null;                          // TODO: poner otro error
-        }
+        user.setPassword(null);                 //La contraseña no se envia al cliente
+
+        return user;
 
 
     }
@@ -73,7 +62,7 @@ public class USERservice
     @POST
     @Path("/getEscenario")
     @Consumes(MediaType.APPLICATION_JSON)
-    public ResultCambiarEscenario getLoggingArgs(QueryCambiarEscenario qCamEsc)
+    public ResultCambiarEscenario getCambiarEscenario(QueryCambiarEscenario qCamEsc)
     {
         try
         {
@@ -108,7 +97,8 @@ public class USERservice
         {
             MundoControlador.getInstance().getSesion(qUpUsuario.getKey()).setProtagonista(qUpUsuario.getUsuarioJson());
             ResultadoAceptar resultadoAceptar = new ResultadoAceptar();
-            resultadoAceptar.setPermitido(true);
+            resultadoAceptar.setPermitido(ConsultaDB.getInstance().updateUserDB(qUpUsuario.getUsuarioJson(),qUpUsuario.getNomEscenarip()));
+
             return resultadoAceptar;
         }
         catch (Exception e)
@@ -124,10 +114,15 @@ public class USERservice
     @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<MonstruoJSON> pruebaandroid(@PathParam("nombre") String nombre) {
 
-        logger.info(nombre);
-        if(MapUsuarios.getInstance().getUsuarios().containsKey(nombre))
-            return MapUsuarios.getInstance().getUsuarios().get(nombre).getMonstruosl();
-        return null;
+        ArrayList<MonstruoJSON> list;
+        list = ConsultaDB.getInstance().getMonstruosUsuario(nombre);
+
+            /*if(MapUsuarios.getInstance().getUsuarios().containsKey(nombre))
+                return MapUsuarios.getInstance().getUsuarios().get(nombre).getMonstruosl();
+            return null;*/
+
+        return list;
+
     }
 
     @GET
@@ -135,9 +130,14 @@ public class USERservice
     @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<UsuarioJSON> ranking() {
 
-        ArrayList<UsuarioJSON> list = new ArrayList<UsuarioJSON>(MapUsuarios.getInstance().getUsuarios().values());
+        ArrayList<UsuarioJSON> list;
+
+        list = ConsultaDB.getInstance().getAllUsers();
+
+        //ArrayList<UsuarioJSON> list = new ArrayList<UsuarioJSON>(MapUsuarios.getInstance().getUsuarios().values());
         Collections.sort(list,UsuarioJSON.Productoventascomparator);
         return list;
+
 
     }
 
