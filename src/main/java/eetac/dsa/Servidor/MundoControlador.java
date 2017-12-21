@@ -1,11 +1,16 @@
 package eetac.dsa.Servidor;
 
+import eetac.dsa.Servidor.Model.jsonpojo.MonstruoJSON;
+
 import java.util.HashMap;
+import java.util.Vector;
 
 public class MundoControlador {
     HashMap<Integer,Sesion> sesiones;
 
     static MundoControlador mundoControlador;
+
+
 
     static public MundoControlador getInstance() {
         if(mundoControlador==null)
@@ -15,6 +20,8 @@ public class MundoControlador {
 
     private MundoControlador() {
         sesiones = new HashMap<>();
+        monstruosEncontrables = new Vector<>();
+
     }
 
     public Sesion getSesion(int key)
@@ -26,4 +33,6 @@ public class MundoControlador {
     {
         sesiones.put(key,sesion);
     }
+
+    public Vector<Vector<MonstruoJSON>> monstruosEncontrables;
 }

@@ -1,5 +1,6 @@
 package eetac.dsa.Servidor.Service;
 
+import eetac.dsa.Servidor.CargadorJSON;
 import eetac.dsa.Servidor.MapUsuarios;
 import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
 import eetac.dsa.Servidor.Model.jsonpojo.MonstruoJSON;
@@ -19,6 +20,7 @@ import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Vector;
 
 @Path("/user")
 public class USERservice
@@ -76,6 +78,20 @@ public class USERservice
         try
         {
             return MundoControlador.getInstance().getSesion(qCamEsc.getKey()).cambiarEscenario(qCamEsc.getNombre(),qCamEsc.getX(),qCamEsc.getY());
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    @GET
+    @Path("/getMonstruosEncontrables")
+    @Produces(MediaType.APPLICATION_JSON)
+    public MonstruoJSON[][] getMonstruosEncontrables()
+    {
+        try {
+            return CargadorJSON.monnstruosEncontrables();
         }
         catch (Exception e)
         {
