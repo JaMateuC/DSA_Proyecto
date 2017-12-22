@@ -1,5 +1,6 @@
 package eetac.dsa.Servidor.Service;
 
+import eetac.dsa.Servidor.CargadorJSON;
 import eetac.dsa.Servidor.MapUsuarios;
 import eetac.dsa.Servidor.Model.ConsultaDB;
 import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
@@ -13,12 +14,14 @@ import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultadoAceptar;
 import eetac.dsa.Servidor.MundoControlador;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Vector;
 
 @Path("/user")
 public class USERservice
@@ -65,6 +68,21 @@ public class USERservice
         try
         {
             return MundoControlador.getInstance().getSesion(qCamEsc.getKey()).cambiarEscenario(qCamEsc.getNombre(),qCamEsc.getX(),qCamEsc.getY());
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    @GET
+    @Path("/getMonstruosEncontrables")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getMonstruosEncontrables()
+    {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(CargadorJSON.monnstruosEncontrables());
         }
         catch (Exception e)
         {

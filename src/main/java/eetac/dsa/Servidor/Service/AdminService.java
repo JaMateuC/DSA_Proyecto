@@ -11,7 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
 
-@Path("/admin")
+/*@Path("/admin")*/
 public class AdminService {
 
     @GET

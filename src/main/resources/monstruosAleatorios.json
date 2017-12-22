@@ -1,69 +1,26 @@
-{
-  "nivelesDeEscenario": [
+[
+  [
     {
-      "monstruos": [{
-          "tipo": "MonstruoEjemplo",
-          "nivel": 1,
-          "experiencia": 0,
-        "vida": 20
-        },{
-          "tipo": "MonstruoEjemplo",
-          "nivel": 2,
-          "experiencia": 0,
-        "vida": 20
-        },
-        {
-          "tipo": "MonstruoEjemplo",
-          "nivel": 4,
-          "experiencia": 0,"vida": 20
-        },{
-          "tipo": "MonstruoEjemplo",
-          "nivel": 5,
-          "experiencia": 0,"vida": 20
-        }
-      ]
+      "tipo": "MonstruoEjemplo",
+      "experiencia": 0,
+      "nivel": 1
     },
     {
-      "monstruos": [{
-          "tipo": "MonstruoEjemplo",
-          "nivel": 6,
-          "experiencia": 0,"vida": 20
-        },{
-          "tipo": "MonstruoEjemplo",
-          "nivel": 7,
-          "experiencia": 0,"vida": 20
-        },
-        {
-          "tipo": "MonstruoEjemplo",
-          "nivel": 9,
-          "experiencia": 0,"vida": 20
-        },{
-          "tipo": "MonstruoEjemplo",
-          "nivel": 10,
-          "experiencia": 0,"vida": 20
-        }
-      ]
+      "tipo": "MonstruoEjemplo",
+      "experiencia": 0,
+      "nivel": 1
+    }
+  ],
+  [
+    {
+      "tipo": "MonstruoEjemplo",
+      "experiencia": 0,
+      "nivel": 2
     },
     {
-      "monstruos": [{
-          "tipo": "MonstruoEjemplo",
-          "nivel": 10,
-          "experiencia": 0,"vida": 20
-        },{
-          "tipo": "MonstruoEjemplo",
-          "nivel": 12,
-          "experiencia": 0,"vida": 20
-        },
-        {
-          "tipo": "MonstruoEjemplo",
-          "nivel": 14,
-          "experiencia": 0,"vida": 20
-        },{
-          "tipo": "MonstruoEjemplo",
-          "nivel": 15,
-          "experiencia": 0,"vida": 20
-        }
-      ]
+      "tipo": "MonstruoEjemplo",
+      "experiencia": 0,
+      "nivel": 2
     }
   ]
-}
+]
