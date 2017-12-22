@@ -5,7 +5,7 @@ import eetac.dsa.Servidor.Model.jsonpojo.EscenarioJSON;
 public class MapaDAO extends DAO{
 
     @OrderFields(indice = 0)
-    private String nom;
+    private String id;
     @OrderFields(indice = 1)
     private String direccioFile;
 
@@ -13,13 +13,13 @@ public class MapaDAO extends DAO{
     }
 
     @OrderGetMethods(indice = 0)
-    public String getNom() {
-        return nom;
+    public String getId() {
+        return id;
     }
 
     @OrderSetMethods(indice = 0)
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setId(String id) {
+        this.id = id;
     }
 
     @OrderGetMethods(indice = 1)
@@ -34,7 +34,7 @@ public class MapaDAO extends DAO{
 
     public void parseToMapa(EscenarioJSON mapa){
 
-        this.setNom(mapa.getNombre());
+        this.setId(mapa.getNombre());
         //this.setDireccioFile();
 
     }
