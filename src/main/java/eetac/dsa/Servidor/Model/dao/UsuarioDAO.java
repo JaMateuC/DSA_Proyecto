@@ -105,7 +105,7 @@ public class UsuarioDAO extends DAO{
         this.setPassword(usuario.getPassword());
         this.setX(usuario.getX());
         this.setY(usuario.getY());
-        this.setEmail(getEmail());
+        this.setEmail(usuario.getEmail());
 
     }
 
@@ -116,7 +116,7 @@ public class UsuarioDAO extends DAO{
         this.setPassword(usuario.getPassword());
         this.setX(usuario.getX());
         this.setY(usuario.getY());
-        this.setEmail(getEmail());
+        this.setEmail(usuario.getEmail());
         this.setNombreMapa(nombreMapa);
 
     }

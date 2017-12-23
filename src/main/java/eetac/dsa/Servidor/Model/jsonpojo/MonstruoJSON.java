@@ -8,7 +8,7 @@ public class MonstruoJSON{
     int experiencia;
     int nivel;
     int vidaActual;
-    String name;
+    String nombre;
 
     public MonstruoJSON() {
     }
@@ -45,20 +45,20 @@ public class MonstruoJSON{
         this.vidaActual = vidaActual;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public MonstruoJSON(String tipo, int experiencia, int nivel, int vidaActual, String name) {
+    public MonstruoJSON(String tipo, int experiencia, int nivel, int vidaActual, String nombre) {
         this.tipo = tipo;
         this.experiencia = experiencia;
         this.nivel = nivel;
         this.vidaActual = vidaActual;
-        this.name = name;
+        this.nombre = nombre;
     }
 
     public void parseFromMonstruoDB(MonstruoDAO monstruo){
@@ -67,7 +67,7 @@ public class MonstruoJSON{
         this.setNivel(monstruo.getNivel());
         this.setTipo(monstruo.getTipo());
         this.setVidaActual(monstruo.getVidaActual());
-        this.setName(monstruo.getId());
+        this.setNombre(monstruo.getId());
     }
 
 }
