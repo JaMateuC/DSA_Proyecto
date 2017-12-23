@@ -2,6 +2,7 @@ package eetac.dsa.Servidor;
 
 import eetac.dsa.Servidor.Model.jsonpojo.EscenarioJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.MonstruoJSON;
+import eetac.dsa.Servidor.Model.jsonpojo.ObjetoJSON;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -22,10 +23,17 @@ public class CargadorJSON {
         mapper.writeValue(new File(direccion), escenarioJSON);
     }
 
-    public static MonstruoJSON[][] monnstruosEncontrables() throws Exception
+    public static MonstruoJSON[][] monstruosEncontrables() throws Exception
     {
         ObjectMapper mapper = new ObjectMapper();
         MonstruoJSON[][] monstruoJSONS =mapper.readValue(new File("src/main/resources/monstruosAleatorios.json"), MonstruoJSON[][].class);
         return monstruoJSONS;
+    }
+
+    public static ObjetoJSON[][] objetosEncontrables() throws Exception
+    {
+        ObjectMapper mapper = new ObjectMapper();
+        ObjetoJSON[][] objetoJSONS =mapper.readValue(new File("src/main/resources/objetosAleatorios.json"), ObjetoJSON[][].class);
+        return objetoJSONS;
     }
 }

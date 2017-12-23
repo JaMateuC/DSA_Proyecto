@@ -1,28 +1,304 @@
 {
-  "escenario": {
-    "ancho": 14,
-    "alto": 14,
-    "nombre": "Escenario2",
-    "nivelDeEscenario":0,
-    "celdas": [
-      {"tipo": "CeldaPared", "x": 0, "y": 0}, {"tipo": "CeldaPared", "x": 1, "y": 0}, {"tipo": "CeldaPared", "x": 2, "y": 0}, {"tipo": "CeldaPared", "x": 3, "y": 0}, {"tipo": "CeldaPared", "x": 4, "y": 0}, {"tipo": "CeldaPared", "x": 5, "y": 0}, {"tipo": "CeldaPared", "x": 6, "y": 0}, {"tipo": "CeldaPared", "x": 7, "y": 0}, {"tipo": "CeldaPared", "x": 8, "y": 0}, {"tipo": "CeldaPared", "x": 9, "y": 0}, {"tipo": "CeldaPared", "x": 10, "y": 0}, {"tipo": "CeldaPared", "x": 11, "y": 0}, {"tipo": "CeldaPared", "x": 12, "y": 0}, {"tipo": "CeldaPared", "x": 13, "y": 0},
-      {"tipo": "CeldaPared", "x": 0, "y": 1}, {"tipo": "CeldaCesped", "x": 1, "y": 1}, {"tipo": "CeldaCesped", "x": 2, "y": 1}, {"tipo": "CeldaCesped", "x": 3, "y": 1}, {"tipo": "CeldaCesped", "x": 4, "y": 1}, {"tipo": "CeldaCesped", "x": 5, "y": 1}, {"tipo": "CeldaCesped", "x": 6, "y": 1}, {"tipo": "CeldaCesped", "x": 7, "y": 1}, {"tipo": "CeldaCesped", "x": 8, "y": 1}, {"tipo": "CeldaCesped", "x": 9, "y": 1}, {"tipo": "CeldaCesped", "x": 10, "y": 1}, {"tipo": "CeldaCesped", "x": 11, "y": 1}, {"tipo": "CeldaCesped", "x": 12, "y": 1}, {"tipo": "CeldaPared", "x": 13, "y": 1},
-      {"tipo": "CeldaPared", "x": 0, "y": 2}, {"tipo": "CeldaCesped", "x": 1, "y": 2}, {"tipo": "CeldaCesped", "x": 2, "y": 2}, {"tipo": "CeldaCesped", "x": 3, "y": 2}, {"tipo": "CeldaCesped", "x": 4, "y": 2}, {"tipo": "CeldaCesped", "x": 5, "y": 2}, {"tipo": "CeldaCesped", "x": 6, "y": 2}, {"tipo": "CeldaCesped", "x": 7, "y": 2}, {"tipo": "CeldaCesped", "x": 8, "y": 2}, {"tipo": "CeldaCesped", "x": 9, "y": 2}, {"tipo": "CeldaCesped", "x": 10, "y": 2}, {"tipo": "CeldaCesped", "x": 11, "y": 2}, {"tipo": "CeldaCesped", "x": 12, "y": 2}, {"tipo": "CeldaPared", "x": 13, "y": 2},
-      {"tipo": "CeldaPared", "x": 0, "y": 3}, {"tipo": "CeldaCesped", "x": 1, "y": 3}, {"tipo": "CeldaCesped", "x": 2, "y": 3}, {"tipo": "CeldaCesped", "x": 3, "y": 3}, {"tipo": "CeldaCesped", "x": 4, "y": 3}, {"tipo": "CeldaCesped", "x": 5, "y": 3}, {"tipo": "CeldaCesped", "x": 6, "y": 3}, {"tipo": "CeldaCesped", "x": 7, "y": 3}, {"tipo": "CeldaCesped", "x": 8, "y": 3}, {"tipo": "CeldaCesped", "x": 9, "y": 3}, {"tipo": "CeldaCesped", "x": 10, "y": 3}, {"tipo": "CeldaCesped", "x": 11, "y": 3}, {"tipo": "CeldaCesped", "x": 12, "y": 3}, {"tipo": "CeldaPared", "x": 13, "y": 3},
-      {"tipo": "CeldaPared", "x": 0, "y": 4}, {"tipo": "CeldaCesped", "x": 1, "y": 4}, {"tipo": "CeldaCesped", "x": 2, "y": 4}, {"tipo": "CeldaCesped", "x": 3, "y": 4}, {"tipo": "CeldaCesped", "x": 4, "y": 4}, {"tipo": "CeldaCesped", "x": 5, "y": 4}, {"tipo": "CeldaCesped", "x": 6, "y": 4}, {"tipo": "CeldaCesped", "x": 7, "y": 4}, {"tipo": "CeldaCesped", "x": 8, "y": 4}, {"tipo": "CeldaCesped", "x": 9, "y": 4}, {"tipo": "CeldaCesped", "x": 10, "y": 4}, {"tipo": "CeldaCesped", "x": 11, "y": 4}, {"tipo": "CeldaCesped", "x": 12, "y": 4}, {"tipo": "CeldaPared", "x": 13, "y": 4},
-      {"tipo": "CeldaPared", "x": 0, "y": 5}, {"tipo": "CeldaCesped", "x": 1, "y": 5}, {"tipo": "CeldaCesped", "x": 2, "y": 5}, {"tipo": "CeldaCesped", "x": 3, "y": 5}, {"tipo": "CeldaCesped", "x": 4, "y": 5}, {"tipo": "CeldaCesped", "x": 5, "y": 5}, {"tipo": "CeldaCesped", "x": 6, "y": 5}, {"tipo": "CeldaCesped", "x": 7, "y": 5}, {"tipo": "CeldaCesped", "x": 8, "y": 5}, {"tipo": "CeldaCesped", "x": 9, "y": 5}, {"tipo": "CeldaCesped", "x": 10, "y": 5}, {"tipo": "CeldaCesped", "x": 11, "y": 5}, {"tipo": "CeldaCesped", "x": 12, "y": 5}, {"tipo": "CeldaPared", "x": 13, "y": 5},
-      {"tipo": "CeldaPared", "x": 0, "y": 6}, {"tipo": "CeldaCesped", "x": 1, "y": 6}, {"tipo": "CeldaCesped", "x": 2, "y": 6}, {"tipo": "CeldaCesped", "x": 3, "y": 6}, {"tipo": "CeldaCesped", "x": 4, "y": 6}, {"tipo": "CeldaCesped", "x": 5, "y": 6}, {"tipo": "CeldaCesped", "x": 6, "y": 6}, {"tipo": "CeldaCesped", "x": 7, "y": 6}, {"tipo": "CeldaCesped", "x": 8, "y": 6}, {"tipo": "CeldaCesped", "x": 9, "y": 6}, {"tipo": "CeldaCesped", "x": 10, "y": 6}, {"tipo": "CeldaCesped", "x": 11, "y": 6}, {"tipo": "CeldaCesped", "x": 12, "y": 6}, {"tipo": "CeldaPared", "x": 13, "y": 6},
-      {"tipo": "CeldaPared", "x": 0, "y": 7}, {"tipo": "CeldaCesped", "x": 1, "y": 7}, {"tipo": "CeldaCesped", "x": 2, "y": 7}, {"tipo": "CeldaCesped", "x": 3, "y": 7}, {"tipo": "CeldaCesped", "x": 4, "y": 7}, {"tipo": "CeldaCesped", "x": 5, "y": 7}, {"tipo": "CeldaCesped", "x": 6, "y": 7}, {"tipo": "CeldaCesped", "x": 7, "y": 7}, {"tipo": "CeldaCesped", "x": 8, "y": 7}, {"tipo": "CeldaCesped", "x": 9, "y": 7}, {"tipo": "CeldaCesped", "x": 10, "y": 7}, {"tipo": "CeldaCesped", "x": 11, "y": 7}, {"tipo": "CeldaCesped", "x": 12, "y": 7}, {"tipo": "CeldaPared", "x": 13, "y": 7},
-      {"tipo": "CeldaPared", "x": 0, "y": 8}, {"tipo": "CeldaCesped", "x": 1, "y": 8}, {"tipo": "CeldaCesped", "x": 2, "y": 8}, {"tipo": "CeldaCesped", "x": 3, "y": 8}, {"tipo": "CeldaCesped", "x": 4, "y": 8}, {"tipo": "CeldaCesped", "x": 5, "y": 8}, {"tipo": "CeldaCesped", "x": 6, "y": 8}, {"tipo": "CeldaCesped", "x": 7, "y": 8}, {"tipo": "CeldaCesped", "x": 8, "y": 8}, {"tipo": "CeldaCesped", "x": 9, "y": 8}, {"tipo": "CeldaCesped", "x": 10, "y": 8}, {"tipo": "CeldaCesped", "x": 11, "y": 8}, {"tipo": "CeldaCesped", "x": 12, "y": 8}, {"tipo": "CeldaPared", "x": 13, "y": 8},
-      {"tipo": "CeldaPared", "x": 0, "y": 9}, {"tipo": "CeldaCesped", "x": 1, "y": 9}, {"tipo": "CeldaCesped", "x": 2, "y": 9}, {"tipo": "CeldaCesped", "x": 3, "y": 9}, {"tipo": "CeldaCesped", "x": 4, "y": 9}, {"tipo": "CeldaCesped", "x": 5, "y": 9}, {"tipo": "CeldaCesped", "x": 6, "y": 9}, {"tipo": "CeldaCesped", "x": 7, "y": 9}, {"tipo": "CeldaCesped", "x": 8, "y": 9}, {"tipo": "CeldaCesped", "x": 9, "y": 9}, {"tipo": "CeldaCesped", "x": 10, "y": 9}, {"tipo": "CeldaCesped", "x": 11, "y": 9}, {"tipo": "CeldaCesped", "x": 12, "y": 9}, {"tipo": "CeldaPared", "x": 13, "y": 9},
-      {"tipo": "CeldaPared", "x": 0, "y": 10}, {"tipo": "CeldaCesped", "x": 1, "y": 10}, {"tipo": "CeldaCesped", "x": 2, "y": 10}, {"tipo": "CeldaPared", "x": 3, "y": 10}, {"tipo": "CeldaCesped", "x": 4, "y": 10}, {"tipo": "CeldaCesped", "x": 5, "y": 10}, {"tipo": "CeldaCesped", "x": 6, "y": 10}, {"tipo": "CeldaCesped", "x": 7, "y": 10}, {"tipo": "CeldaCesped", "x": 8, "y": 10}, {"tipo": "CeldaCesped", "x": 9, "y": 10}, {"tipo": "CeldaCesped", "x": 10, "y": 10}, {"tipo": "CeldaCesped", "x": 11, "y": 10}, {"tipo": "CeldaCesped", "x": 12, "y": 10}, {"tipo": "CeldaPared", "x": 13, "y": 10},
-      {"tipo": "CeldaPared", "x": 0, "y": 11}, {"tipo": "CeldaCesped", "x": 1, "y": 11}, {"tipo": "CeldaCesped", "x": 2, "y": 11}, {"tipo": "CeldaPared", "x": 3, "y": 11}, {"tipo": "CeldaCesped", "x": 4, "y": 11}, {"tipo": "CeldaCesped", "x": 5, "y": 11}, {"tipo": "CeldaCesped", "x": 6, "y": 11}, {"tipo": "CeldaCesped", "x": 7, "y": 11}, {"tipo": "CeldaCesped", "x": 8, "y": 11}, {"tipo": "CeldaCesped", "x": 9, "y": 11}, {"tipo": "CeldaCesped", "x": 10, "y": 11}, {"tipo": "CeldaCesped", "x": 11, "y": 11}, {"tipo": "CeldaCesped", "x": 12, "y": 11}, {"tipo": "CeldaPared", "x": 13, "y": 11},
-      {"tipo": "CeldaPared", "x": 0, "y": 12}, {"tipo": "CeldaCesped", "x": 1, "y": 12}, {"tipo": "CeldaCesped", "x": 2, "y": 12}, {"tipo": "CeldaCesped", "x": 3, "y": 12}, {"tipo": "CeldaCesped", "x": 4, "y": 12}, {"tipo": "CeldaCesped", "x": 5, "y": 12}, {"tipo": "CeldaCesped", "x": 6, "y": 12}, {"tipo": "CeldaCesped", "x": 7, "y": 12}, {"tipo": "CeldaCesped", "x": 8, "y": 12}, {"tipo": "CeldaCesped", "x": 9, "y": 12}, {"tipo": "CeldaCesped", "x": 10, "y": 12}, {"tipo": "CeldaCesped", "x": 11, "y": 12}, {"tipo": "CeldaCesped", "x": 12, "y": 12}, {"tipo": "CeldaPared", "x": 13, "y": 12},
-      {"tipo": "CeldaPared", "x": 0, "y": 13}, {"tipo": "CeldaPared", "x": 1, "y": 13}, {"tipo": "CeldaPared", "x": 2, "y": 13}, {"tipo": "CeldaPared", "x": 3, "y": 13}, {"tipo": "CeldaPared", "x": 4, "y": 13}, {"tipo": "CeldaPared", "x": 5, "y": 13}, {"tipo": "CeldaPared", "x": 6, "y": 13}, {"tipo": "CeldaPared", "x": 7, "y": 13}, {"tipo": "CeldaPared", "x": 8, "y": 13}, {"tipo": "CeldaPared", "x": 9, "y": 13}, {"tipo": "CeldaPared", "x": 10, "y": 13}, {"tipo": "CeldaPared", "x": 11, "y": 13}, {"tipo": "CeldaPared", "x": 12, "y": 13}, {"tipo": "CeldaPared", "x": 13, "y": 13}
-
-
-
-
+  "ancho": 7,
+  "alto": 8,
+  "nombre": "Escenario1",
+  "nivelDeZona":0,
+  "celdaJSON": [
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCambioEscenario",
+        "numArgs":3,
+        "args": "{\"Str0\": \"Escenario2\", \"int1\": 2, \"int2\": 2}"
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
     ]
-  }
+  ]
 }

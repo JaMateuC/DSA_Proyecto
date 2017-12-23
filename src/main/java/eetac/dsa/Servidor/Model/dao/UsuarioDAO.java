@@ -123,7 +123,7 @@ public class UsuarioDAO extends DAO{
 
     public ArrayList<ObjetoDAO> parseInventario(UsuarioJSON usuario){
 
-        ArrayList<ObjetoJSON> listObjetos= usuario.getInventariol();
+        ArrayList<ObjetoJSON> listObjetos= usuario.getInventario();
         if(listObjetos.size() >= 0) {
 
             ArrayList<ObjetoDAO> listObjetoDAO = new ArrayList<>();
@@ -145,7 +145,7 @@ public class UsuarioDAO extends DAO{
 
     public ArrayList<MonstruoDAO> parseMonstruos(UsuarioJSON usuario){
 
-        ArrayList<MonstruoJSON> listMonsturos = usuario.getMonstruosl();
+        ArrayList<MonstruoJSON> listMonsturos = usuario.getMonstruos();
         if(listMonsturos.size() >= 0) {
 
             ArrayList<MonstruoDAO> listMonstruoDAO = new ArrayList<>();

@@ -35,6 +35,8 @@ public class Sesion {
         resultLoginArgs.setEscenarioJSON(escenarioJSON);
         UsuarioJSON usuarioJSON = protagonista;
         resultLoginArgs.setUsuarioJSON(usuarioJSON);
+        resultLoginArgs.setMonstruosEncontrables(CargadorJSON.monstruosEncontrables());
+        resultLoginArgs.setObjetosEncontrables(CargadorJSON.objetosEncontrables());
         resultLoginArgs.setPermitido(true);
         return resultLoginArgs;
     }

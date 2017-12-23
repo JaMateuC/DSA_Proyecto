@@ -6,6 +6,7 @@ import eetac.dsa.Servidor.Model.ConsultaDB;
 import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
 import eetac.dsa.Servidor.Model.jsonpojo.MonstruoJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
+import eetac.dsa.Servidor.Model.jsonpojo.ObjetoJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.querysclient.*;
 import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultCambiarEscenario;
@@ -45,14 +46,14 @@ public class USERservice
 
     }
 
-    @POST
-    @Path("/getLogginArgs")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public ResultLoginArgs getLoggingArgs(KeyUser keyUser)
+    @GET
+    @Path("/getLoginArgs/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ResultLoginArgs getLoggingArgs(@PathParam("id") int key)
     {
         try
         {
-            return MundoControlador.getInstance().getSesion(keyUser.getKey()).resultLoginArgs();
+            return MundoControlador.getInstance().getSesion(key).resultLoginArgs();
         }
         catch (Exception e)
         {
@@ -61,7 +62,7 @@ public class USERservice
     }
 
     @POST
-    @Path("/getEscenario")
+    @Path("/cambiarEscenario")
     @Consumes(MediaType.APPLICATION_JSON)
     public ResultCambiarEscenario getCambiarEscenario(QueryCambiarEscenario qCamEsc)
     {
@@ -78,11 +79,24 @@ public class USERservice
     @GET
     @Path("/getMonstruosEncontrables")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getMonstruosEncontrables()
+    public MonstruoJSON[][] getMonstruosEncontrables()
     {
         try {
-            ObjectMapper mapper = new ObjectMapper();
-            return mapper.writeValueAsString(CargadorJSON.monnstruosEncontrables());
+            return CargadorJSON.monstruosEncontrables();
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    @GET
+    @Path("/getObjetosEncontrables")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ObjetoJSON[][] getObjetosEncontrables()
+    {
+        try {
+            return CargadorJSON.objetosEncontrables();
         }
         catch (Exception e)
         {
@@ -99,7 +113,7 @@ public class USERservice
         {
             MundoControlador.getInstance().getSesion(qUpUsuario.getKey()).setProtagonista(qUpUsuario.getUsuarioJson());
             ResultadoAceptar resultadoAceptar = new ResultadoAceptar();
-            resultadoAceptar.setPermitido(ConsultaDB.getInstance().updateUserDB(qUpUsuario.getUsuarioJson(),qUpUsuario.getNomEscenarip()));
+            resultadoAceptar.setPermitido(ConsultaDB.getInstance().updateUserDB(qUpUsuario.getUsuarioJson(),qUpUsuario.getNomEscenari()));
 
             return resultadoAceptar;
         }

@@ -106,8 +106,8 @@ public class ConsultaDB extends DAO {
 
         UsuarioJSON usuarioJSON;
         usuarioJSON = ConsultaDB.getInstance().getUsuarioBasic(name);
-        usuarioJSON.setInventariol(ConsultaDB.getInstance().getObjtosUsuario(usuarioJSON.getNombre()));
-        usuarioJSON.setMonstruosl(ConsultaDB.getInstance().getMonstruosUsuario(usuarioJSON.getNombre()));
+        usuarioJSON.setInventario(ConsultaDB.getInstance().getObjtosUsuario(usuarioJSON.getNombre()));
+        usuarioJSON.setMonstruos(ConsultaDB.getInstance().getMonstruosUsuario(usuarioJSON.getNombre()));
         return usuarioJSON;
 
     }

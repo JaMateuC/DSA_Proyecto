@@ -10,8 +10,8 @@ import java.util.List;
 public class UsuarioJSON
 {
 
-    private ArrayList<ObjetoJSON> inventariol;
-    private ArrayList<MonstruoJSON> monstruosl;
+    private ArrayList<ObjetoJSON> inventario;
+    private ArrayList<MonstruoJSON> monstruos;
     private String nombre;
     private String password;
     private String email;
@@ -36,25 +36,25 @@ public class UsuarioJSON
     }
 //
 
-    public ArrayList<ObjetoJSON> getInventariol() {
-        return inventariol;
+    public ArrayList<ObjetoJSON> getInventario() {
+        return inventario;
     }
 
-    public void setInventariol(ArrayList<ObjetoJSON> inventariol) {
-        this.inventariol = inventariol;
+    public void setInventario(ArrayList<ObjetoJSON> inventario) {
+        this.inventario = inventario;
     }
 
-    public ArrayList<MonstruoJSON> getMonstruosl() {
-        return monstruosl;
+    public ArrayList<MonstruoJSON> getMonstruos() {
+        return monstruos;
     }
 
-    public void setMonstruosl(ArrayList<MonstruoJSON> monstruosl) {
-        this.monstruosl = monstruosl;
+    public void setMonstruos(ArrayList<MonstruoJSON> monstruos) {
+        this.monstruos = monstruos;
     }
 
-    public UsuarioJSON(ArrayList<ObjetoJSON> inventariol, ArrayList<MonstruoJSON> monstruosl, String nombre, String password, String email, boolean genero) {
-        this.inventariol = inventariol;
-        this.monstruosl = monstruosl;
+    public UsuarioJSON(ArrayList<ObjetoJSON> inventario, ArrayList<MonstruoJSON> monstruos, String nombre, String password, String email, boolean genero) {
+        this.inventario = inventario;
+        this.monstruos = monstruos;
         this.nombre = nombre;
         this.password = password;
         this.email = email;
@@ -115,7 +115,7 @@ public class UsuarioJSON
 
 
 
-            return u1.getMonstruosl().size()-u2.getMonstruosl().size();
+            return u1.getMonstruos().size()-u2.getMonstruos().size();
 
         }
 

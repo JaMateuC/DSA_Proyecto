@@ -5,7 +5,7 @@ import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 public class QueryUpdateUsuario {
     int key;
     UsuarioJSON usuarioJson;
-    String nomEscenarip;
+    String nomEscenari;
 
     public int getKey() {
         return key;
@@ -23,11 +23,11 @@ public class QueryUpdateUsuario {
         this.usuarioJson = usuarioJson;
     }
 
-    public String getNomEscenarip() {
-        return nomEscenarip;
+    public String getNomEscenari() {
+        return nomEscenari;
     }
 
-    public void setNomEscenarip(String nomEscenarip) {
-        this.nomEscenarip = nomEscenarip;
+    public void setNomEscenari(String nomEscenari) {
+        this.nomEscenari = nomEscenari;
     }
 }
