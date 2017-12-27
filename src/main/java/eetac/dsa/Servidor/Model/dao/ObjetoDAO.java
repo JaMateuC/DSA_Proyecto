@@ -12,6 +12,8 @@ public class ObjetoDAO extends DAO{
     String extra;
     @OrderFields(indice = 3)
     String nombreUsuario;
+    @OrderFields(indice = 4)
+    int numArgs;
 
     public ObjetoDAO() { }
 
@@ -55,12 +57,23 @@ public class ObjetoDAO extends DAO{
         this.nombreUsuario = nombreUsuario;
     }
 
+    @OrderGetMethods(indice = 4)
+    public int getNumArgs() {
+        return numArgs;
+    }
+
+    @OrderSetMethods(indice = 4)
+    public void setNumArgs(int numArgs) {
+        this.numArgs = numArgs;
+    }
+
     public void parseToObjectDB(ObjetoJSON objeto, String usuario){
 
         this.setId(objeto.getId());
         this.setTipo(objeto.getTipo());
         this.setExtra(objeto.getArgs());
         this.setNombreUsuario(usuario);
+        this.setNumArgs(objeto.getNumArgs());
 
     }
 
@@ -68,7 +81,7 @@ public class ObjetoDAO extends DAO{
     public String toString(){
 
         return "tipo: " + this.tipo + ", args: " + this.extra + ", nombreUsuario: " +
-                this.nombreUsuario;
+                this.nombreUsuario + ", numArgs: " + this.numArgs;
 
     }
 
