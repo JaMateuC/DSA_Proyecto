@@ -64,6 +64,7 @@ public class USERservice
     @POST
     @Path("/cambiarEscenario")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public ResultCambiarEscenario getCambiarEscenario(QueryCambiarEscenario qCamEsc)
     {
         try
