@@ -4,6 +4,7 @@ public class CeldaJSON {
     String tipo;
     int numArgs;
     String args;
+    String image;
 
     public CeldaJSON() {
     }
@@ -30,5 +31,13 @@ public class CeldaJSON {
 
     public void setArgs(String args) {
         this.args = args;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

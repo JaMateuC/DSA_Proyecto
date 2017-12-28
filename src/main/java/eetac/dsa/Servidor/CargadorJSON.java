@@ -1,5 +1,6 @@
 package eetac.dsa.Servidor;
 
+import eetac.dsa.Servidor.Model.jsonpojo.CeldaJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.EscenarioJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.MonstruoJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.ObjetoJSON;
@@ -35,5 +36,12 @@ public class CargadorJSON {
         ObjectMapper mapper = new ObjectMapper();
         ObjetoJSON[][] objetoJSONS =mapper.readValue(new File("src/main/resources/objetosAleatorios.json"), ObjetoJSON[][].class);
         return objetoJSONS;
+    }
+
+    public static CeldaJSON[] celdasEncontrables() throws Exception
+    {
+        ObjectMapper mapper = new ObjectMapper();
+        CeldaJSON[] celdaJSONS = mapper.readValue(new File("src/main/resources/Celdas.json"), CeldaJSON[].class);
+        return celdaJSONS;
     }
 }

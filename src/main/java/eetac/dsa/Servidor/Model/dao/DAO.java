@@ -1,5 +1,6 @@
 package eetac.dsa.Servidor.Model.dao;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -499,23 +500,32 @@ public abstract class DAO {
 
     public void parseResults(Method[] methods, ResultSetMetaData rsmd ,ResultSet rs){
         try{
+
+            String className = this.getClass().getSimpleName();
+
             for(int i = 1; i <= rsmd.getColumnCount(); i++){
 
                 int sqlTypes = rsmd.getColumnType(i);
 
-                switch (sqlTypes) {
-                    case Types.VARCHAR:
-                        methods[i-1].invoke(this,rs.getString(i));
-                        break;
-                    case Types.BOOLEAN:
-                        methods[i-1].invoke(this,rs.getBoolean(i));
-                        break;
-                    case Types.INTEGER:
-                        methods[i-1].invoke(this,rs.getInt(i));
-                        break;
+                if(className.equals("UsuarioDAO") && i-1 == 4){
 
+                    logger.info(rs.getBoolean(i));
+                    methods[i - 1].invoke(this, rs.getBoolean(i));
+
+                }else {
+                    switch (sqlTypes) {
+                        case Types.VARCHAR:
+                            methods[i - 1].invoke(this, rs.getString(i));
+                            break;
+                        case Types.BOOLEAN:
+                            methods[i - 1].invoke(this, rs.getBoolean(i));
+                            break;
+                        case Types.INTEGER:
+                            methods[i - 1].invoke(this, rs.getInt(i));
+                            break;
+
+                    }
                 }
-
             }
 
         }catch (Exception e){

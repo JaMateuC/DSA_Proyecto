@@ -4,10 +4,7 @@ import eetac.dsa.Servidor.CargadorJSON;
 import eetac.dsa.Servidor.MapUsuarios;
 import eetac.dsa.Servidor.Model.ConsultaDB;
 import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
-import eetac.dsa.Servidor.Model.jsonpojo.MonstruoJSON;
-import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
-import eetac.dsa.Servidor.Model.jsonpojo.ObjetoJSON;
-import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
+import eetac.dsa.Servidor.Model.jsonpojo.*;
 import eetac.dsa.Servidor.Model.jsonpojo.querysclient.*;
 import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultCambiarEscenario;
 import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultLoginArgs;
@@ -19,6 +16,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,9 +33,7 @@ public class USERservice
     {
         //Buscar Usuario por nombre y devolverlo al cliente
 
-        UsuarioJSON user = new UsuarioJSON();
-
-        ConsultaDB.getInstance().getUsuarioBasic(nombre);
+        UsuarioJSON user = ConsultaDB.getInstance().getUsuarioBasic(nombre);
 
         user.setPassword(null);                 //La contraseña no se envia al cliente
 
@@ -158,6 +154,22 @@ public class USERservice
 
     }
 
+    @GET
+    @Path("/getCeldasEncontrables")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCeldasEncontrables()
+    {
+        try {
+            return Response.ok()
+                    .entity(CargadorJSON.celdasEncontrables())
+                    .header("Access-Control-Allow-Origin", "*")
+                    .build();
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
 
 }
 

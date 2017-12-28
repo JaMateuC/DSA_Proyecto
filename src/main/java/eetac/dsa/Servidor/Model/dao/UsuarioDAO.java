@@ -103,8 +103,9 @@ public class UsuarioDAO extends DAO{
         this.setId(usuario.getNombre());
         this.setGenero(usuario.isGenero());
         this.setPassword(usuario.getPassword());
-        this.setX(usuario.getX());
-        this.setY(usuario.getY());
+        this.setX(1);
+        this.setY(1);
+        this.setNombreMapa("escenario 1");
         this.setEmail(usuario.getEmail());
 
     }
@@ -120,6 +121,8 @@ public class UsuarioDAO extends DAO{
         this.setNombreMapa(nombreMapa);
 
     }
+
+
 
     public ArrayList<ObjetoDAO> parseInventario(UsuarioJSON usuario){
 

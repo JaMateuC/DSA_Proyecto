@@ -1,0 +1,20 @@
+[
+  {
+    "tipo": "Empty",
+    "numArgs":0,
+    "args":"",
+    "image":"black"
+  },
+  {
+    "tipo": "CeldaCesped",
+    "numArgs":0,
+    "args":"",
+    "image":"green"
+  },
+  {
+    "tipo": "CeldaPared",
+    "numArgs":0,
+    "args":"",
+    "image":"grey"
+  }
+]
