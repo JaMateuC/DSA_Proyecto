@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class DatabaseStatements {
 
@@ -43,8 +44,8 @@ public class DatabaseStatements {
         usuarioD = new UsuarioDAO();
         usuarioD2 = new UsuarioDAO();
         usuarioDAOArrayList = new ArrayList<>();
-        objeto = new ObjetoJSON("Pvida","botella","aaa");
-        objeto2 = new ObjetoJSON("Pastel","comida","bbb");
+        objeto = new ObjetoJSON(UUID.randomUUID().toString(),"Pocion","{\"Str0\":\"pocion pequeña\",\"int1\":100",2);
+        objeto2 = new ObjetoJSON(UUID.randomUUID().toString(),"PocionExperiencia","{\"Str0\":\"pocion pequeña experiencia\",\"int1\":100",2);
         objetoD =new ObjetoDAO();
         listMonstruos = new ArrayList<>();
         listMonstruos.add(monstruo2);

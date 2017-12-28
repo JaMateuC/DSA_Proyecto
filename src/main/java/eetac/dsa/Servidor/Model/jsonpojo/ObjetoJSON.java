@@ -11,9 +11,10 @@ public class ObjetoJSON {
 
     public ObjetoJSON() { }
 
-    public ObjetoJSON(String id,String tipo, String args) {
+    public ObjetoJSON(String id,String tipo, String args,int numArgs) {
         this.tipo = tipo;
         this.args = args;
+        this.numArgs = numArgs;
         this.id = id;
     }
 
@@ -54,6 +55,7 @@ public class ObjetoJSON {
         this.setId(objetoD.getId());
         this.setTipo(objetoD.getTipo());
         this.setArgs(objetoD.getExtra());
+        this.setNumArgs(objetoD.getNumArgs());
 
     }
 

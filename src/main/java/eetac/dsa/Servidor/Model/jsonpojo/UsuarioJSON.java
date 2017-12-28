@@ -17,6 +17,7 @@ public class UsuarioJSON
     private String email;
     private int x;
     private int y;
+    private int key;
     private boolean genero;
 
     public String getEmail() {
@@ -29,6 +30,14 @@ public class UsuarioJSON
 
     public boolean isGenero() {
         return genero;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public void setKey(int key) {
+        this.key = key;
     }
 
     public void setGenero(boolean genero) {

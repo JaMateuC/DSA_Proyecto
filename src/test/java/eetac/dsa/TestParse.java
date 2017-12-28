@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class TestParse {
 
@@ -37,8 +38,8 @@ public class TestParse {
         monstruo2 = new MonstruoJSON("Hierba",0,1,2, "bbb");
         monstruoD = new MonstruoDAO();
         usuarioD = new UsuarioDAO();
-        objeto = new ObjetoJSON("Pvida","botella","aaa");
-        objeto2 = new ObjetoJSON("Pastel","comida","bbb");
+        objeto = new ObjetoJSON(UUID.randomUUID().toString(),"Pocion","{\"Str0\":\"pocion pequeña\",\"int1\":100",2);
+        objeto2 = new ObjetoJSON(UUID.randomUUID().toString(),"PocionExperiencia","{\"Str0\":\"pocion pequeña experiencia\",\"int1\":100",2);
         listMonstruos = new ArrayList<>();
         listMonstruos.add(monstruo);
         listMonstruos.add(monstruo2);

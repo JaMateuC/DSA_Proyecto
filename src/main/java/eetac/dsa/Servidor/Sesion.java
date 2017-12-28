@@ -47,6 +47,8 @@ public class Sesion {
             //cargarEscenarioFichero(ConsultaDB.getInstance().getMapa(nombreEscenario).getDireccioFile());
             cargarEscenarioFichero("src/main/resources/Escenarios/"+nombreEscenario+".json");
             resultCambiarEscenario.setPermitido(true);
+            resultCambiarEscenario.setX(x);
+            resultCambiarEscenario.setY(y);
             resultCambiarEscenario.setEscenarioJSON(escenario);
             return resultCambiarEscenario;
     }
