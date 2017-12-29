@@ -8,7 +8,12 @@ var cellType = 'Empty';
 var listaCeldasJSON;
 var mapaResultado;
 var btnGuardar = document.getElementById('Guardar');
+var nombreEscenario = document.getElementById('nombreEscenario');
+var nivelDeZona = document.getElementById('nivelDeZona');
+var formRes = document.getElementById('resultado');
+const colorInit = 'green';
 
+cells[0].style.backgroundColor = colorInit;
 onClickTd();
 loadData();
 
@@ -32,7 +37,8 @@ btnAplicar.addEventListener("click", function(){
                 if(i === 0 && j !== 0){
                     mapa.rows[i].cells[j].outerHTML = "<th>"+j+"</th>";
                 }else{
-                    mapa.rows[i].cells[j].setAttribute('class','mapCell')
+                    mapa.rows[i].cells[j].setAttribute('class','mapCell');
+                    mapa.rows[i].cells[j].style.backgroundColor = colorInit;
                 }
 
         }
@@ -107,19 +113,40 @@ function selectCell(){
 }
 
 function creadorResultado(){
-    mapaResultado = '[';
-    for(var i = 0; i<cells.length; i++){
-        data.forEach(function(element){
-            if(cells[i].style.backgroundColor === element.image){
-                mapaResultado += element;
-            }
-        })
+    mapaResultado = {
+                        'ancho' : mapa.rows[0].cells.length - 1,
+                        'alto' : mapa.rows.length - 1,
+                        'nombre' : nombreEscenario.value,
+                        'nivelDeZona' : nivelDeZona.value,
+                        'celdaJSON' : [],
+                    };
+
+    var i = 0;
+    for(var k = 1; k < mapa.rows.length; k++){
+        var row = [];
+        for(var j = 1; j<mapa.rows[0].cells.length; j++){
+        var image = cells[i].style.backgroundColor;
+            listaCeldasJSON.forEach(function(element){
+
+                if(image === element.image){
+                    row.push(element);
+                    i++;
+                }
+
+            });
+
+        }
+        mapaResultado.celdaJSON.push(row);
     }
 
-    mapaResultado += ']';
+
 }
 
 btnGuardar.addEventListener("click", function(){
     creadorResultado();
+    var xhr = new XMLHttpRequest();
+    xhr.open(formRes.method, formRes.action, true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    xhr.send(JSON.stringify(mapaResultado));
 })
 
