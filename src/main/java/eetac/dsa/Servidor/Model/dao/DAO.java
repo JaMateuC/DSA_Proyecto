@@ -42,6 +42,9 @@ public abstract class DAO {
 
         initProperties();
         Properties connectionProps = new Properties();
+
+        logger.info("Usuario: " + nombreUsuario);
+
         connectionProps.put("user", this.nombreUsuario);
         connectionProps.put("password", this.password);
 
