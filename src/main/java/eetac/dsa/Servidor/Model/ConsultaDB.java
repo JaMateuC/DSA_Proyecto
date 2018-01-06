@@ -136,24 +136,6 @@ public class ConsultaDB extends DAO {
 
     }
 
-    public MapaDAO getMapa(String name){
-
-        MapaDAO mapaDAO =new MapaDAO();
-
-        try{
-
-            mapaDAO.selectDB(name);
-
-        }catch (SQLException e){
-
-            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
-
-        }
-
-        return  mapaDAO;
-
-    }
-
     public Boolean insertUser(UsuarioJSON usuarioJSON){
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -197,7 +179,7 @@ public class ConsultaDB extends DAO {
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-        usuarioDAO.parseToUsuario(usuarioJSON,mapaNombre);
+        usuarioDAO.parseToUsuario(usuarioJSON);
 
         try{
             usuarioDAO.updateDB();

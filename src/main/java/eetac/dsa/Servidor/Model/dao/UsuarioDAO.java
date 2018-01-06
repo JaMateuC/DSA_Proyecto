@@ -105,12 +105,12 @@ public class UsuarioDAO extends DAO{
         this.setPassword(usuario.getPassword());
         this.setX(1);
         this.setY(1);
-        this.setNombreMapa("escenario 1");
+        this.setNombreMapa("Escenario1");
         this.setEmail(usuario.getEmail());
 
     }
 
-    public void parseToUsuario(UsuarioJSON usuario, String nombreMapa){
+/*    public void parseToUsuario(UsuarioJSON usuario){
 
         this.setId(usuario.getNombre());
         this.setGenero(usuario.isGenero());
@@ -119,8 +119,9 @@ public class UsuarioDAO extends DAO{
         this.setY(usuario.getY());
         this.setEmail(usuario.getEmail());
         this.setNombreMapa(nombreMapa);
+        this.setNombreMapa(usuario.getEscenario());
 
-    }
+    }*/
 
 
 

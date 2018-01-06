@@ -1,26 +1,20 @@
 package eetac.dsa.Servidor.Service;
 
 import eetac.dsa.Servidor.CargadorJSON;
-import eetac.dsa.Servidor.MapUsuarios;
+
 import eetac.dsa.Servidor.Model.ConsultaDB;
-import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
+
 import eetac.dsa.Servidor.Model.jsonpojo.*;
 import eetac.dsa.Servidor.Model.jsonpojo.querysclient.*;
 import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultCambiarEscenario;
 import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultLoginArgs;
 import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultadoAceptar;
 import eetac.dsa.Servidor.MundoControlador;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.codehaus.jackson.map.ObjectMapper;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Vector;
 
 @Path("/user")
 public class USERservice

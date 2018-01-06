@@ -4,6 +4,8 @@ import eetac.dsa.Servidor.Model.ConsultaDB;
 import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
 import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
+import eetac.dsa.Servidor.MundoControlador;
+import eetac.dsa.Servidor.Sesion;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,9 +27,18 @@ public class AUTHservice
     {
         KeyUser key = new KeyUser();
 
-        if (ConsultaDB.getInstance().getUsuarioBasic(user.getNombre()).getPassword().equals(user.getPassword()))    //En el equals va la respuesta de la memoria (password)
+
+        UsuarioJSON userExistente = ConsultaDB.getInstance().getUsuarioEntero(user.getNombre());
+
+        if (userExistente.getPassword().equals(user.getPassword()))    //En el equals va la respuesta de la memoria (password)
         {
-            key.setKey((new Random().nextInt(2048) + 1));
+            if(MundoControlador.getInstance().UsuarioYaLoggeado(user)){
+                key.setKey(-1);  //Usuario ya loggeado
+            }else {
+                user = userExistente;
+                key.setKey((new Random().nextInt(2048) + 1));
+                MundoControlador.getInstance().addSesion(key.getKey(), new Sesion(user));
+            }
 
 
         }else{
@@ -37,4 +48,22 @@ public class AUTHservice
         logger.info(key.getKey());
         return key;
     }
+
+    @GET
+    @Path("/logout/{key}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String logout(@PathParam("key") int key)
+    {
+
+        if(MundoControlador.getInstance().closeSession(key)){
+
+            return "{\"Result\" : \"OK\"}";
+        }else{
+            return "{\"Result\" : \"Error\"}";
+        }
+
+    }
+
+
+
 }

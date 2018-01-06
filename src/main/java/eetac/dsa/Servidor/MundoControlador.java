@@ -4,17 +4,16 @@ import eetac.dsa.Servidor.Model.jsonpojo.MonstruoJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.ObjetoJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.UUID;
-import java.util.Vector;
+import java.util.*;
 
 public class MundoControlador {
     HashMap<Integer,Sesion> sesiones;
 
     static MundoControlador mundoControlador;
 
-
+    public HashMap<Integer, Sesion> getSesiones() {
+        return sesiones;
+    }
 
     static public MundoControlador getInstance() {
         if(mundoControlador==null)
@@ -24,22 +23,6 @@ public class MundoControlador {
 
     private MundoControlador() {
         sesiones = new HashMap<>();
-
-        //dummy session
-        UsuarioJSON usuarioJSON = new UsuarioJSON();
-        usuarioJSON.setNombre("oscar");
-        usuarioJSON.setPassword("oscar");
-        usuarioJSON.setEmail("oscar@gmail.com");
-        usuarioJSON.setGenero(true);
-        usuarioJSON.setX(1);
-        usuarioJSON.setY(1);
-        ArrayList<MonstruoJSON> monstruoJSONS = new ArrayList<>();
-        monstruoJSONS.add(new MonstruoJSON("MonstruoEjemplo",0,3,-1, UUID.randomUUID().toString()));
-        usuarioJSON.setMonstruos(monstruoJSONS);
-        usuarioJSON.setInventario(new ArrayList<ObjetoJSON>());
-        Sesion sesion = new Sesion(usuarioJSON,null);
-        sesion.cargarEscenarioFichero("src/main/resources/Escenarios/Escenario1.json");
-        sesiones.put(0,sesion);
 
     }
 
@@ -53,5 +36,28 @@ public class MundoControlador {
         sesiones.put(key,sesion);
     }
 
+    public boolean closeSession(int key){
+        if(sesiones.containsKey(key)){
+            sesiones.remove(key);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public Vector<Vector<MonstruoJSON>> monstruosEncontrables;
+
+    public boolean UsuarioYaLoggeado(UsuarioJSON user){
+
+        for(Map.Entry<Integer, Sesion> entry : sesiones.entrySet()) {
+            if (entry.getValue().protagonista.getNombre().equals(user.getNombre())) {
+
+                return true;
+
+            }
+        }
+
+        return false;
+
+    }
 }

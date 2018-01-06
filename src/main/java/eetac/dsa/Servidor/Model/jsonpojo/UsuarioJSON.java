@@ -19,6 +19,7 @@ public class UsuarioJSON
     private int y;
     private int key;
     private boolean genero;
+    private String escenario;
 
     public String getEmail() {
         return email;
@@ -43,7 +44,16 @@ public class UsuarioJSON
     public void setGenero(boolean genero) {
         this.genero = genero;
     }
-//
+
+    public String getEscenario() {
+        return escenario;
+    }
+
+    public void setEscenario(String escenario) {
+        this.escenario = escenario;
+    }
+
+    //
 
     public ArrayList<ObjetoJSON> getInventario() {
         return inventario;
@@ -61,13 +71,15 @@ public class UsuarioJSON
         this.monstruos = monstruos;
     }
 
-    public UsuarioJSON(ArrayList<ObjetoJSON> inventario, ArrayList<MonstruoJSON> monstruos, String nombre, String password, String email, boolean genero) {
+    public UsuarioJSON(ArrayList<ObjetoJSON> inventario, ArrayList<MonstruoJSON> monstruos, String nombre,
+                       String password, String email, boolean genero, String escenario) {
         this.inventario = inventario;
         this.monstruos = monstruos;
         this.nombre = nombre;
         this.password = password;
         this.email = email;
         this.genero = genero;
+        this.escenario = escenario;
     }
 
 //
@@ -138,6 +150,7 @@ public class UsuarioJSON
         this.setX(usuario.getX());
         this.setY(usuario.getY());
         this.setEmail(usuario.getEmail());
+        this.setEscenario(usuario.getNombreMapa());
 
     }
 }

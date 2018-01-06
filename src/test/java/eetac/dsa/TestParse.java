@@ -47,7 +47,7 @@ public class TestParse {
         listObjetos.add(objeto);
         listObjetos.add(objeto2);
         listObj = new ArrayList<>();
-        usuario1 = new UsuarioJSON(listObjetos,listMonstruos,"jaume","aaa","bbb",true);
+        usuario1 = new UsuarioJSON(listObjetos,listMonstruos,"jaume","aaa","bbb",true,null);
 
 
 
