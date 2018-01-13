@@ -2,7 +2,8 @@ package eetac.dsa.Servidor.Model.jsonpojo.querysclient;
 
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
 
-public class QueryUpdateUsuario {
+public class QueryUpdateUsuario
+{
     int key;
     UsuarioJSON usuarioJson;
     String nomEscenari;
@@ -31,6 +32,5 @@ public class QueryUpdateUsuario {
         this.nomEscenari = nomEscenari;
     }
 
-    public QueryUpdateUsuario() {
-    }
+    public QueryUpdateUsuario() { }
 }

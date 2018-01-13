@@ -1,10 +1,12 @@
 {
-  "escenario": {
+  "escenario":
+  {
     "ancho": 7,
     "alto": 7,
     "nombre": "escenarioDePrueba",
     "nivelDeEscenario":1,
-    "celdas": [
+    "celdas":
+    [
       {
         "tipo": "CeldaPared",
         "x": 0,
@@ -214,8 +216,9 @@
         "tipo": "CeldaCambioEscenario",
         "x": 6,
         "y": 5,
-        "extraArgs": {
-          "numeroParametros":3,
+        "extraArgs":
+        {
+          "numeroParametros": 3,
           "Str0": "otroEscenario",
           "int1": 2,
           "int2": 2

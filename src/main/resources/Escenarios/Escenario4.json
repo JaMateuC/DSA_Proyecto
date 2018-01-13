@@ -1,40 +1,11 @@
 {
-  "ancho": 8,
-  "alto": 7,
-  "nombre": "Escenario1",
+  "ancho": 20,
+  "alto": 5,
+  "nombre": "Escenario4",
   "nivelDeZona":0,
-  "celdaJSON": [
+  "celdaJSON":
+  [
     [
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      },
       {
         "tipo": "CeldaPared",
         "numArgs":0,
@@ -42,238 +13,6 @@
       }
     ],
     [
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      }
-    ],
-    [
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      }
-    ],
-    [
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      }
-    ],
-    [
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      }
-    ],
-    [
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      }
-    ],
-    [
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      }
-    ],
-    [
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      },
-      {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      },
       {
         "tipo": "CeldaPared",
         "numArgs":0,
@@ -282,7 +21,515 @@
       {
         "tipo": "CeldaCambioEscenario",
         "numArgs":3,
-        "args": "{\"Str0\": \"Escenario2\", \"int1\": 1, \"int2\": 4}"
+        "args": "{\"Str0\": \"Escenario3\", \"int1\": 14, \"int2\": 1}"
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaCesped",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      }
+    ],
+    [
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
+      },
+      {
+        "tipo": "CeldaPared",
+        "numArgs":0,
+        "args":""
       },
       {
         "tipo": "CeldaPared",
