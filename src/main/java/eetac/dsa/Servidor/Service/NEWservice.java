@@ -28,19 +28,30 @@ public class NEWservice
         //La función registra al usuario y devuelve un codigo
         KeyUser key = new KeyUser();
 
-            if(ConsultaDB.getInstance().insertUser(user)){
+        if(ConsultaDB.getInstance().ExistUser(user.getNombre())){
+            key.setKey(1);
+            logger.error("Id: " + user.getNombre() + " ya existente");
+            return key;
 
-                key.setKey(0);
+        }
 
-            }else{
-                key.setKey(-1);
-            }
+        if(ConsultaDB.getInstance().insertUser(user)) {
+
+            key.setKey(0);
+            logger.info("Usuario: " + user.getNombre() + " registrado");
+            return key;
+
+        }
+
+
+        key.setKey(-1);
+        logger.error("Error en el registro");
 
         //key.setKey(0);  //Registro con éxito
         // key.setKey(-1); //No se ha podido registrar
+        // key.setKey(1); //Usuario ya existente
 
-            logger.info(key.getKey());
-            return key;
+        return key;
 
 
 
