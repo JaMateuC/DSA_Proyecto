@@ -33,17 +33,11 @@ public class AUTHservice
             if(MundoControlador.getInstance().UsuarioYaLoggeado(user))
             {
                 key.setKey(-1);  //Usuario ya loggeado
-<<<<<<< HEAD
-            }
-
-            else
-            {
-=======
 
                 logger.info(userExistente.getNombre() + " ya loggeado");
 
             }else {
->>>>>>> a68399c8e1b254807860b38a55fe90880155a82e
+
                 user = userExistente;
                 key.setKey((new Random().nextInt(2048) + 1));
                 MundoControlador.getInstance().addSesion(key.getKey(), new Sesion(user));
@@ -51,11 +45,6 @@ public class AUTHservice
                 logger.info(userExistente.getNombre() + " = " + key.getKey());
 
             }
-<<<<<<< HEAD
-        }
-        else{ key.setKey(0); }
-        logger.info(key.getKey());
-=======
 
 
         }else{
@@ -64,9 +53,6 @@ public class AUTHservice
             logger.error("No existe este usuario: " + user.getNombre());
 
         }
-
-
->>>>>>> a68399c8e1b254807860b38a55fe90880155a82e
         return key;
     }
 
