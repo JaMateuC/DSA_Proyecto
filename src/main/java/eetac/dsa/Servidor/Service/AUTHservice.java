@@ -34,18 +34,27 @@ public class AUTHservice
         {
             if(MundoControlador.getInstance().UsuarioYaLoggeado(user)){
                 key.setKey(-1);  //Usuario ya loggeado
+
+                logger.info(userExistente.getNombre() + " ya loggeado");
+
             }else {
                 user = userExistente;
                 key.setKey((new Random().nextInt(2048) + 1));
                 MundoControlador.getInstance().addSesion(key.getKey(), new Sesion(user));
+
+                logger.info(userExistente.getNombre() + " = " + key.getKey());
+
             }
 
 
         }else{
             key.setKey(0);
+
+            logger.error("No existe este usuario: " + user.getNombre());
+
         }
 
-        logger.info(key.getKey());
+
         return key;
     }
 
@@ -55,10 +64,17 @@ public class AUTHservice
     public String logout(@PathParam("key") int key)
     {
 
+        String usuario = MundoControlador.getInstance().getSesion(key).getProtagonista().getNombre();
+
         if(MundoControlador.getInstance().closeSession(key)){
 
+            logger.info("Usuario ha cerrado sesion:" + usuario);
             return "{\"Result\" : \"OK\"}";
+
+
         }else{
+
+            logger.info("No hay usuario loggeado con esa key");
             return "{\"Result\" : \"Error\"}";
         }
 

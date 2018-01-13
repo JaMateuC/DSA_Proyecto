@@ -50,7 +50,7 @@ public abstract class DAO {
                 this.nombreServidor +
                 ":" + this.puerto + "/" + dbNombre;
 
-        logger.info(connectionString + " " + this.nombreUsuario);
+        //logger.info(connectionString + " " + this.nombreUsuario);
 
         this.con = DriverManager.getConnection(connectionString,
                connectionProps);
@@ -208,7 +208,7 @@ public abstract class DAO {
         getConnection();
 
         PreparedStatement preparedStatement;
-        String selectSQL = "SELECT * FROM Monstruodao WHERE nombreUsuario = ?";
+        String selectSQL = "SELECT * FROM MonstruoDAO WHERE nombreUsuario = ?";
 
         preparedStatement = this.con.prepareStatement(selectSQL);
         String idState = appendId();
@@ -245,11 +245,13 @@ public abstract class DAO {
         getConnection();
 
         PreparedStatement preparedStatement;
-        String selectSQL = "SELECT * FROM objetodao WHERE nombreUsuario = ?";
+        String selectSQL = "SELECT * FROM ObjetoDAO WHERE nombreUsuario = ?";
 
         preparedStatement = this.con.prepareStatement(selectSQL);
         String idState = appendId();
         preparedStatement.setString(1, idState);
+
+        logger.info(selectSQL.toString());
 
         ResultSet rs = preparedStatement.executeQuery();
 
@@ -510,7 +512,6 @@ public abstract class DAO {
 
                 if(className.equals("UsuarioDAO") && i-1 == 4){
 
-                    logger.info(rs.getBoolean(i));
                     methods[i - 1].invoke(this, rs.getBoolean(i));
 
                 }else {
