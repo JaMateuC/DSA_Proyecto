@@ -42,7 +42,7 @@ public class WEBservice {
     {
 
         try {
-            File f = new File("src/Web/Creador de mapas style.css");
+            File f = new File("src/Web/Creador de mapas.css");
             return new FileInputStream(f);
         }catch (Exception e){
             return null;
@@ -56,7 +56,7 @@ public class WEBservice {
     {
 
         try {
-            File f = new File("src/Web/CreadorMapasLogic.js");
+            File f = new File("src/Web/Creador de mapas.js");
             return new FileInputStream(f);
         }catch (Exception e){
             return null;

@@ -146,7 +146,7 @@ public abstract class DAO {
         getConnection();
 
         PreparedStatement preparedStatement;
-        String selectSQL = "DELETE FROM Monstruodao WHERE nombreUsuario = ?";
+        String selectSQL = "DELETE FROM MonstruoDAO WHERE nombreUsuario = ?";
 
         preparedStatement = this.con.prepareStatement(selectSQL);
         String idState = appendId();
@@ -154,7 +154,7 @@ public abstract class DAO {
 
         preparedStatement.executeUpdate();
 
-        selectSQL = "DELETE FROM Objetodao WHERE nombreUsuario = ?";
+        selectSQL = "DELETE FROM ObjetoDAO WHERE nombreUsuario = ?";
 
         preparedStatement = this.con.prepareStatement(selectSQL);
         preparedStatement.setString(1, idState);
