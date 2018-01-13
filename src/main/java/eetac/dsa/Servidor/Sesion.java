@@ -12,7 +12,7 @@ public class Sesion {
 
     public Sesion(UsuarioJSON protagonista, String nombreEscenario) {
         this.protagonista = protagonista;
-        cargarEscenarioFichero(ConsultaDB.getInstance().getMapa(nombreEscenario).getDireccioFile());
+        cargarEscenarioFichero("src/main/resources/Escenarios/"+nombreEscenario+".json");
     }
 
     public EscenarioJSON getEscenario() {

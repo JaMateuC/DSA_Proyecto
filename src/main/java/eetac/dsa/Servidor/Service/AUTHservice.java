@@ -4,6 +4,8 @@ import eetac.dsa.Servidor.Model.ConsultaDB;
 import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
 import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
+import eetac.dsa.Servidor.MundoControlador;
+import eetac.dsa.Servidor.Sesion;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,6 +30,7 @@ public class AUTHservice
         if (ConsultaDB.getInstance().getUsuarioBasic(user.getNombre()).getPassword().equals(user.getPassword()))    //En el equals va la respuesta de la memoria (password)
         {
             key.setKey((new Random().nextInt(2048) + 1));
+            MundoControlador.getInstance().addSesion(key.getKey(),new Sesion(ConsultaDB.getInstance().getUsuarioEntero(user.getNombre()),"Escenario1"));
 
 
         }else{
