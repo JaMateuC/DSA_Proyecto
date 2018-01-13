@@ -3,7 +3,8 @@
   "alto": 7,
   "nombre": "Escenario2",
   "nivelDeZona":0,
-  "celdaJSON": [
+  "celdaJSON":
+  [
     [
       {
         "tipo": "CeldaPared",
@@ -26,9 +27,9 @@
         "args":""
       },
       {
-        "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
+        "tipo": "CeldaCambioEscenario",
+        "numArgs":3,
+        "args": "{\"Str0\": \"Escenario1\", \"int1\": 6, \"int2\": 4}"
       },
       {
         "tipo": "CeldaPared",
@@ -282,7 +283,7 @@
       {
         "tipo": "CeldaCambioEscenario",
         "numArgs":3,
-        "args": "{\"Str0\": \"Escenario2\", \"int1\": 2, \"int2\": 2}"
+        "args": "{\"Str0\": \"Escenario3\", \"int1\": 1, \"int2\": 5}"
       },
       {
         "tipo": "CeldaPared",

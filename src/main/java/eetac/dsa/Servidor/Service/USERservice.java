@@ -19,21 +19,15 @@ import java.util.Collections;
 @Path("/user")
 public class USERservice
 {
-
     @GET
     @Path("/profile/{nombre}")
     @Produces(MediaType.APPLICATION_JSON)
     public UsuarioJSON getUsuario(@PathParam("nombre") String nombre)
     {
         //Buscar Usuario por nombre y devolverlo al cliente
-
         UsuarioJSON user = ConsultaDB.getInstance().getUsuarioBasic(nombre);
-
         user.setPassword(null);                 //La contraseña no se envia al cliente
-
         return user;
-
-
     }
 
     @GET
@@ -61,6 +55,7 @@ public class USERservice
         {
             return MundoControlador.getInstance().getSesion(qCamEsc.getKey()).cambiarEscenario(qCamEsc.getNombre(),qCamEsc.getX(),qCamEsc.getY());
         }
+
         catch (Exception e)
         {
             return null;
@@ -72,9 +67,11 @@ public class USERservice
     @Produces(MediaType.APPLICATION_JSON)
     public MonstruoJSON[][] getMonstruosEncontrables()
     {
-        try {
+        try
+        {
             return CargadorJSON.monstruosEncontrables();
         }
+
         catch (Exception e)
         {
             return null;
@@ -86,9 +83,11 @@ public class USERservice
     @Produces(MediaType.APPLICATION_JSON)
     public ObjetoJSON[][] getObjetosEncontrables()
     {
-        try {
+        try
+        {
             return CargadorJSON.objetosEncontrables();
         }
+
         catch (Exception e)
         {
             return null;
@@ -129,14 +128,13 @@ public class USERservice
             return null;*/
 
         return list;
-
     }
 
     @GET
     @Path("/ranking")
     @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<UsuarioJSON> ranking() {
-
+    public ArrayList<UsuarioJSON> ranking()
+    {
         ArrayList<UsuarioJSON> list;
 
         list = ConsultaDB.getInstance().getAllUsers();
@@ -144,8 +142,6 @@ public class USERservice
         //ArrayList<UsuarioJSON> list = new ArrayList<UsuarioJSON>(MapUsuarios.getInstance().getUsuarios().values());
         Collections.sort(list,UsuarioJSON.Productoventascomparator);
         return list;
-
-
     }
 
     @GET
@@ -153,18 +149,13 @@ public class USERservice
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCeldasEncontrables()
     {
-        try {
-            return Response.ok()
-                    .entity(CargadorJSON.celdasEncontrables())
-                    .header("Access-Control-Allow-Origin", "*")
-                    .build();
+        try
+        {
+            return Response.ok().entity(CargadorJSON.celdasEncontrables()).header("Access-Control-Allow-Origin", "*").build();
         }
         catch (Exception e)
         {
             return null;
         }
     }
-
 }
-
-

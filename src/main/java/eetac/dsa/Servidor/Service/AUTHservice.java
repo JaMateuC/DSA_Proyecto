@@ -26,25 +26,23 @@ public class AUTHservice
     public KeyUser login(UsuarioJSON user)
     {
         KeyUser key = new KeyUser();
-
-
         UsuarioJSON userExistente = ConsultaDB.getInstance().getUsuarioEntero(user.getNombre());
 
         if (userExistente.getPassword().equals(user.getPassword()))    //En el equals va la respuesta de la memoria (password)
         {
-            if(MundoControlador.getInstance().UsuarioYaLoggeado(user)){
+            if(MundoControlador.getInstance().UsuarioYaLoggeado(user))
+            {
                 key.setKey(-1);  //Usuario ya loggeado
-            }else {
+            }
+
+            else
+            {
                 user = userExistente;
                 key.setKey((new Random().nextInt(2048) + 1));
                 MundoControlador.getInstance().addSesion(key.getKey(), new Sesion(user));
             }
-
-
-        }else{
-            key.setKey(0);
         }
-
+        else{ key.setKey(0); }
         logger.info(key.getKey());
         return key;
     }
