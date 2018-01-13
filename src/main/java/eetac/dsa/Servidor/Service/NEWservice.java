@@ -30,16 +30,25 @@ public class NEWservice
 
             if(ConsultaDB.getInstance().insertUser(user)){
 
-                key.setKey(0);
+                if(ConsultaDB.getInstance().ExistUser(user.getNombre())){
+                    key.setKey(1);
+                    logger.error("Id: " + user.getNombre() + " ya existente");
+
+                }else{
+                    key.setKey(0);
+                    logger.info("Usuario: " + user.getNombre() + " registrado");
+                }
+
 
             }else{
                 key.setKey(-1);
+                logger.error("Error en el registro");
             }
 
         //key.setKey(0);  //Registro con éxito
         // key.setKey(-1); //No se ha podido registrar
+        // key.setKey(1); //Usuario ya existente
 
-            logger.info(key.getKey());
             return key;
 
 

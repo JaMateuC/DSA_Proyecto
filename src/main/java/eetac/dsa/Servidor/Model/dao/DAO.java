@@ -312,6 +312,36 @@ public abstract class DAO {
 
     }
 
+    public ArrayList<String> selectUsersID() throws SQLException{
+
+        ArrayList<String> nombreUsuarios = new ArrayList<>();
+
+        getConnection();
+
+        PreparedStatement preparedStatement;
+        String selectSQL = "SELECT id FROM UsuarioDAO";
+
+        preparedStatement = this.con.prepareStatement(selectSQL);
+
+        logger.info(selectSQL.toString());
+
+        ResultSet rs = preparedStatement.executeQuery();
+
+        while(rs.next()){
+
+
+            ResultSetMetaData rsmd = rs.getMetaData();
+
+            nombreUsuarios.add(rs.getString(rsmd.getColumnCount()));
+
+
+        }
+
+
+        return nombreUsuarios;
+
+    }
+
     /*UPDATE STATMENTS*/
 
     public Boolean updateDB() throws SQLException{

@@ -194,4 +194,37 @@ public class ConsultaDB extends DAO {
 
     }
 
+    public ArrayList<String> getAllUsersDB(){
+
+        try{
+
+            return selectUsersID();
+
+        }catch (SQLException e){
+
+            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
+            return null;
+
+        }
+
+    }
+
+    public Boolean ExistUser(String userName){
+
+        ArrayList<String> usuariosExistentes = new ArrayList<>();
+
+        usuariosExistentes = getAllUsersDB();
+
+        if(usuariosExistentes.contains(userName)){
+
+            return true;
+
+        }else{
+
+            return false;
+
+        }
+
+    }
+
 }
