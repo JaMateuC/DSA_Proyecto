@@ -27,10 +27,18 @@ public class AUTHservice
     {
         KeyUser key = new KeyUser();
 
-        if (ConsultaDB.getInstance().getUsuarioBasic(user.getNombre()).getPassword().equals(user.getPassword()))    //En el equals va la respuesta de la memoria (password)
+
+        UsuarioJSON userExistente = ConsultaDB.getInstance().getUsuarioEntero(user.getNombre());
+
+        if (userExistente.getPassword().equals(user.getPassword()))    //En el equals va la respuesta de la memoria (password)
         {
-            key.setKey((new Random().nextInt(2048) + 1));
-            MundoControlador.getInstance().addSesion(key.getKey(),new Sesion(ConsultaDB.getInstance().getUsuarioEntero(user.getNombre()),"Escenario1"));
+            if(MundoControlador.getInstance().UsuarioYaLoggeado(user)){
+                key.setKey(-1);  //Usuario ya loggeado
+            }else {
+                user = userExistente;
+                key.setKey((new Random().nextInt(2048) + 1));
+                MundoControlador.getInstance().addSesion(key.getKey(), new Sesion(user));
+            }
 
 
         }else{
@@ -40,4 +48,22 @@ public class AUTHservice
         logger.info(key.getKey());
         return key;
     }
+
+    @GET
+    @Path("/logout/{key}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String logout(@PathParam("key") int key)
+    {
+
+        if(MundoControlador.getInstance().closeSession(key)){
+
+            return "{\"Result\" : \"OK\"}";
+        }else{
+            return "{\"Result\" : \"Error\"}";
+        }
+
+    }
+
+
+
 }

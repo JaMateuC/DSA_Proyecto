@@ -30,4 +30,7 @@ public class QueryUpdateUsuario {
     public void setNomEscenari(String nomEscenari) {
         this.nomEscenari = nomEscenari;
     }
+
+    public QueryUpdateUsuario() {
+    }
 }

@@ -7,6 +7,9 @@ public class QueryCambiarEscenario {
     int key;
     String nombre;
 
+    public QueryCambiarEscenario() {
+    }
+
     public String getNombre() {
         return nombre;
     }

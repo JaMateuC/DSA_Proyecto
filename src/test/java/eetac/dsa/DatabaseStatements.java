@@ -53,7 +53,7 @@ public class DatabaseStatements {
         listObjetos.add(objeto);
         listObjetos.add(objeto2);
         listObj = new ArrayList<>();
-        usuario1 = new UsuarioJSON(listObjetos,listMonstruos,"pepito","aaa","bbb",true);
+        usuario1 = new UsuarioJSON(listObjetos,listMonstruos,"pepito","aaa","bbb",true,null);
         monstruo = new MonstruoDAO("Primero","Hierba",100,1,1000,"jaume");
         monstruo1 = new MonstruoDAO("Primero","Fuego",100,1,1000,"jaume");
         monstruo3 = new MonstruoDAO();

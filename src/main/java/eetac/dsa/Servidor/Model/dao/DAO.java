@@ -42,6 +42,7 @@ public abstract class DAO {
 
         initProperties();
         Properties connectionProps = new Properties();
+
         connectionProps.put("user", this.nombreUsuario);
         connectionProps.put("password", this.password);
 
@@ -49,7 +50,7 @@ public abstract class DAO {
                 this.nombreServidor +
                 ":" + this.puerto + "/" + dbNombre;
 
-        logger.info(connectionString);
+        logger.info(connectionString + " " + this.nombreUsuario);
 
         this.con = DriverManager.getConnection(connectionString,
                connectionProps);

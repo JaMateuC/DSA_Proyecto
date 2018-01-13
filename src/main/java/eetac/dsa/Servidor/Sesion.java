@@ -10,9 +10,10 @@ public class Sesion {
     EscenarioJSON escenario;
     UsuarioJSON protagonista;
 
-    public Sesion(UsuarioJSON protagonista, String nombreEscenario) {
+    public Sesion(UsuarioJSON protagonista) {
         this.protagonista = protagonista;
-        cargarEscenarioFichero("src/main/resources/Escenarios/"+nombreEscenario+".json");
+        cargarEscenarioFichero("src/main/resources/Escenarios/" + protagonista.getEscenario() + ".json");
+
     }
 
     public EscenarioJSON getEscenario() {

@@ -1,12 +1,10 @@
 package eetac.dsa.Servidor.Service;
 
-import eetac.dsa.Servidor.MapUsuarios;
+
 import eetac.dsa.Servidor.Model.ConsultaDB;
-import eetac.dsa.Servidor.Model.dao.UsuarioDAO;
+
 import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
 import eetac.dsa.Servidor.Model.jsonpojo.UsuarioJSON;
-import eetac.dsa.Servidor.MundoControlador;
-import eetac.dsa.Servidor.Sesion;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,7 +13,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.sql.SQLException;
 
 @Path("/new")
 public class NEWservice

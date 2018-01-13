@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class MapUsuarios {
+/*public class MapUsuarios {
 
-    private static final Logger logger = LogManager.getLogger(MapUsuarios.class.getName());
+    private static final Logger logger = LogManager.getLogger(MapUsuarios.class.getName()
 
     static MapUsuarios mapUsuarios = null;
 
@@ -94,4 +94,4 @@ public class MapUsuarios {
     }
 
 
-}
+}*/
