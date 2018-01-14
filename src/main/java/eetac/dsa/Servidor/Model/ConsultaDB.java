@@ -140,7 +140,7 @@ public class ConsultaDB extends DAO {
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-        usuarioDAO.parseToUsuario(usuarioJSON);
+        usuarioDAO.parseToNewUsuario(usuarioJSON);
 
         try{
             usuarioDAO.insertDB();

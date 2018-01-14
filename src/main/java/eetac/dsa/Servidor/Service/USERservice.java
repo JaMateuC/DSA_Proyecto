@@ -10,6 +10,9 @@ import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultCambiarEscenario;
 import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultLoginArgs;
 import eetac.dsa.Servidor.Model.jsonpojo.resultsserver.ResultadoAceptar;
 import eetac.dsa.Servidor.MundoControlador;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -19,6 +22,8 @@ import java.util.Collections;
 @Path("/user")
 public class USERservice
 {
+    private static final Logger logger = LogManager.getLogger(USERservice.class.getName());
+
     @GET
     @Path("/profile/{nombre}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -106,6 +111,7 @@ public class USERservice
             userUpdate.setEscenario(qUpUsuario.getNomEscenari());
             MundoControlador.getInstance().getSesion(qUpUsuario.getKey()).setProtagonista(userUpdate);
             ResultadoAceptar resultadoAceptar = new ResultadoAceptar();
+            logger.info(userUpdate.getEscenario());
             resultadoAceptar.setPermitido(ConsultaDB.getInstance().updateUserDB(userUpdate));
 
             return resultadoAceptar;
