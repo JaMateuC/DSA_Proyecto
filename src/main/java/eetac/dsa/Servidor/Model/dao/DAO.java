@@ -552,7 +552,6 @@ public abstract class DAO {
                             methods[i - 1].invoke(this, rs.getBoolean(i));
                             break;
                         case Types.INTEGER:
-                            logger.info(rs.getInt(i));
                             methods[i - 1].invoke(this, rs.getInt(i));
                             break;
 
