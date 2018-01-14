@@ -539,7 +539,6 @@ public abstract class DAO {
             for(int i = 1; i <= rsmd.getColumnCount(); i++){
 
                 int sqlTypes = rsmd.getColumnType(i);
-
                 if(className.equals("UsuarioDAO") && i-1 == 4){
 
                     methods[i - 1].invoke(this, rs.getBoolean(i));
@@ -553,6 +552,7 @@ public abstract class DAO {
                             methods[i - 1].invoke(this, rs.getBoolean(i));
                             break;
                         case Types.INTEGER:
+                            logger.info(rs.getInt(i));
                             methods[i - 1].invoke(this, rs.getInt(i));
                             break;
 
