@@ -10,9 +10,9 @@ public class ObjetoDAO extends DAO{
     String tipo;
     @OrderFields(indice = 2)
     String extra;
-    @OrderFields(indice = 3)
-    String nombreUsuario;
     @OrderFields(indice = 4)
+    String nombreUsuario;
+    @OrderFields(indice = 3)
     int numArgs;
 
     public ObjetoDAO() { }
@@ -47,22 +47,22 @@ public class ObjetoDAO extends DAO{
         this.extra = extra;
     }
 
-    @OrderGetMethods(indice = 3)
+    @OrderGetMethods(indice = 4)
     public String getNombreUsuario() {
         return nombreUsuario;
     }
 
-    @OrderSetMethods(indice = 3)
+    @OrderSetMethods(indice = 4)
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
 
-    @OrderGetMethods(indice = 4)
+    @OrderGetMethods(indice = 3)
     public int getNumArgs() {
         return numArgs;
     }
 
-    @OrderSetMethods(indice = 4)
+    @OrderSetMethods(indice = 3)
     public void setNumArgs(int numArgs) {
         this.numArgs = numArgs;
     }
