@@ -1,23 +1,29 @@
 body{
-    background-image: url(../images/WebBack);
+    background: url(../../images/WebBack);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
+    -webkit-animation-delay: 0.1s;
+    -webkit-animation-name: fontfix;
+    -webkit-animation-duration: 0.1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
 }
 
 #TituloEspacio {
-    padding: 150px;
-    padding-bottom: 300px;
-    color:#f8f9fa;
-    text-align:center;
+    padding-top: 75px;
+    padding-bottom: 125px;
+
 }
 
-#TituloEspacio h1 {
+#Titulo {
+    text-align:center;
+    color:#f8f9fa;
     font-size: 50px;
     font-family: 'Press Start 2P', cursive;
-    margin:auto;
-    line-height:51px;
-    vertical-align:middle;
+    margin: auto;
+    line-height: 51px;
+    vertical-align: 20%;
     text-shadow: rgb(0, 0, 0) 5px 0px 0px, rgb(0, 0, 0) 4.90033px 0.993347px 0px, rgb(0, 0, 0) 4.60531px 1.94709px 0px,
     rgb(0, 0, 0) 4.12668px 2.82321px 0px, rgb(0, 0, 0) 3.48353px 3.58678px 0px, rgb(0, 0, 0) 2.70151px 4.20736px 0px,
     rgb(0, 0, 0) 1.81179px 4.6602px 0px, rgb(0, 0, 0) 0.849836px 4.92725px 0px, rgb(0, 0, 0) -0.145998px 4.99787px 0px,
@@ -34,9 +40,15 @@ body{
     rgb(0, 0, 0) 4.98271px -0.415447px 0px;
 }
 
-.contenido, html, body{
 
-    height: 100%; margin: 0px; padding: 0px;
+html, body{
+    height: 1080px;
+    max-height: 900px;
+}
+
+.contenido{
+
+    height: 250px; margin: 0px; padding: 0px;
 
 }
 
@@ -44,8 +56,41 @@ body{
     background-color: #f8f9fa;
 }
 
-.separator{
-    padding-top: 100px;
-    padding-bottom: 10px;
-    text-align: center;
+.formulario{
+    margin-top: 75px;
+    background-color: #f8f9fa;
+    padding: 25px 50px 30px 50px;
+    border-radius: 20px;
+    max-width: 450px;
+    box-shadow: 0px 0px 101px 10px rgba(0,0,0,0.45);
+    border: 2px solid rgba(0,0,0,0.45);
+
+}
+
+.separador{
+    margin: 20px;
+}
+
+.centrar{
+    margin-left: 35%;
+}
+
+#radio2{
+    margin-left: 15%;
+}
+
+#radio1{
+    margin-left: 20%;
+}
+
+.check{
+
+    background: url(../../images/check) no-repeat 95% 50%;
+
+}
+
+.cross{
+
+    background: url(../../images/cross) no-repeat 95% 50%;
+
 }
