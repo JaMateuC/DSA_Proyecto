@@ -101,9 +101,12 @@ public class USERservice
     {
         try
         {
-            MundoControlador.getInstance().getSesion(qUpUsuario.getKey()).setProtagonista(qUpUsuario.getUsuarioJson());
+            UsuarioJSON userUpdate = new UsuarioJSON();
+            userUpdate = qUpUsuario.getUsuarioJson();
+            userUpdate.setEscenario(qUpUsuario.getNomEscenari());
+            MundoControlador.getInstance().getSesion(qUpUsuario.getKey()).setProtagonista(userUpdate);
             ResultadoAceptar resultadoAceptar = new ResultadoAceptar();
-            resultadoAceptar.setPermitido(ConsultaDB.getInstance().updateUserDB(qUpUsuario.getUsuarioJson(),qUpUsuario.getNomEscenari()));
+            resultadoAceptar.setPermitido(ConsultaDB.getInstance().updateUserDB(userUpdate));
 
             return resultadoAceptar;
         }

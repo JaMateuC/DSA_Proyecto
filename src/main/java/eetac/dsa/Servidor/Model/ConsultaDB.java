@@ -175,7 +175,7 @@ public class ConsultaDB extends DAO {
 
     }
 
-    public Boolean updateUserDB(UsuarioJSON usuarioJSON, String mapaNombre){
+    public Boolean updateUserDB(UsuarioJSON usuarioJSON){
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
