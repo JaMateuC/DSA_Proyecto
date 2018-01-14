@@ -22,7 +22,7 @@ public class UsuarioDAO extends DAO{
     @OrderFields(indice = 5)
     private String email;
     @OrderFields(indice = 6)
-    private String nombreMapa = ""; //TODO: Nombre mapa inicial
+    private String nombreMapa;
 
 
     public UsuarioDAO() {

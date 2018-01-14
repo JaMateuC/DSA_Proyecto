@@ -106,12 +106,13 @@ public class USERservice
     {
         try
         {
-            UsuarioJSON userUpdate = new UsuarioJSON();
-            userUpdate = qUpUsuario.getUsuarioJson();
+            UsuarioJSON userUpdate = qUpUsuario.getUsuarioJson();
             userUpdate.setEscenario(qUpUsuario.getNomEscenari());
             MundoControlador.getInstance().getSesion(qUpUsuario.getKey()).setProtagonista(userUpdate);
             ResultadoAceptar resultadoAceptar = new ResultadoAceptar();
-            logger.info(userUpdate.getEscenario());
+            ConsultaDB.getInstance().deleteMonstruosAndObjetosUser(userUpdate);
+            ConsultaDB.getInstance().insertMonstruos(userUpdate);
+            ConsultaDB.getInstance().insertInventario(userUpdate);
             resultadoAceptar.setPermitido(ConsultaDB.getInstance().updateUserDB(userUpdate));
 
             return resultadoAceptar;

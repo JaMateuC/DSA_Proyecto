@@ -181,6 +181,7 @@ public class ConsultaDB extends DAO {
 
         usuarioDAO.parseToUsuario(usuarioJSON);
 
+
         try{
             usuarioDAO.updateDB();
             return true;
@@ -221,6 +222,75 @@ public class ConsultaDB extends DAO {
 
         }else{
 
+            return false;
+
+        }
+
+    }
+
+    public Boolean deleteMonstruosAndObjetosUser(UsuarioJSON userJSON){
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+        usuarioDAO.parseToUsuario(userJSON);
+
+        try{
+            usuarioDAO.deleteMonstruosAndObjetosUsuario();
+
+            return true;
+        }catch (SQLException e){
+
+            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
+            return false;
+
+        }
+
+    }
+
+    public Boolean insertMonstruos(UsuarioJSON userJSON){
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+        usuarioDAO.parseToUsuario(userJSON);
+
+        try{
+            for(MonstruoJSON monstruoJSON: userJSON.getMonstruos()){
+
+                MonstruoDAO monstruoDAO = new MonstruoDAO();
+                monstruoDAO.parseToMonstruo(monstruoJSON, userJSON.getNombre());
+                monstruoDAO.insertDB();
+
+            }
+
+            return true;
+        }catch (SQLException e){
+
+            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
+            return false;
+
+        }
+
+    }
+
+    public  Boolean insertInventario(UsuarioJSON userJSON){
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+        usuarioDAO.parseToUsuario(userJSON);
+
+        try{
+            for(ObjetoJSON objetoJSON: userJSON.getInventario()){
+
+                ObjetoDAO objetoDAO = new ObjetoDAO();
+                objetoDAO.parseToObjectDB(objetoJSON, userJSON.getNombre());
+                objetoDAO.insertDB();
+
+            }
+
+            return true;
+        }catch (SQLException e){
+
+            logger.error(e.getErrorCode() + "-" + e.getSQLState()+ ": " + e.getMessage());
             return false;
 
         }
