@@ -26,30 +26,36 @@ public class AUTHservice
     public KeyUser login(UsuarioJSON user)
     {
         KeyUser key = new KeyUser();
-        UsuarioJSON userExistente = ConsultaDB.getInstance().getUsuarioEntero(user.getNombre());
+        if(ConsultaDB.getInstance().ExistUser(user.getNombre())) {
+            UsuarioJSON userExistente = ConsultaDB.getInstance().getUsuarioEntero(user.getNombre());
 
-        if (userExistente.getPassword().equals(user.getPassword()))    //En el equals va la respuesta de la memoria (password)
-        {
-            if(MundoControlador.getInstance().UsuarioYaLoggeado(user))
+            if (userExistente.getPassword().equals(user.getPassword()))    //En el equals va la respuesta de la memoria (password)
             {
-                key.setKey(-1);  //Usuario ya loggeado
+                if (MundoControlador.getInstance().UsuarioYaLoggeado(user)) {
+                    key.setKey(-1);  //Usuario ya loggeado
 
-                logger.info(userExistente.getNombre() + " ya loggeado");
+                    logger.info(userExistente.getNombre() + " ya loggeado");
 
-            }else {
+                } else {
 
-                user = userExistente;
-                key.setKey((new Random().nextInt(2048) + 1));
-                MundoControlador.getInstance().addSesion(key.getKey(), new Sesion(user));
+                    user = userExistente;
+                    key.setKey((new Random().nextInt(2048) + 1));
+                    MundoControlador.getInstance().addSesion(key.getKey(), new Sesion(user));
 
-                logger.info(userExistente.getNombre() + " = " + key.getKey());
+                    logger.info(userExistente.getNombre() + " = " + key.getKey());
+
+                }
+
+
+            } else {
+                key.setKey(0);
+
+                logger.error("Contraseña de este" + user.getNombre() +  "incorrecta: ");
 
             }
-
-
         }else{
-            key.setKey(0);
 
+            key.setKey(-2);
             logger.error("No existe este usuario: " + user.getNombre());
 
         }
