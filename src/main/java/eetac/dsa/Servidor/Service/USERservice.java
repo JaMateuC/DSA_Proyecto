@@ -114,7 +114,6 @@ public class USERservice
             ConsultaDB.getInstance().insertMonstruos(userUpdate);
             ConsultaDB.getInstance().insertInventario(userUpdate);
             resultadoAceptar.setPermitido(ConsultaDB.getInstance().updateUserDB(userUpdate));
-
             return resultadoAceptar;
         }
         catch (Exception e)

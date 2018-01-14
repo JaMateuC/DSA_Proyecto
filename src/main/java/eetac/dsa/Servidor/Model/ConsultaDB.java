@@ -237,6 +237,7 @@ public class ConsultaDB extends DAO {
         try{
             usuarioDAO.deleteMonstruosAndObjetosUsuario();
 
+            logger.info("Monstruos i Objetos de " + userJSON.getNombre() + " eliminados");
             return true;
         }catch (SQLException e){
 
@@ -244,6 +245,9 @@ public class ConsultaDB extends DAO {
             return false;
 
         }
+
+
+
 
     }
 
@@ -261,7 +265,7 @@ public class ConsultaDB extends DAO {
                 monstruoDAO.insertDB();
 
             }
-
+            logger.info("Monstruos de " + userJSON.getNombre() + " añadidos");
             return true;
         }catch (SQLException e){
 
@@ -286,6 +290,8 @@ public class ConsultaDB extends DAO {
                 objetoDAO.insertDB();
 
             }
+
+            logger.info("Objetos de " + userJSON.getNombre() + " añadidos");
 
             return true;
         }catch (SQLException e){
