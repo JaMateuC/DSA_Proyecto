@@ -50,7 +50,7 @@ public class USERservice
         return user;
     }
 
-    @POST
+    /*@POST
     @Path("/profile/update")
     @Consumes(MediaType.APPLICATION_JSON)
     public ResultadoAceptar updateUsuario(QueryUpdateUsuario querry)
@@ -59,8 +59,8 @@ public class USERservice
         result.setPermitido(false);
 
         return result;
-    }
-    /*
+    }*/
+
     @POST
     @Path("/profile/update")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -86,7 +86,7 @@ public class USERservice
             return resultadoAceptar;
         }
     }
-    */
+
 
 
     @GET
