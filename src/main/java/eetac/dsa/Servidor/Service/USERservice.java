@@ -25,17 +25,6 @@ public class USERservice
     private static final Logger logger = LogManager.getLogger(USERservice.class.getName());
 
     @GET
-    @Path("/profile/{nombre}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public UsuarioJSON getUsuario(@PathParam("nombre") String nombre)
-    {
-        //Buscar Usuario por nombre y devolverlo al cliente
-        UsuarioJSON user = ConsultaDB.getInstance().getUsuarioBasic(nombre);
-        user.setPassword(null);                 //La contraseña no se envia al cliente
-        return user;
-    }
-
-    @GET
     @Path("/getLoginArgs/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public ResultLoginArgs getLoggingArgs(@PathParam("id") int key)
@@ -50,6 +39,90 @@ public class USERservice
         }
     }
 
+    @GET
+    @Path("/profile/{nombre}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public UsuarioJSON getUsuario(@PathParam("nombre") String nombre)
+    {
+        //Buscar Usuario por nombre y devolverlo al cliente
+        UsuarioJSON user = ConsultaDB.getInstance().getUsuarioBasic(nombre);
+        //user.setPassword(null);                 //La contraseña no se envia al cliente
+        return user;
+    }
+
+    @POST
+    @Path("/profile/update")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public ResultadoAceptar updateUsuario(QueryUpdateUsuario querry)
+    {
+        ResultadoAceptar result = new ResultadoAceptar();
+        result.setPermitido(false);
+
+        return result;
+    }
+    /*
+    @POST
+    @Path("/profile/update")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public ResultadoAceptar updateUsuario(QueryUpdateUsuario qUpUsuario)
+    {
+        try
+        {
+            UsuarioJSON userUpdate = qUpUsuario.getUsuarioJson();
+            userUpdate.setEscenario(qUpUsuario.getNomEscenari());
+            MundoControlador.getInstance().getSesion(qUpUsuario.getKey()).setProtagonista(userUpdate);
+            ResultadoAceptar resultadoAceptar = new ResultadoAceptar();
+            ConsultaDB.getInstance().deleteMonstruosAndObjetosUser(userUpdate);
+            ConsultaDB.getInstance().insertMonstruos(userUpdate);
+            ConsultaDB.getInstance().insertInventario(userUpdate);
+            resultadoAceptar.setPermitido(ConsultaDB.getInstance().updateUserDB(userUpdate));
+            return resultadoAceptar;
+        }
+
+        catch (Exception e)
+        {
+            ResultadoAceptar resultadoAceptar = new ResultadoAceptar();
+            resultadoAceptar.setPermitido(false);
+            return resultadoAceptar;
+        }
+    }
+    */
+
+
+    @GET
+    @Path("/ranking")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ArrayList<UsuarioJSON> ranking()
+    {
+        ArrayList<UsuarioJSON> list;
+
+        list = ConsultaDB.getInstance().getAllUsers();
+
+        //ArrayList<UsuarioJSON> list = new ArrayList<UsuarioJSON>(MapUsuarios.getInstance().getUsuarios().values());
+        Collections.sort(list,UsuarioJSON.Productoventascomparator);
+        return list;
+    }
+
+    @GET
+    @Path("/listaMonstruo/{nombre}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ArrayList<MonstruoJSON> getMonstruos(@PathParam("nombre") String nombre)
+    {
+        ArrayList<MonstruoJSON> list;
+        list = ConsultaDB.getInstance().getMonstruosUsuario(nombre);
+        return list;
+    }
+
+    @GET
+    @Path("/listaInventario/{nombre}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ArrayList<ObjetoJSON> getInventario(@PathParam("nombre") String nombre)
+    {
+        ArrayList<ObjetoJSON> list;
+        list = ConsultaDB.getInstance().getObjtosUsuario(nombre);
+        return list;
+    }
+
     @POST
     @Path("/cambiarEscenario")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -61,6 +134,21 @@ public class USERservice
             return MundoControlador.getInstance().getSesion(qCamEsc.getKey()).cambiarEscenario(qCamEsc.getNombre(),qCamEsc.getX(),qCamEsc.getY());
         }
 
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    @GET
+    @Path("/getCeldasEncontrables")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCeldasEncontrables()
+    {
+        try
+        {
+            return Response.ok().entity(CargadorJSON.celdasEncontrables()).header("Access-Control-Allow-Origin", "*").build();
+        }
         catch (Exception e)
         {
             return null;
@@ -93,75 +181,6 @@ public class USERservice
             return CargadorJSON.objetosEncontrables();
         }
 
-        catch (Exception e)
-        {
-            return null;
-        }
-    }
-
-    @POST
-    @Path("/updateUsuario")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public ResultadoAceptar updateUsuario(QueryUpdateUsuario qUpUsuario)
-    {
-        try
-        {
-            UsuarioJSON userUpdate = qUpUsuario.getUsuarioJson();
-            userUpdate.setEscenario(qUpUsuario.getNomEscenari());
-            MundoControlador.getInstance().getSesion(qUpUsuario.getKey()).setProtagonista(userUpdate);
-            ResultadoAceptar resultadoAceptar = new ResultadoAceptar();
-            ConsultaDB.getInstance().deleteMonstruosAndObjetosUser(userUpdate);
-            ConsultaDB.getInstance().insertMonstruos(userUpdate);
-            ConsultaDB.getInstance().insertInventario(userUpdate);
-            resultadoAceptar.setPermitido(ConsultaDB.getInstance().updateUserDB(userUpdate));
-            return resultadoAceptar;
-        }
-        catch (Exception e)
-        {
-            ResultadoAceptar resultadoAceptar = new ResultadoAceptar();
-            resultadoAceptar.setPermitido(false);
-            return resultadoAceptar;
-        }
-    }
-
-    @GET
-    @Path("/listamonstruo/{nombre}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<MonstruoJSON> pruebaandroid(@PathParam("nombre") String nombre) {
-
-        ArrayList<MonstruoJSON> list;
-        list = ConsultaDB.getInstance().getMonstruosUsuario(nombre);
-
-            /*if(MapUsuarios.getInstance().getUsuarios().containsKey(nombre))
-                return MapUsuarios.getInstance().getUsuarios().get(nombre).getMonstruosl();
-            return null;*/
-
-        return list;
-    }
-
-    @GET
-    @Path("/ranking")
-    @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<UsuarioJSON> ranking()
-    {
-        ArrayList<UsuarioJSON> list;
-
-        list = ConsultaDB.getInstance().getAllUsers();
-
-        //ArrayList<UsuarioJSON> list = new ArrayList<UsuarioJSON>(MapUsuarios.getInstance().getUsuarios().values());
-        Collections.sort(list,UsuarioJSON.Productoventascomparator);
-        return list;
-    }
-
-    @GET
-    @Path("/getCeldasEncontrables")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getCeldasEncontrables()
-    {
-        try
-        {
-            return Response.ok().entity(CargadorJSON.celdasEncontrables()).header("Access-Control-Allow-Origin", "*").build();
-        }
         catch (Exception e)
         {
             return null;

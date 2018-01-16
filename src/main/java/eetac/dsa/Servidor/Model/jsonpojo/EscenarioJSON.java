@@ -8,8 +8,7 @@ public class EscenarioJSON {
     int alto;
     CeldaJSON celdaJSON[][];
 
-    public EscenarioJSON() {
-    }
+    public EscenarioJSON() { }
 
     public int getAncho() {
         return ancho;

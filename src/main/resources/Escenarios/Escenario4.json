@@ -8,11 +8,9 @@
     [
       {
         "tipo": "CeldaPared",
-        "numArgs":0,
-        "args":""
-      }
-    ],
-    [
+        "numArgs": 0,
+        "args": ""
+      },
       {
         "tipo": "CeldaPared",
         "numArgs":0,

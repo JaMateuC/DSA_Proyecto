@@ -29,7 +29,7 @@
       {
         "tipo": "CeldaCambioEscenario",
         "numArgs":3,
-        "args": "{\"Str0\": \"Escenario1\", \"int1\": 6, \"int2\": 4}"
+        "args": "{\"Str0\": \"Escenario1\", \"int1\": 6, \"int2\": 3}"
       },
       {
         "tipo": "CeldaPared",
