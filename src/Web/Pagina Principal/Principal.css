@@ -36,7 +36,7 @@ body{
 
 .contenido, html, body{
 
-    height: 100%; margin: 0px; padding: 0px;
+    height: 400px; margin: 0px; padding: 0px;
 
 }
 
@@ -48,4 +48,30 @@ body{
     padding-top: 100px;
     padding-bottom: 10px;
     text-align: center;
+}
+
+#about{
+    box-shadow: inset 0px 91px 41px -82px rgba(0,0,0,0.75);
+    background-color: #e0e0e0;
+    height: 200px;
+    width: 100%;
+
+
+}
+
+#info{
+
+    padding-top: 75px;
+    width: 50%;
+    margin: 0 auto;
+    display: table;
+    table-layout: fixed;
+
+}
+
+.spanI{
+
+    display: table-cell;
+    text-align: center;
+
 }

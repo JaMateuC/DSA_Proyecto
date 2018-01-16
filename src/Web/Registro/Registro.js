@@ -2,53 +2,85 @@ var nickName = document.getElementById("InputNickName");
 var password = document.getElementById("InputPassword");
 var repetirPassword = document.getElementById("InputRepetirPassword");
 var email = document.getElementById("InputEmail");
-var isHombre = document.getElementById("radio1");
-var isMujer = document.getElementById("radio2");
+var isHombre = document.getElementById("inlineRadio1");
+var isMujer = document.getElementById("inlineRadio2");
 var btnRegistrar = document.getElementById("Registrar");
-var usuarios;
 var nicknameCorrecto;
-
-isHombre.checked = true;
-
+var formRes = document.getElementById("formRegistrar");
+var formularioDiv = document.getElementsByClassName("formulario");
+var espacioTitulo = document.getElementById("TituloEspacio")
 
 nickName.addEventListener('click',function () {
 
 
-    nickName.classList.add('cross');
+    loadUsuarios(nickName.value);
 
 })
 
-nickName.addEventListener('onkeyup',function () {
+nickName.onkeyup = function () {
 
     loadUsuarios(nickName.value);
-    nicknameCorrecto = nickName.value;
 
-})
+}
 
 btnRegistrar.addEventListener("click", function(){
 
 
-    if(nicknameCorrecto){
+    if( nickName.value !== ""){
 
-        if(passwordCorrecta()){
+        if(nicknameCorrecto){
 
-            usaurioRegistrar = {
-                "nombre": nicknameCorrecto,
-                "password": password.value,
-                "email": email.value,
-                "genero": genero()
+            if(password.value !== ""){
+
+                if(password.value === repetirPassword.value){
+
+                    if(email.value !== ""){
+
+                        if(isHombre.checked || isMujer.checked){
+
+                            usuarioRegistrar = {
+                                "nombre": nickName.value,
+                                "password": password.value,
+                                "email": email.value,
+                                "genero": genero()
+                            }
+
+                            postData(usuarioRegistrar);
+
+
+                        }else{
+
+                            alert("Selecciona un genero.");
+
+                        }
+
+                    }else{
+
+                        alert("Escriba un email.")
+
+                    }
+
+                }else{
+
+                    alert("Las contraseñas no son iguales.");
+
+                }
+
+            }else{
+
+                alert("Escribe una contraseña");
             }
 
-            var xhr = new XMLHttpRequest();
-            xhr.open(formRes.method, formRes.action, true);
-            xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-            xhr.send(JSON.stringify(usaurioRegistrar));
 
         }else{
+
+            alert("Usuario ya existente.");
 
         }
 
     }else{
+
+        alert("Escribe un usuario.");
 
     }
 
@@ -57,20 +89,55 @@ btnRegistrar.addEventListener("click", function(){
 
 })
 
-
-
-var nicknameExist = function(){
-
-
-}
-
 function loadUsuarios(usuario){
-    loadJSON("/myapp/web/usuarioExsistente/"+usuario,gotData)
+
+    if(usuario !== "") {
+        var url = "/myapp/web/usuarioExsistente/" + usuario;
+        loadJSON(url, gotData)
+    }else{
+        nickName.classList.remove('check');
+        nickName.classList.add('cross');
+    }
 }
 
 function gotData(data){
 
-    usuarios = data;
+    if(data.key === 0){
+        nicknameCorrecto = true;
+        nickName.classList.remove('cross');
+        nickName.classList.add('check');
+    }else{
+        nickName.classList.remove('check');
+        nickName.classList.add('cross');
+        nicknameCorrecto = true;
+    }
+
+}
+
+function postData(usuarioRegistrar){
+
+    var response;
+    var xhr = new XMLHttpRequest();
+    xhr.open(formRes.method, formRes.action, true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    xhr.send(JSON.stringify(usuarioRegistrar));
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                response = JSON.parse(xhr.responseText);
+                if(response !== "" && response.key === 0){
+
+                    registrarOk();
+
+                }else{
+
+                    alert("Error al registrar");
+
+                }
+            }
+        }
+    };
 
 }
 
@@ -93,22 +160,32 @@ function loadJSON(path, success, error)
     xhr.send();
 }
 
-var passwordCorrecta = function () {
+function registrarOk(){
 
-    if(password.value === repetirPassword.value){
-        return true;
+    if (formRes) {
+        formRes.remove();
     }
+    formularioDiv[0].id = 'registradoOk';
+    formularioDiv[0].innerHTML = "<h2 class='resultadoTitulo'>Usuario registrado correctamente</h2>"
 
-    return false;
 
 }
 
-var genero = function () {
+Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+}
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+    for(var i = this.length - 1; i >= 0; i--) {
+        if(this[i] && this[i].parentElement) {
+            this[i].parentElement.removeChild(this[i]);
+        }
+    }
+}
+
+function genero() {
 
     if(isHombre.checked){
-
         return true;
-
     }
 
     return false;

@@ -13,6 +13,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/new")
 public class NEWservice
@@ -23,7 +24,7 @@ public class NEWservice
     @Path("/user")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public KeyUser registro(UsuarioJSON user)
+    public Response registro(UsuarioJSON user)
     {
         //La función registra al usuario y devuelve un codigo
         KeyUser key = new KeyUser();
@@ -31,7 +32,7 @@ public class NEWservice
         if(ConsultaDB.getInstance().ExistUser(user.getNombre())){
             key.setKey(1);
             logger.error("Id: " + user.getNombre() + " ya existente");
-            return key;
+            return Response.status(200).entity(key).build();
 
         }
 
@@ -39,7 +40,7 @@ public class NEWservice
 
             key.setKey(0);
             logger.info("Usuario: " + user.getNombre() + " registrado");
-            return key;
+            return Response.status(200).entity(key).build();
 
         }
 
@@ -51,7 +52,7 @@ public class NEWservice
         // key.setKey(-1); //No se ha podido registrar
         // key.setKey(1); //Usuario ya existente
 
-        return key;
+        return Response.status(200).entity(key).build();
 
 
 

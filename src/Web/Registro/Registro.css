@@ -42,13 +42,12 @@ body{
 
 
 html, body{
-    height: 1080px;
-    max-height: 900px;
+    max-height: 800px;
 }
 
 .contenido{
 
-    height: 250px; margin: 0px; padding: 0px;
+     margin: 0px; padding: 0px;
 
 }
 
@@ -61,7 +60,8 @@ html, body{
     background-color: #f8f9fa;
     padding: 25px 50px 30px 50px;
     border-radius: 20px;
-    max-width: 450px;
+    width: 450px;
+    max-width: 700px;
     box-shadow: 0px 0px 101px 10px rgba(0,0,0,0.45);
     border: 2px solid rgba(0,0,0,0.45);
 
@@ -92,5 +92,47 @@ html, body{
 .cross{
 
     background: url(../../images/cross) no-repeat 95% 50%;
+
+}
+
+#about{
+    box-shadow: inset 0px 91px 41px -82px rgba(0,0,0,0.75);
+    background-color: #e0e0e0;
+    height: 200px;
+    width: 100%;
+
+
+}
+
+#info{
+
+    padding-top: 75px;
+    width: 50%;
+    margin: 0 auto;
+    display: table;
+    table-layout: fixed;
+
+}
+
+.spanI{
+
+    display: table-cell;
+    text-align: center;
+
+}
+
+#registradoOk{
+
+    height: 200px;
+    width: 700px;
+    margin-bottom: 200px;
+    text-align: center
+
+}
+
+.resultadoTitulo{
+
+    padding-top: 9%;
+    text-align: center
 
 }
