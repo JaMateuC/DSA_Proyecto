@@ -39,7 +39,7 @@ btnRegistrar.addEventListener("click", function(){
                         if(isHombre.checked || isMujer.checked){
 
                             usuarioRegistrar = {
-                                "nombre": nickName.value,
+                                "nombre": nickName.value.toLowerCase(),
                                 "password": password.value,
                                 "email": email.value,
                                 "genero": genero()

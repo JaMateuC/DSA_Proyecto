@@ -209,4 +209,44 @@ public class WEBservice {
         }
 
     }
+
+    @GET
+    @Path("/about")
+    @Produces(MediaType.TEXT_HTML)
+    public InputStream viewAbout()
+    {
+
+        try {
+
+            File f = new File("src/Web/About/About.html");
+            return new FileInputStream(f);
+
+        }catch (Exception e){
+            return null;
+        }
+
+    }
+
+    @GET
+    @Path("/about/assets/{asset}")
+    @Produces("text/css")
+    public InputStream viewAboutAssets(@PathParam("asset") String asset)
+    {
+
+        try {
+
+            File f = null;
+
+            if(asset.equals("js")) {
+                f = new File("src/Web/About/About.js");
+            }else if(asset.equals("css")) {
+                f = new File("src/Web/About/About.css");
+            }
+            return new FileInputStream(f);
+
+        }catch (Exception e){
+            return null;
+        }
+
+    }
 }
