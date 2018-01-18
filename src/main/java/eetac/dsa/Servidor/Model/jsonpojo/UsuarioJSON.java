@@ -9,7 +9,6 @@ import java.util.List;
 
 public class UsuarioJSON
 {
-
     private ArrayList<ObjetoJSON> inventario;
     private ArrayList<MonstruoJSON> monstruos;
     private String nombre;

@@ -67,17 +67,16 @@ public class AUTHservice
     @Produces(MediaType.APPLICATION_JSON)
     public String logout(@PathParam("key") int key)
     {
-
         String usuario = MundoControlador.getInstance().getSesion(key).getProtagonista().getNombre();
 
-        if(MundoControlador.getInstance().closeSession(key)){
-
+        if(MundoControlador.getInstance().closeSession(key))
+        {
             logger.info("Usuario ha cerrado sesion:" + usuario);
             return "{\"Result\" : \"OK\"}";
+        }
 
-
-        }else{
-
+        else
+        {
             logger.info("No hay usuario loggeado con esa key");
             return "{\"Result\" : \"Error\"}";
         }

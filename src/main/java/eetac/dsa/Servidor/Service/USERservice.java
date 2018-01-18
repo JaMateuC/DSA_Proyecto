@@ -87,8 +87,6 @@ public class USERservice
         }
     }
 
-
-
     @GET
     @Path("/ranking")
     @Produces(MediaType.APPLICATION_JSON)
@@ -185,5 +183,19 @@ public class USERservice
         {
             return null;
         }
+    }
+
+    @POST
+    @Path("delete")
+    @Produces(MediaType.APPLICATION_JSON)
+    public KeyUser deleteUser(UsuarioJSON user)
+    {
+        KeyUser key = new KeyUser();
+
+        //Verificar si la key corresponde a algun usuario
+        //Buscar en la base de datos el usuario y eliminarlo
+
+        key.setKey(0);
+        return key;
     }
 }
