@@ -220,11 +220,12 @@ public class WEBservice {
     {
 
         try {
-
-            File f = new File("src/Web/Creador Mapas/Creador de mapas.html");
+            logger.debug("Funciona");
+            File f = new File("src/Web/Creador Mapas/Creadordemapas.html");
             return new FileInputStream(f);
 
         }catch (Exception e){
+            logger.debug("No funciona");
             return null;
         }
 
@@ -241,9 +242,9 @@ public class WEBservice {
             File f = null;
 
             if(asset.equals("js")) {
-                f = new File("src/Web/Creador Mapas/Creador de mapas.js");
+                f = new File("src/Web/Creador Mapas/Creadordemapas.js");
             }else if(asset.equals("css")) {
-                f = new File("src/Web/Creador Mapas/Creador de mapas.css");
+                f = new File("src/Web/Creador Mapas/Creadordemapas.css");
             }
             return new FileInputStream(f);
 
