@@ -221,7 +221,7 @@ public class WEBservice {
 
         try {
             logger.debug("Funciona");
-            File f = new File("src/Web/CreadorMapas/Creadordemapas.html");
+            File f = new File("src/Web/Creadormapas/Creadordemapas.html");
             return new FileInputStream(f);
 
         }catch (Exception e){
@@ -243,9 +243,9 @@ public class WEBservice {
             File f = null;
 
             if(asset.equals("js")) {
-                f = new File("src/Web/CreadorMapas/Creadordemapas.js");
+                f = new File("src/Web/Creadormapas/Creadordemapas.js");
             }else if(asset.equals("css")) {
-                f = new File("src/Web/CreadorMapas/Creadordemapas.css");
+                f = new File("src/Web/Creadormapas/Creadordemapas.css");
             }
             return new FileInputStream(f);
 
