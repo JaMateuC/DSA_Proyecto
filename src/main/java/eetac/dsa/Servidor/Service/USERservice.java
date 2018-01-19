@@ -50,16 +50,16 @@ public class USERservice
         return user;
     }
 
-    /*@POST
-    @Path("/profile/update")
+    @POST
+    @Path("/profile/fields")
     @Consumes(MediaType.APPLICATION_JSON)
-    public ResultadoAceptar updateUsuario(QueryUpdateUsuario querry)
+    @Produces(MediaType.APPLICATION_JSON)
+    public KeyUser actualizarPerfil(UsuarioJSON usuario)
     {
-        ResultadoAceptar result = new ResultadoAceptar();
-        result.setPermitido(false);
-
-        return result;
-    }*/
+        KeyUser key = new KeyUser();
+        key.setKey(0);
+        return key;
+    }
 
     @POST
     @Path("/profile/update")
