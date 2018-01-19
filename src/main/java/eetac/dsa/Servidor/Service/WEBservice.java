@@ -2,6 +2,7 @@ package eetac.dsa.Servidor.Service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import eetac.dsa.Servidor.CargadorJSON;
 import eetac.dsa.Servidor.Model.ConsultaDB;
 import eetac.dsa.Servidor.Model.jsonpojo.EscenarioJSON;
 import eetac.dsa.Servidor.Model.jsonpojo.KeyUser;
@@ -17,60 +18,20 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 @Path("/web")
 public class WEBservice {
 
     private static final Logger logger = LogManager.getLogger(WEBservice.class.getName());
 
-    @GET
-    @Path("/CreadorMapas")
-    @Produces(MediaType.TEXT_HTML)
-    public InputStream viewCreadorMapas()
-    {
-
-        try {
-            File f = new File("src/Web/Creador de mapas.html");
-            return new FileInputStream(f);
-        }catch (Exception e){
-            return null;
-        }
-
-    }
-
-    @GET
-    @Path("/creadorMapas/assets/css")
-    public InputStream viewCreadorCss()
-    {
-
-        try {
-            File f = new File("src/Web/Creador de mapas.css");
-            return new FileInputStream(f);
-        }catch (Exception e){
-            return null;
-        }
-
-    }
-
-    @GET
-    @Path("/creadorMapas/assets/js")
-    public InputStream viewCreadorjs()
-    {
-
-        try {
-            File f = new File("src/Web/Creador de mapas.js");
-            return new FileInputStream(f);
-        }catch (Exception e){
-            return null;
-        }
-
-    }
-
     @POST
     @Path("/guardarMapa")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public EscenarioJSON guardarMapa(EscenarioJSON newEscenario){
+    public KeyUser guardarMapa(EscenarioJSON newEscenario){
+
+        KeyUser key = new KeyUser();
 
         try {
             String filePath = new File("").getAbsolutePath();
@@ -81,11 +42,13 @@ public class WEBservice {
             file.write(json);
             file.flush();
             file.close();
-            return newEscenario;
+            key.setKey(1);
+            return key;
         }catch(Exception e){
 
             logger.error("Error: " + e.getMessage());
-            return null;
+            key.setKey(0);
+            return key;
 
         }
 
@@ -249,4 +212,72 @@ public class WEBservice {
         }
 
     }
+
+    @GET
+    @Path("/creadorMapas")
+    @Produces(MediaType.TEXT_HTML)
+    public InputStream viewCreador()
+    {
+
+        try {
+
+            File f = new File("src/Web/Creador Mapas/Creador de mapas.html");
+            return new FileInputStream(f);
+
+        }catch (Exception e){
+            return null;
+        }
+
+    }
+
+    @GET
+    @Path("/creadorMapas/assets/{asset}")
+    @Produces("text/css")
+    public InputStream viewCreadorAssets(@PathParam("asset") String asset)
+    {
+
+        try {
+
+            File f = null;
+
+            if(asset.equals("js")) {
+                f = new File("src/Web/Creador Mapas/Creador de mapas.js");
+            }else if(asset.equals("css")) {
+                f = new File("src/Web/Creador Mapas/Creador de mapas.css");
+            }
+            return new FileInputStream(f);
+
+        }catch (Exception e){
+            return null;
+        }
+
+    }
+
+    @GET
+    @Path("/creadorMapas/ultimoMapa")
+    @Produces(MediaType.APPLICATION_JSON)
+    public EscenarioJSON ultimoMapa(){
+
+        EscenarioJSON ultimoEscenario = new EscenarioJSON();
+
+        File folder = new File("src/main/resources/Escenarios");
+        File[] listOfFiles = folder.listFiles();
+
+        for (int i = 0; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].getName().startsWith("Escenario")) {
+
+                try {
+                    ultimoEscenario = CargadorJSON.fileToEscenario(listOfFiles[i].getAbsolutePath());
+                }catch (Exception e){
+
+                    logger.error("Cargar escenario");
+
+                }
+
+            }
+        }
+
+        return ultimoEscenario;
+    }
+
 }
