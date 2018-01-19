@@ -225,6 +225,7 @@ public class WEBservice {
             return new FileInputStream(f);
 
         }catch (Exception e){
+            logger.error(e.getMessage());
             logger.debug("No funciona");
             return null;
         }
