@@ -187,24 +187,23 @@ public class USERservice
 
     @POST
     @Path("/delete")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public KeyUser deleteUser(UsuarioJSON user)
     {
         KeyUser key = new KeyUser();
 
-        if(ConsultaDB.getInstance().deleteUserRowDB(user)){
-
+        if(ConsultaDB.getInstance().deleteUserRowDB(user))
+        {
             key.setKey(1);
             logger.info("Usuario " + user.getNombre() + " ha sido eliminado");
-
-        }else{
-
-            key.setKey(0);
-            logger.error("Usuario " + user.getNombre() + " no encontrado");
-
         }
 
-
+        else
+        {
+            key.setKey(0);
+            logger.error("Usuario " + user.getNombre() + " no encontrado");
+        }
         return key;
     }
 }
