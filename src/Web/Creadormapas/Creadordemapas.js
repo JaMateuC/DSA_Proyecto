@@ -322,8 +322,8 @@ function creadorResultado(){
     crearInOutCelda();
 
     mapaResultado = {
-                        'ancho' : mapa.rows[0].cells.length - 1,
-                        'alto' : mapa.rows.length - 1,
+                        'ancho' : mapa.rows.length - 1,
+                        'alto' : mapa.rows[0].cells.length - 1,
                         'nombre' : "Escenario "+ (parseInt(ultimoMapa.substring(9,10)) + 1),
                         'nivelDeZona' : nivelDeZona.value,
                         'celdaJSON' : [],
