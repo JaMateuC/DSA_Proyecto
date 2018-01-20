@@ -334,17 +334,6 @@ function creadorResultado(){
         var row = [];
         for(var j = 1; j<mapa.rows[0].cells.length; j++){
         var image = cells[i].style.backgroundColor;
-            /*if(j === 1 && k == inRow.value){
-
-                row.push(celdaIn);
-                i++;
-
-            }else if(j === (mapa.rows[0].cells.length-1) && k == outRow.value) {
-
-                row.push(celdaOut);
-                i++;
-
-            }else{*/
             listaCeldasJSON.forEach(function (element) {
 
                 if (image === element.image) {
@@ -391,9 +380,18 @@ function creadorResultado(){
 
         }
         mapaResultado.celdaJSON.push(row);
+
+       transpose(mapaResultado.celdaJSON);
     }
 
 
+}
+
+function transpose(a)
+{
+  return a[0].map(function (_, c) { return a.map(function (r) { return r[c]; }); });
+  // or in more modern dialect
+  // return a[0].map((_, c) => a.map(r => r[c]));
 }
 
 btnGuardar.addEventListener("click", function(){

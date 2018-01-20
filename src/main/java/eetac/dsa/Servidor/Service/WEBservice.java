@@ -220,13 +220,11 @@ public class WEBservice {
     {
 
         try {
-            logger.debug("Funciona");
             File f = new File("src/Web/Creadormapas/Creadordemapas.html");
             return new FileInputStream(f);
 
         }catch (Exception e){
             logger.error(e.getMessage());
-            logger.debug("No funciona");
             return null;
         }
 
