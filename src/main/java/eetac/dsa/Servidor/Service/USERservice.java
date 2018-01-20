@@ -54,18 +54,21 @@ public class USERservice
     @Path("/profile/fields")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public KeyUser actualizarPerfil(UsuarioJSON usuario)
+    public UsuarioJSON actualizarPerfil(UsuarioJSON usuario)
     {
-        KeyUser key = new KeyUser();
-        if(ConsultaDB.getInstance().updateUserDB(usuario)){
+        if(ConsultaDB.getInstance().updateUserDB(usuario))
+        {
             logger.error("Usuario " + usuario.getNombre() + " actualizado");
-            key.setKey(0);
-        }else{
-            logger.error("Usuario " + usuario.getNombre() + " no se ha podido actualizar");
-            key.setKey(1);
+            usuario.setKey(0);
         }
 
-        return key;
+        else
+        {
+            logger.error("Usuario " + usuario.getNombre() + " no se ha podido actualizar");
+            usuario.setKey(1);
+        }
+
+        return usuario;
     }
 
     @POST
