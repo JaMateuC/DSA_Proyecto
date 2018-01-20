@@ -284,7 +284,7 @@ public abstract class DAO {
         getConnection();
 
         PreparedStatement preparedStatement;
-        String selectSQL = "SELECT * FROM usuariodao";
+        String selectSQL = "SELECT * FROM UsuarioDAO";
 
         preparedStatement = this.con.prepareStatement(selectSQL);
 
