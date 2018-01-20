@@ -321,10 +321,12 @@ function creadorResultado(){
 
     crearInOutCelda();
 
+    nombreEscenario = "Escenario"+ (parseInt(ultimoMapa.substring(9,13)) + 1);
+
     mapaResultado = {
                         'ancho' : mapa.rows[0].cells.length - 1,
                         'alto' : mapa.rows.length - 1,
-                        'nombre' : "Escenario "+ (parseInt(ultimoMapa.substring(9,10)) + 1),
+                        'nombre' : nombreEscenario.trim(),
                         'nivelDeZona' : nivelDeZona.value,
                         'celdaJSON' : [],
                     };
@@ -339,7 +341,7 @@ function creadorResultado(){
                 column.push(celdaIn);
                 i++;
 
-            }else if(j === (mapa.rows[0].cells.length-1) && k == outRow.value) {
+            }else if(j === (mapa.rows.length-1) && k == outRow.value) {
 
                 column.push(celdaOut);
                 i++;
