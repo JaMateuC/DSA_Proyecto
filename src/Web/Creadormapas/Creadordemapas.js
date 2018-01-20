@@ -330,10 +330,11 @@ function creadorResultado(){
                     };
 
     var i = 0;
-    for(var k = 1; k < mapa.rows.length; k++){
-        var row = [];
-        for(var j = 1; j<mapa.rows[0].cells.length; j++){
+    for(var k = 1; k < mapa.rows[0].cells.length; k++){
+        var column = [];
+        for(var j = 1; j<mapa.rows.length; j++){
         var image = cells[i].style.backgroundColor;
+<<<<<<< HEAD
             listaCeldasJSON.forEach(function (element) {
 
                 if (image === element.image) {
@@ -354,6 +355,26 @@ function creadorResultado(){
                                     args += cells[i].childNodes[p+1].value;
                                 }
                                 if(cells[i].childNodes[p].value==="Str")
+=======
+            if(j === 1 && k == inRow.value){
+
+                column.push(celdaIn);
+                i++;
+
+            }else if(j === (mapa.rows[0].cells.length-1) && k == outRow.value) {
+
+                column.push(celdaOut);
+                i++;
+
+            }else{
+                listaCeldasJSON.forEach(function (element) {
+
+                    if (image === element.image) {
+                        if(cells[i].childNodes.length>0)
+                        {
+                            var args = "{";
+                                for(var p=0;p<cells[i].childNodes.length-1;p+=2)
+>>>>>>> 8cfc4565c28bce285421c065a9ac9c645b39ea34
                                 {
                                     args += "\""+cells[i].childNodes[p+1].value+"\"";
                                 }
@@ -362,6 +383,7 @@ function creadorResultado(){
                                     args += ","
                                 }
                             }
+<<<<<<< HEAD
                             args += "}";
                         var celdaTmp = {
                             "tipo" : element.tipo,
@@ -369,6 +391,13 @@ function creadorResultado(){
                             "numArgs" : cells[i].childNodes.length/2
                         }
                         row.push(celdaTmp);
+=======
+                            column.push(celdaTmp);
+                        }
+                        else
+                            column.push(element);
+                        i++;
+>>>>>>> 8cfc4565c28bce285421c065a9ac9c645b39ea34
                     }
                     else
                     row.push(element);
@@ -379,9 +408,13 @@ function creadorResultado(){
 
 
         }
+<<<<<<< HEAD
         mapaResultado.celdaJSON.push(row);
 
        transpose(mapaResultado.celdaJSON);
+=======
+        mapaResultado.celdaJSON.push(column);
+>>>>>>> 8cfc4565c28bce285421c065a9ac9c645b39ea34
     }
 
 
