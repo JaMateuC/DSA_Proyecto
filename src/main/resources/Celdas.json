@@ -1,21 +1,9 @@
 [
   {
-    "tipo": "Empty",
-    "numArgs":0,
-    "args":"",
-    "image":"black"
-  },
-  {
     "tipo": "CeldaCesped",
     "numArgs":0,
     "args":"",
     "image":"green"
-  },
-  {
-    "tipo": "CeldaCesped",
-    "numArgs":1,
-    "args":"{\"int0\":2",
-    "image":"red"
   },
   {
     "tipo": "CeldaPared",
@@ -27,6 +15,12 @@
     "tipo": "CeldaFueraEscenario",
     "numArgs":0,
     "args":"",
-    "image":"blue"
+    "image":"white"
+  },
+  {
+    "tipo": "CeldaCambioEscenario",
+    "numArgs":0,
+    "args":"",
+    "image":"black"
   }
 ]

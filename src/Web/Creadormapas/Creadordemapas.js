@@ -319,12 +319,12 @@ function crearInOutCelda() {
 
 function creadorResultado(){
 
-    crearInOutCelda();
+    //crearInOutCelda();
 
     mapaResultado = {
                         'ancho' : mapa.rows[0].cells.length - 1,
                         'alto' : mapa.rows.length - 1,
-                        'nombre' : "Escenario "+ (parseInt(ultimoMapa.substring(9,10)) + 1),
+                        'nombre' : inRow.value,
                         'nivelDeZona' : nivelDeZona.value,
                         'celdaJSON' : [],
                     };
@@ -334,7 +334,7 @@ function creadorResultado(){
         var row = [];
         for(var j = 1; j<mapa.rows[0].cells.length; j++){
         var image = cells[i].style.backgroundColor;
-            if(j === 1 && k == inRow.value){
+            /*if(j === 1 && k == inRow.value){
 
                 row.push(celdaIn);
                 i++;
@@ -344,50 +344,50 @@ function creadorResultado(){
                 row.push(celdaOut);
                 i++;
 
-            }else{
-                listaCeldasJSON.forEach(function (element) {
+            }else{*/
+            listaCeldasJSON.forEach(function (element) {
 
-                    if (image === element.image) {
-                        if(cells[i].childNodes.length>0)
-                        {
-                            var args = "{";
-                                for(var p=0;p<cells[i].childNodes.length-1;p+=2)
+                if (image === element.image) {
+                    if(cells[i].childNodes.length>0)
+                    {
+                        var args = "{";
+                            for(var p=0;p<cells[i].childNodes.length-1;p+=2)
+                            {
+                                args +="\"";
+                                args += cells[i].childNodes[p].value+p/2;
+                                args +="\":";
+                                if(cells[i].childNodes[p].value==="int")
                                 {
-                                    args +="\"";
-                                    args += cells[i].childNodes[p].value+p/2;
-                                    args +="\":";
-                                    if(cells[i].childNodes[p].value==="int")
-                                    {
-                                        args += cells[i].childNodes[p+1].value;
-                                    }
-                                    if(cells[i].childNodes[p].value==="dou")
-                                    {
-                                        args += cells[i].childNodes[p+1].value;
-                                    }
-                                    if(cells[i].childNodes[p].value==="Str")
-                                    {
-                                        args += "\""+cells[i].childNodes[p+1].value+"\"";
-                                    }
-                                    if(p<cells[i].childNodes.length-2)
-                                    {
-                                        args += ","
-                                    }
+                                    args += cells[i].childNodes[p+1].value;
                                 }
-                                args += "}";
-                            var celdaTmp = {
-                                "tipo" : element.tipo,
-                                "args" : args,
-                                "numArgs" : cells[i].childNodes.length/2
+                                if(cells[i].childNodes[p].value==="dou")
+                                {
+                                    args += cells[i].childNodes[p+1].value;
+                                }
+                                if(cells[i].childNodes[p].value==="Str")
+                                {
+                                    args += "\""+cells[i].childNodes[p+1].value+"\"";
+                                }
+                                if(p<cells[i].childNodes.length-2)
+                                {
+                                    args += ","
+                                }
                             }
-                            row.push(celdaTmp);
+                            args += "}";
+                        var celdaTmp = {
+                            "tipo" : element.tipo,
+                            "args" : args,
+                            "numArgs" : cells[i].childNodes.length/2
                         }
-                        else
-                        row.push(element);
-                        i++;
+                        row.push(celdaTmp);
                     }
+                    else
+                    row.push(element);
+                    i++;
+                }
 
-                });
-            }
+            });
+
 
         }
         mapaResultado.celdaJSON.push(row);
@@ -397,8 +397,8 @@ function creadorResultado(){
 }
 
 btnGuardar.addEventListener("click", function(){
-    if(inRow.value.length != 0 && outRow.value.length != 0){
-        if(parseInt(inRow.value) > 0 && parseInt(outRow.value) > 0 && parseInt(inRow.value) <= parseInt(rows.value) && parseInt(outRow.value) <= parseInt(rows.value)){
+    if(inRow.value.length != 0){
+        if(true){
             creadorResultado();
             var xhr = new XMLHttpRequest();
             xhr.open(formRes.getAttribute("method"), formRes.getAttribute("action"), true);
