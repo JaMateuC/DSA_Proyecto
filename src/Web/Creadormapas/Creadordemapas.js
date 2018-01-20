@@ -322,26 +322,26 @@ function creadorResultado(){
     crearInOutCelda();
 
     mapaResultado = {
-                        'ancho' : mapa.rows.length - 1,
-                        'alto' : mapa.rows[0].cells.length - 1,
+                        'ancho' : mapa.rows[0].cells.length - 1,
+                        'alto' : mapa.rows.length - 1,
                         'nombre' : "Escenario "+ (parseInt(ultimoMapa.substring(9,10)) + 1),
                         'nivelDeZona' : nivelDeZona.value,
                         'celdaJSON' : [],
                     };
 
     var i = 0;
-    for(var k = 1; k < mapa.rows.length; k++){
-        var row = [];
-        for(var j = 1; j<mapa.rows[0].cells.length; j++){
+    for(var k = 1; k < mapa.rows[0].cells.length; k++){
+        var column = [];
+        for(var j = 1; j<mapa.rows.length; j++){
         var image = cells[i].style.backgroundColor;
             if(j === 1 && k == inRow.value){
 
-                row.push(celdaIn);
+                column.push(celdaIn);
                 i++;
 
             }else if(j === (mapa.rows[0].cells.length-1) && k == outRow.value) {
 
-                row.push(celdaOut);
+                column.push(celdaOut);
                 i++;
 
             }else{
@@ -379,10 +379,10 @@ function creadorResultado(){
                                 "args" : args,
                                 "numArgs" : cells[i].childNodes.length/2
                             }
-                            row.push(celdaTmp);
+                            column.push(celdaTmp);
                         }
                         else
-                        row.push(element);
+                            column.push(element);
                         i++;
                     }
 
@@ -390,7 +390,7 @@ function creadorResultado(){
             }
 
         }
-        mapaResultado.celdaJSON.push(row);
+        mapaResultado.celdaJSON.push(column);
     }
 
 
