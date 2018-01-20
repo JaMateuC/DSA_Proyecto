@@ -31,12 +31,12 @@ public class AUTHservice
 
             if (userExistente.getPassword().equals(user.getPassword()))    //En el equals va la respuesta de la memoria (password)
             {
-                if (MundoControlador.getInstance().UsuarioYaLoggeado(user)) {
+                /*if (MundoControlador.getInstance().UsuarioYaLoggeado(user)) {
                     key.setKey(-1);  //Usuario ya loggeado
 
                     logger.info(userExistente.getNombre() + " ya loggeado");
 
-                } else {
+                } else {*/
 
                     user = userExistente;
                     key.setKey((new Random().nextInt(2048) + 1));
@@ -44,7 +44,7 @@ public class AUTHservice
 
                     logger.info(userExistente.getNombre() + " = " + key.getKey());
 
-                }
+                /*}*/
 
 
             } else {

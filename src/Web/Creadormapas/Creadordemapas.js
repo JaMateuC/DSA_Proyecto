@@ -326,12 +326,12 @@ function creadorResultado(){
     //crearInOutCelda();
 
     mapaResultado = {
-                        'ancho' : mapa.rows[0].cells.length-1,
-                        'alto' : mapa.rows.length-1,
-                        'nombre' : inRow.value,
-                        'nivelDeZona' : nivelDeZona.value,
-                        'celdaJSON' : [],
-                    };
+        'ancho' : mapa.rows[0].cells.length-1,
+        'alto' : mapa.rows.length-1,
+        'nombre' : inRow.value,
+        'nivelDeZona' : nivelDeZona.value,
+        'celdaJSON' : [],
+    };
 
     mapaResultado.celdaJSON = new Array(mapa.rows[0].cells.length-1);
     for (var i = 0; i < mapa.rows[0].cells.length-1; i++) {
@@ -392,69 +392,6 @@ function creadorResultado(){
             mapaResultado.celdaJSON[y-1][x-1] = celdaTmp;
         }
     }
-
-    /*for(var k = 0; k < mapa.rows[0].cells.length; k++){
-        var row = [];
-        for(var j = 0; j<mapa.rows.length; j++){
-        var image = cells[j].style.backgroundColor;
-            listaCeldasJSON.forEach(function (element) {
-                if (image === element.image) {
-                    var args = "";
-                    if(cells[j].childNodes.length>0)
-                    {
-                        args = "{";
-                        for(var p=0;p<cells[j].childNodes.length-1;p+=2)
-                        {
-                            args +="\"";
-                            args += cells[j].childNodes[p].value+p/2;
-                            args +="\":";
-                            if(cells[j].childNodes[p].value==="int")
-                            {
-                                args += cells[j].childNodes[p+1].value;
-                            }
-                            if(cells[j].childNodes[p].value==="dou")
-                            {
-                                args += cells[j].childNodes[p+1].value;
-                            }
-                            if(cells[j].childNodes[p].value==="Str")
-                            {
-                                args += "\""+cells[j].childNodes[p+1].value+"\"";
-                            }
-                            if(p<cells[j].childNodes.length-2)
-                            {
-                                args += ","
-                            }
-                        }
-                        args += "}";
-                        var celdaTmp = {
-                            "tipo" : element.tipo,
-                            "args" : args,
-                            "numArgs" : cells[j].childNodes.length/2
-                        }
-
-                    }
-                    else
-                    {
-                        var celdaTmp = {
-                            "tipo" : element.tipo,
-                            "args" : args,
-                            "numArgs" : 0
-                        }
-                    }
-                    row.push(celdaTmp);
-                    j++;
-                }
-
-            });
-
-
-        }
-        mapaResultado.celdaJSON.push(row);
-
-       //transpose(mapaResultado.celdaJSON);
-    }*/
-
-
 }
 
 function transpose(a) {
