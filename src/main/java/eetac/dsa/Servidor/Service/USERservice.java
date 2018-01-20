@@ -57,7 +57,14 @@ public class USERservice
     public KeyUser actualizarPerfil(UsuarioJSON usuario)
     {
         KeyUser key = new KeyUser();
-        key.setKey(0);
+        if(ConsultaDB.getInstance().updateUserDB(usuario)){
+            logger.error("Usuario " + usuario.getNombre() + " actualizado");
+            key.setKey(0);
+        }else{
+            logger.error("Usuario " + usuario.getNombre() + " no se ha podido actualizar");
+            key.setKey(1);
+        }
+
         return key;
     }
 
