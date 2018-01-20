@@ -113,9 +113,7 @@ btnAtras2.addEventListener("click",Atras)
 
 function cerrarFormParm()
 {
-    while (parametrosSelect.firstChild) {
-        parametrosSelect.removeChild(parametrosSelect.firstChild);
-    }
+    parametrosSelect.innerHTML="";
     parametrosNumberDiv.hidden = false;
     parametrosSelect.hidden = true;
 }
@@ -199,12 +197,18 @@ function onClickTd(){
                 for(var p=0;p<numPar;p++)
                 {
                     var ch1 = document.getElementById("tipoParm"+p);
-                    ch1.setAttribute("hidden","true");
-                    this.appendChild(ch1);
 
                     var ch2 = document.getElementById("prmVal"+p);
-                    ch2.setAttribute("hidden","true");
-                    this.appendChild(ch2);
+
+                    var tipo = document.createElement("INPUT");
+                    tipo.setAttribute("value",ch1.value);
+                    tipo.setAttribute("hidden","true");
+                    this.appendChild(tipo);
+                    var valor = document.createElement("INPUT");
+                    valor.setAttribute("hidden","true");
+                    valor.setAttribute("value",ch2.value);
+                    this.appendChild(valor);
+
                 }
                 //this.innerHTML = args;
             }
@@ -322,110 +326,143 @@ function creadorResultado(){
     //crearInOutCelda();
 
     mapaResultado = {
-                        'ancho' : mapa.rows[0].cells.length - 1,
-                        'alto' : mapa.rows.length - 1,
+                        'ancho' : mapa.rows[0].cells.length-1,
+                        'alto' : mapa.rows.length-1,
                         'nombre' : inRow.value,
                         'nivelDeZona' : nivelDeZona.value,
                         'celdaJSON' : [],
                     };
 
-    var i = 0;
-    for(var k = 1; k < mapa.rows[0].cells.length; k++){
-        var column = [];
-        for(var j = 1; j<mapa.rows.length; j++){
-        var image = cells[i].style.backgroundColor;
-<<<<<<< HEAD
-            listaCeldasJSON.forEach(function (element) {
+    mapaResultado.celdaJSON = new Array(mapa.rows[0].cells.length-1);
+    for (var i = 0; i < mapa.rows[0].cells.length-1; i++) {
+      mapaResultado.celdaJSON[i] = new Array(mapa.rows.length-1);
+    }
 
-                if (image === element.image) {
-                    if(cells[i].childNodes.length>0)
+    for(var x=1;x<mapa.rows.length;x++){
+        for(var y=1;y<mapa.rows[x].cells.length;y++)
+        {
+            var image = mapa.rows[x].cells[y].style.backgroundColor;
+            var celdaTmp;
+            listaCeldasJSON.forEach(function(element){
+                if(image===element.image)
+                {
+                    var args = "";
+                    if(mapa.rows[x].cells[y].childNodes.length>0)
                     {
-                        var args = "{";
-                            for(var p=0;p<cells[i].childNodes.length-1;p+=2)
-                            {
-                                args +="\"";
-                                args += cells[i].childNodes[p].value+p/2;
-                                args +="\":";
-                                if(cells[i].childNodes[p].value==="int")
-                                {
-                                    args += cells[i].childNodes[p+1].value;
-                                }
-                                if(cells[i].childNodes[p].value==="dou")
-                                {
-                                    args += cells[i].childNodes[p+1].value;
-                                }
-                                if(cells[i].childNodes[p].value==="Str")
-=======
-            if(j === 1 && k == inRow.value){
-
-                column.push(celdaIn);
-                i++;
-
-            }else if(j === (mapa.rows[0].cells.length-1) && k == outRow.value) {
-
-                column.push(celdaOut);
-                i++;
-
-            }else{
-                listaCeldasJSON.forEach(function (element) {
-
-                    if (image === element.image) {
-                        if(cells[i].childNodes.length>0)
+                        args = "{";
+                        for(var p=0;p<mapa.rows[x].cells[y].childNodes.length-1;p+=2)
                         {
-                            var args = "{";
-                                for(var p=0;p<cells[i].childNodes.length-1;p+=2)
->>>>>>> 8cfc4565c28bce285421c065a9ac9c645b39ea34
-                                {
-                                    args += "\""+cells[i].childNodes[p+1].value+"\"";
-                                }
-                                if(p<cells[i].childNodes.length-2)
-                                {
-                                    args += ","
-                                }
+                            args +="\"";
+                            args += mapa.rows[x].cells[y].childNodes[p].value+p/2;
+                            args +="\":";
+                            if(mapa.rows[x].cells[y].childNodes[p].value==="int")
+                            {
+                                args += mapa.rows[x].cells[y].childNodes[p+1].value;
                             }
-<<<<<<< HEAD
-                            args += "}";
+                            if(mapa.rows[x].cells[y].childNodes[p].value==="dou")
+                            {
+                                args += mapa.rows[x].cells[y].childNodes[p+1].value;
+                            }
+                            if(mapa.rows[x].cells[y].childNodes[p].value==="Str")
+                            {
+                                args += "\""+mapa.rows[x].cells[y].childNodes[p+1].value+"\"";
+                            }
+                            if(p<mapa.rows[x].cells[y].childNodes.length-2)
+                            {
+                                args += ","
+                            }
+                        }
+                        args += "}";
+                        celdaTmp = {
+                            "tipo" : element.tipo,
+                            "args" : args,
+                            "numArgs" : mapa.rows[x].cells[y].childNodes.length/2
+                        }
+                    }
+                    else
+                    {
+                        celdaTmp = {
+                            "tipo" : element.tipo,
+                            "args" : args,
+                            "numArgs" : 0
+                        }
+                    }
+                }
+            });
+            mapaResultado.celdaJSON[y-1][x-1] = celdaTmp;
+        }
+    }
+
+    /*for(var k = 0; k < mapa.rows[0].cells.length; k++){
+        var row = [];
+        for(var j = 0; j<mapa.rows.length; j++){
+        var image = cells[j].style.backgroundColor;
+            listaCeldasJSON.forEach(function (element) {
+                if (image === element.image) {
+                    var args = "";
+                    if(cells[j].childNodes.length>0)
+                    {
+                        args = "{";
+                        for(var p=0;p<cells[j].childNodes.length-1;p+=2)
+                        {
+                            args +="\"";
+                            args += cells[j].childNodes[p].value+p/2;
+                            args +="\":";
+                            if(cells[j].childNodes[p].value==="int")
+                            {
+                                args += cells[j].childNodes[p+1].value;
+                            }
+                            if(cells[j].childNodes[p].value==="dou")
+                            {
+                                args += cells[j].childNodes[p+1].value;
+                            }
+                            if(cells[j].childNodes[p].value==="Str")
+                            {
+                                args += "\""+cells[j].childNodes[p+1].value+"\"";
+                            }
+                            if(p<cells[j].childNodes.length-2)
+                            {
+                                args += ","
+                            }
+                        }
+                        args += "}";
                         var celdaTmp = {
                             "tipo" : element.tipo,
                             "args" : args,
-                            "numArgs" : cells[i].childNodes.length/2
+                            "numArgs" : cells[j].childNodes.length/2
                         }
-                        row.push(celdaTmp);
-=======
-                            column.push(celdaTmp);
-                        }
-                        else
-                            column.push(element);
-                        i++;
->>>>>>> 8cfc4565c28bce285421c065a9ac9c645b39ea34
+
                     }
                     else
-                    row.push(element);
-                    i++;
+                    {
+                        var celdaTmp = {
+                            "tipo" : element.tipo,
+                            "args" : args,
+                            "numArgs" : 0
+                        }
+                    }
+                    row.push(celdaTmp);
+                    j++;
                 }
 
             });
 
 
         }
-<<<<<<< HEAD
         mapaResultado.celdaJSON.push(row);
 
-       transpose(mapaResultado.celdaJSON);
-=======
-        mapaResultado.celdaJSON.push(column);
->>>>>>> 8cfc4565c28bce285421c065a9ac9c645b39ea34
-    }
+       //transpose(mapaResultado.celdaJSON);
+    }*/
 
 
 }
 
-function transpose(a)
-{
-  return a[0].map(function (_, c) { return a.map(function (r) { return r[c]; }); });
-  // or in more modern dialect
-  // return a[0].map((_, c) => a.map(r => r[c]));
+function transpose(a) {
+    return Object.keys(a[0]).map(function(c) {
+        return a.map(function(r) { return r[c]; });
+    });
 }
+
 
 btnGuardar.addEventListener("click", function(){
     if(inRow.value.length != 0){
