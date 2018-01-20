@@ -6,37 +6,37 @@
   "celdaJSON": [
     [
       {
-        "tipo": "CeldaPared",
+        "tipo": "CeldaFueraEscenario",
         "numArgs":0,
         "args":""
       },
       {
-        "tipo": "CeldaPared",
+        "tipo": "CeldaFueraEscenario",
         "numArgs":0,
         "args":""
       },
       {
-        "tipo": "CeldaPared",
+        "tipo": "CeldaFueraEscenario",
         "numArgs":0,
         "args":""
       },
       {
-        "tipo": "CeldaPared",
+        "tipo": "CeldaFueraEscenario",
         "numArgs":0,
         "args":""
       },
       {
-        "tipo": "CeldaPared",
+        "tipo": "CeldaFueraEscenario",
         "numArgs":0,
         "args":""
       },
       {
-        "tipo": "CeldaPared",
+        "tipo": "CeldaFueraEscenario",
         "numArgs":0,
         "args":""
       },
       {
-        "tipo": "CeldaPared",
+        "tipo": "CeldaFueraEscenario",
         "numArgs":0,
         "args":""
       }
@@ -123,28 +123,28 @@
       },
       {
         "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
+        "numArgs":1,
+        "args":"{\"int0\":2}"
       },
       {
         "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
+        "numArgs":1,
+        "args":"{\"int0\":4}"
       },
       {
         "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
+        "numArgs":1,
+        "args":"{\"int0\":8}"
       },
       {
         "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
+        "numArgs":1,
+        "args":"{\"int0\":16}"
       },
       {
         "tipo": "CeldaCesped",
-        "numArgs":0,
-        "args":""
+        "numArgs":1,
+        "args":"{\"int0\":18}"
       },
       {
         "tipo": "CeldaPared",

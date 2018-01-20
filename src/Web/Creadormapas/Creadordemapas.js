@@ -27,6 +27,9 @@ var columns = document.getElementById("columns");
 var rows = document.getElementById("rows");
 var btnAtras = document.getElementById("Atras");
 var btnAtras2 = document.getElementById("Atras2");
+var parametrosNumDiv = document.getElementById("parametrosNumberDiv");
+var btnEnvNumPar = document.getElementById("envNumPar");
+var parametrosSelect = document.getElementById("parametroSelect");
 var resultadoGuardar = document.getElementById("resultadoGuardar")
 
 cells[0].style.backgroundColor = colorInit;
@@ -108,6 +111,59 @@ btnAtras.addEventListener("click",Atras)
 
 btnAtras2.addEventListener("click",Atras)
 
+function cerrarFormParm()
+{
+    while (parametrosSelect.firstChild) {
+        parametrosSelect.removeChild(parametrosSelect.firstChild);
+    }
+    parametrosNumberDiv.hidden = false;
+    parametrosSelect.hidden = true;
+}
+
+btnEnvNumPar.addEventListener("click",function(){
+    parametrosNumberDiv.hidden = true;
+    parametrosSelect.hidden = false;
+
+    var numParametros = document.getElementById("parametros").value;
+    for(var i=0;i<numParametros;i++)
+    {
+        var tipo = document.createElement("SELECT");
+        tipo.setAttribute("class","form-control");
+        tipo.setAttribute("name","tipo");
+        tipo.setAttribute("id","tipoParm"+i);
+
+        var optionInt = document.createElement("OPTION");
+        optionInt.setAttribute("class","form-control");
+        optionInt.setAttribute("value","int");
+
+        var optionStr = document.createElement("OPTION");
+        optionStr.setAttribute("class","form-control");
+        optionStr.setAttribute("value","Str");
+
+        var optionDou = document.createElement("OPTION");
+        optionDou.setAttribute("class","form-control");
+        optionDou.setAttribute("value","dou");
+
+        var tStr = document.createTextNode("Str");
+        var tDou = document.createTextNode("dou");
+        var t = document.createTextNode("int");
+
+        optionInt.appendChild(t);
+        optionStr.appendChild(tStr);
+        optionDou.appendChild(tDou);
+        tipo.appendChild(optionInt);
+        tipo.appendChild(optionStr);
+        tipo.appendChild(optionDou);
+        parametrosSelect.appendChild(tipo);
+        var valor = document.createElement("INPUT");
+        valor.setAttribute("id","prmVal"+i);
+        valor.setAttribute("class","form-control");
+        valor.setAttribute("value",0);
+        parametrosSelect.appendChild(valor);
+    }
+
+})
+
 function Atras() {
 
     switch(step){
@@ -135,6 +191,24 @@ function onClickTd(){
         cells[i].addEventListener("click",function(){
             this.style.backgroundColor = selectedOption;
             this.setAttribute('class','mapCell');
+            var numPar = document.getElementById("parametros").value;
+            if(parametrosSelect.hidden === false&&numPar>0)
+            {
+                this.innerHTML = "";
+
+                for(var p=0;p<numPar;p++)
+                {
+                    var ch1 = document.getElementById("tipoParm"+p);
+                    ch1.setAttribute("hidden","true");
+                    this.appendChild(ch1);
+
+                    var ch2 = document.getElementById("prmVal"+p);
+                    ch2.setAttribute("hidden","true");
+                    this.appendChild(ch2);
+                }
+                //this.innerHTML = args;
+            }
+            cerrarFormParm();
         });
     }
 }
@@ -203,8 +277,6 @@ function selectCell(){
 
                 selectedOption = this.style.backgroundColor;
                 this.setAttribute('id','select');
-
-
             })
     }
 }
@@ -276,6 +348,40 @@ function creadorResultado(){
                 listaCeldasJSON.forEach(function (element) {
 
                     if (image === element.image) {
+                        if(cells[i].childNodes.length>0)
+                        {
+                            var args = "{";
+                                for(var p=0;p<cells[i].childNodes.length-1;p+=2)
+                                {
+                                    args +="\"";
+                                    args += cells[i].childNodes[p].value+p;
+                                    args +="\":";
+                                    if(document.cells[i].childNodes[p].value==="int")
+                                    {
+                                        args += cells[i].childNodes[p+1].value.value;
+                                    }
+                                    if(cells[i].childNodes[p].value==="dou")
+                                    {
+                                        args += cells[i].childNodes[p+1].value.value;
+                                    }
+                                    if(cells[i].childNodes[p].value==="Str")
+                                    {
+                                        args += "\""+cells[i].childNodes[p+1].value+"\"";
+                                    }
+                                    if(p<numPar-1)
+                                    {
+                                        args += ","
+                                    }
+                                }
+                                args += "}";
+                            var celdaTmp = {
+                                "tipo" : element.tipo,
+                                "args" : args,
+                                "numArgs" : childNodes.length/2
+                            }
+                            row.push(celdaTmp);
+                        }
+                        else
                         row.push(element);
                         i++;
                     }

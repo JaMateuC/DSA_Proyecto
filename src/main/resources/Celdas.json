@@ -12,9 +12,21 @@
     "image":"green"
   },
   {
+    "tipo": "CeldaCesped",
+    "numArgs":1,
+    "args":"{\"int0\":2",
+    "image":"red"
+  },
+  {
     "tipo": "CeldaPared",
     "numArgs":0,
     "args":"",
     "image":"grey"
+  },
+  {
+    "tipo": "CeldaFueraEscenario",
+    "numArgs":0,
+    "args":"",
+    "image":"blue"
   }
 ]
