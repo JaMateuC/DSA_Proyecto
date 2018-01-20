@@ -354,21 +354,21 @@ function creadorResultado(){
                                 for(var p=0;p<cells[i].childNodes.length-1;p+=2)
                                 {
                                     args +="\"";
-                                    args += cells[i].childNodes[p].value+p;
+                                    args += cells[i].childNodes[p].value+p/2;
                                     args +="\":";
-                                    if(document.cells[i].childNodes[p].value==="int")
+                                    if(cells[i].childNodes[p].value==="int")
                                     {
-                                        args += cells[i].childNodes[p+1].value.value;
+                                        args += cells[i].childNodes[p+1].value;
                                     }
                                     if(cells[i].childNodes[p].value==="dou")
                                     {
-                                        args += cells[i].childNodes[p+1].value.value;
+                                        args += cells[i].childNodes[p+1].value;
                                     }
                                     if(cells[i].childNodes[p].value==="Str")
                                     {
                                         args += "\""+cells[i].childNodes[p+1].value+"\"";
                                     }
-                                    if(p<numPar-1)
+                                    if(p<cells[i].childNodes.length-2)
                                     {
                                         args += ","
                                     }
@@ -377,7 +377,7 @@ function creadorResultado(){
                             var celdaTmp = {
                                 "tipo" : element.tipo,
                                 "args" : args,
-                                "numArgs" : childNodes.length/2
+                                "numArgs" : cells[i].childNodes.length/2
                             }
                             row.push(celdaTmp);
                         }
