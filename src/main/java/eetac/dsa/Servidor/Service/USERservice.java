@@ -104,9 +104,8 @@ public class USERservice
     {
         ArrayList<UsuarioJSON> list;
 
-        list = ConsultaDB.getInstance().getAllUsers();
+        list = ConsultaDB.getInstance().getAllUsers(true);
 
-        //ArrayList<UsuarioJSON> list = new ArrayList<UsuarioJSON>(MapUsuarios.getInstance().getUsuarios().values());
         Collections.sort(list,UsuarioJSON.Productoventascomparator);
         return list;
     }

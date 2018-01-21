@@ -10,10 +10,10 @@ import java.net.URI;
 
 
 public class Servidor {
-     public static final String BASE_URI = "http://192.168.1.36:8080/myapp/";
+    //public static final String BASE_URI = "http://192.168.1.36:8080/myapp/";
     //public static final String BASE_URI = "http://localhost:8080/myapp/";
     //public static final String BASE_URI = "http://172.16.1.133:8080/myapp/";
-    //public static final String BASE_URI = "http://147.83.7.205:8080/myapp/";
+    public static final String BASE_URI = "http://147.83.7.205:8080/myapp/";
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.

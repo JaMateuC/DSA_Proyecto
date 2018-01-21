@@ -112,7 +112,17 @@ public class ConsultaDB extends DAO {
 
     }
 
-    public  ArrayList<UsuarioJSON> getAllUsers() {
+    public UsuarioJSON getUsuarioEnteroSeguro(String name){
+
+        UsuarioJSON usuarioJSON = new UsuarioJSON();
+        usuarioJSON.setNombre(name);
+        usuarioJSON.setInventario(ConsultaDB.getInstance().getObjtosUsuario(usuarioJSON.getNombre()));
+        usuarioJSON.setMonstruos(ConsultaDB.getInstance().getMonstruosUsuario(usuarioJSON.getNombre()));
+        return usuarioJSON;
+
+    }
+
+    public  ArrayList<UsuarioJSON> getAllUsers(boolean isRanking) {
 
         ArrayList<UsuarioDAO> usuarioDAOArrayList;
         ArrayList<UsuarioJSON> usuarioJSONArrayList = new ArrayList<>();
@@ -123,8 +133,13 @@ public class ConsultaDB extends DAO {
 
             for (UsuarioDAO usuarioDAO : usuarioDAOArrayList) {
 
-                UsuarioJSON usuarioJSON = new UsuarioJSON();
-                usuarioJSON = ConsultaDB.getInstance().getUsuarioEntero(usuarioDAO.getId());
+                UsuarioJSON usuarioJSON;
+                if(isRanking){
+                    usuarioJSON = getUsuarioEnteroSeguro(usuarioDAO.getId());
+                }else{
+                    usuarioJSON = ConsultaDB.getInstance().getUsuarioEntero(usuarioDAO.getId());
+                }
+
                 usuarioJSONArrayList.add(usuarioJSON);
 
             }
