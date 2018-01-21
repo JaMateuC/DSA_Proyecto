@@ -47,7 +47,7 @@ public class MundoControlador {
 
     public Vector<Vector<MonstruoJSON>> monstruosEncontrables;
 
-    public boolean UsuarioYaLoggeado(UsuarioJSON user){
+    public boolean usuarioYaLoggeado(UsuarioJSON user){
 
         for(Map.Entry<Integer, Sesion> entry : sesiones.entrySet()) {
             if (entry.getValue().protagonista.getNombre().equals(user.getNombre())) {
@@ -56,6 +56,19 @@ public class MundoControlador {
         }
 
         return false;
+
+    }
+
+    public void usuarioReplace(UsuarioJSON user, int key){
+
+        for(Map.Entry<Integer, Sesion> entry : sesiones.entrySet()) {
+            if (entry.getValue().protagonista.getNombre().equals(user.getNombre())) {
+
+                sesiones.remove(entry.getKey());
+                sesiones.put(key,new Sesion(user));
+
+            }
+        }
 
     }
 }
