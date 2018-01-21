@@ -116,7 +116,7 @@ public class USERservice
     public ArrayList<MonstruoJSON> getMonstruos(@PathParam("nombre") String nombre)
     {
 
-        if(!ConsultaDB.getInstance().ExistUser(nombre)){
+        if(ConsultaDB.getInstance().ExistUser(nombre)){
             ArrayList<MonstruoJSON> list;
             list = ConsultaDB.getInstance().getMonstruosUsuario(nombre);
             return list;
