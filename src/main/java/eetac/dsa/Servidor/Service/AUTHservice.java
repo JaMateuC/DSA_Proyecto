@@ -39,8 +39,17 @@ public class AUTHservice
                 } else {*/
 
                     user = userExistente;
-                    key.setKey((new Random().nextInt(2048) + 1));
-                    MundoControlador.getInstance().addSesion(key.getKey(), new Sesion(user));
+                key.setKey((new Random().nextInt(2048) + 1));
+                    if (MundoControlador.getInstance().usuarioYaLoggeado(user)){
+                        MundoControlador.getInstance().usuarioReplace(user,key.getKey());
+
+                        logger.info("Usuario reloggeado");
+
+                    }else{
+
+                        MundoControlador.getInstance().addSesion(key.getKey(), new Sesion(user));
+                    }
+
 
                     logger.info(userExistente.getNombre() + " = " + key.getKey());
 
