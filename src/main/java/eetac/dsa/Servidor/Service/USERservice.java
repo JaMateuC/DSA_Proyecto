@@ -115,9 +115,15 @@ public class USERservice
     @Produces(MediaType.APPLICATION_JSON)
     public ArrayList<MonstruoJSON> getMonstruos(@PathParam("nombre") String nombre)
     {
-        ArrayList<MonstruoJSON> list;
-        list = ConsultaDB.getInstance().getMonstruosUsuario(nombre);
-        return list;
+
+        if(!ConsultaDB.getInstance().ExistUser(nombre)){
+            ArrayList<MonstruoJSON> list;
+            list = ConsultaDB.getInstance().getMonstruosUsuario(nombre);
+            return list;
+        }
+
+        return null;
+
     }
 
     @GET
