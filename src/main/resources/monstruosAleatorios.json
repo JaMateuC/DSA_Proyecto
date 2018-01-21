@@ -22,5 +22,29 @@
       "experiencia": 0,
       "nivel": 2
     }
+  ],
+  [
+    {
+      "tipo": "MonstruoEjemplo",
+      "experiencia": 0,
+      "nivel": 3
+    },
+    {
+      "tipo": "MonstruoEjemplo",
+      "experiencia": 0,
+      "nivel": 3
+    }
+  ],
+  [
+    {
+      "tipo": "MonstruoEjemplo",
+      "experiencia": 0,
+      "nivel": 4
+    },
+    {
+      "tipo": "MonstruoEjemplo",
+      "experiencia": 0,
+      "nivel": 4
+    }
   ]
 ]

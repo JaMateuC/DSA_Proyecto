@@ -3,17 +3,17 @@
     {
       "tipo": "Pocion",
       "numArgs": 2,
-      "args": "{\"Str0\": \"Pocion pequeña\", \"int1\": 200}"
+      "args": "{\"Str0\": \"Pocion pequeña\", \"int1\": 20}"
     },
     {
       "tipo": "PocionExperiencia",
       "numArgs": 2,
-      "args": "{\"Str0\": \"Pocion pequeña\", \"int1\": 200}"
+      "args": "{\"Str0\": \"Pocion pequeña Experiencia\", \"int1\": 200}"
     },
     {
       "tipo": "PiedraTeleport",
       "numArgs": 3,
-      "args": "{\"int0\": 1, \"int1\": 1, \"Str2\": \"Escenario2\"}"
+      "args": "{\"int0\": 26, \"int1\": 2, \"Str2\": \"Escenario2\"}"
     },
     {
       "tipo":"CarameloRaro",
@@ -25,17 +25,17 @@
     {
       "tipo": "Pocion",
       "numArgs": 2,
-      "args": "{\"Str0\": \"Pocion pequeña\", \"int1\": 200}"
+      "args": "{\"Str0\": \"Pocion pequeña\", \"int1\": 20}"
     },
     {
       "tipo": "PocionExperiencia",
       "numArgs": 2,
-      "args": "{\"Str0\": \"Pocion pequeña\", \"int1\": 200}"
+      "args": "{\"Str0\": \"Pocion pequeña experiencia\", \"int1\": 20}"
     },
     {
       "tipo": "PiedraTeleport",
       "numArgs": 3,
-      "args": "{\"int0\": 1, \"int1\": 1, \"Str2\": \"Escenario2\"}"
+      "args": "{\"int0\": 2, \"int1\": 26, \"Str2\": \"Escenario2\"}"
     },
     {
       "tipo":"CarameloRaro",
@@ -47,17 +47,39 @@
     {
       "tipo": "Pocion",
       "numArgs": 2,
-      "args": "{\"Str0\": \"Pocion pequeña\", \"int1\": 200}"
+      "args": "{\"Str0\": \"Pocion\", \"int1\": 100}"
     },
     {
       "tipo": "PocionExperiencia",
       "numArgs": 2,
-      "args": "{\"Str0\": \"Pocion pequeña\", \"int1\": 200}"
+      "args": "{\"Str0\": \"Pocion experiencia\", \"int1\": 100}"
     },
     {
       "tipo": "PiedraTeleport",
       "numArgs": 3,
-      "args": "{\"int0\": 1, \"int1\": 1, \"Str2\": \"Escenario2\"}"
+      "args": "{\"int0\": 2, \"int1\": 26, \"Str2\": \"Escenario2\"}"
+    },
+    {
+      "tipo":"CarameloRaro",
+      "numArgs": 0,
+      "args":""
+    }
+  ],
+  [
+    {
+      "tipo": "Pocion",
+      "numArgs": 2,
+      "args": "{\"Str0\": \"Pocion grande\", \"int1\": 200}"
+    },
+    {
+      "tipo": "PocionExperiencia",
+      "numArgs": 2,
+      "args": "{\"Str0\": \"Pocion grande experiencia\", \"int1\": 200}"
+    },
+    {
+      "tipo": "PiedraTeleport",
+      "numArgs": 3,
+      "args": "{\"int0\": 18, \"int1\": 2, \"Str2\": \"Escenario3\"}"
     },
     {
       "tipo":"CarameloRaro",
